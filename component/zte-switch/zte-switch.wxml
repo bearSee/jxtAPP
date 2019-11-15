@@ -1,0 +1,7 @@
+<view class="zte-switch">
+  <switch
+    type="{{ type }}"
+    disabled="{{ disabled }}"
+    checked="{{ checked }}"
+    bindchange="handlerChange" />
+</view>

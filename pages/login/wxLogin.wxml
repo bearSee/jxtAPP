@@ -1,0 +1,28 @@
+<view class="authorize-warning" wx:if="{{ !isChangeMobile }}">
+  <view class="box">
+    <view class='head'>
+      <view class='log-container'>
+        <image class='log' src='/image/authorize_logo.png'></image>
+      </view>
+      <text class='logName'>及信通</text>
+    </view>
+    <view class='authorize-text'>授权后及信通将获得以下权限</view>
+    <view class='getPhone'>
+      <view class='dot'></view>
+      <text class='getPhone-text'>获得你的手机号码</text>
+    </view>
+    <button class='loginBtn theme_background_main' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信手机号快捷登录</button>
+    <view class='des'>小程序开发者将获取您微信绑定的或您添加的手机号信息，为您提供服务。如发现该校程序不恰当收集您的信息，可向平台投诉</view>
+  </view>
+</view>
+
+
+  <view wx:else  class="change-mobile">
+    <view class='icon-head border_bottom'>
+      <image class='mobile-icon' src='/image/mobile.png'></image>
+      <view class='curentMobile-title theme_fontColor_deputy'>当前手机号</view>
+      <view class='curentMobile'>{{ mobile }}</view>
+    </view>
+    <text class='warning-tips theme_fontColor_deputy'>此手机号将显示在个人信息中\n你可以使用此手机号登录，身份校验。</text>
+    <button class='loginBtn theme_background_main' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">更换手机号</button>
+</view>

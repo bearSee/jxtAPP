@@ -1,0 +1,27 @@
+<!--logs.wxml-->
+<view class="pwdlogin">
+  <view class="title">账号登录</view>
+  <view class="account input-box space_around border_bottom">
+    <image src="/image/avatar.png"/>
+    <input
+      class="weui-input"
+      type="text"
+      placeholder-class="placeholderClass"
+      placeholder="请输入手机号"
+      maxlength="11"
+      value="{{ mobileNumber }}"
+      bindblur="handlerPhoneBlur"/>
+  </view>
+  <view class="pwdword input-box space_around border_bottom">
+    <image src="/image/avatar.png"/>
+    <input
+      type="password"
+      placeholder-class="placeholderClass"
+      placeholder="请输入密码"
+      maxlength="20"
+      value="{{ password }}"
+      bindblur="handlerPwdBlur"/>
+  </view>
+  <button bindtap="login" class="submit-btn">立即登录</button>
+  <view class="no_account">还没有账号？<text bindtap="gotoRegister">去注册</text></view>
+</view>

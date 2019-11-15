@@ -1,0 +1,5 @@
+<view style='width: 100%;height: {{height*2 + 20}}px;'></view>
+<view class='nav-wrap' style='height: {{height*2 + 20}}px;background: {{ navbarData.background || "#348DFB" }};'>
+  <image bindtap='_navback' style='top: {{height + 12}}px;' wx:if='{{ navbarData.showCapsule }}' src='/image/{{ navbarData.iconName || "back-pre-white" }}.png' mode='aspectFill' class='back-pre'></image>
+  <view class='nav-title' style='line-height: {{height*2 + 45}}px;font-size: {{ navbarData.fontSize || "17" }}px'>{{navbarData.title}}</view>
+</view>

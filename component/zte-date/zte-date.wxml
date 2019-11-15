@@ -1,0 +1,13 @@
+<!-- 日期/时间选择器 -->
+<view class="zte-date">
+  <picker
+    mode="{{ type }}"
+    value="{{ value }}"
+    start="{{ start }}"
+    fields="{{ fields }}"
+    end="{{ end }}"
+    disabled="{{ disabled }}"
+    bindchange="handlerDateChange">
+    <view class="picker {{ disabled ?  '' : 'picker-mark' }} {{value ? '' : 'theme_fontColor_deputy'}}">{{ value || '请选择' }}</view>
+  </picker>
+</view>

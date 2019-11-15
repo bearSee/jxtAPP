@@ -1,0 +1,13 @@
+
+<view class="list-tag border_bottom">
+  <view
+    class="list-box"
+    wx:for="{{ list }}"
+    wx:key="index">
+    <view class="item {{ list.length - 1 !== index && 'border_bottom' }}" bindtap="clickView" data-item="{{ item }}">
+      <i class="{{ item.iconName }} icon" wx:if="item.iconName"/>
+      <view class="labelName">{{ item.labelName }}</view>
+      <view class="right-config-value {{ !item.hiddenArrow && 'right-arrow' }}">{{ item.value }}</view>
+    </view>
+  </view>
+</view>

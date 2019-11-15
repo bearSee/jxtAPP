@@ -1,0 +1,4 @@
+<view
+  class="zte-popup {{ className }}">
+  <slot></slot>
+</view>

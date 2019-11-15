@@ -1,0 +1,68 @@
+.zte-item {
+  display: flex;
+  width: 700rpx;
+  min-height: 80rpx;
+  line-height: 80rpx;
+  font-size: 29rpx;
+  margin-left: 25rpx;
+  padding-right: 25rpx;
+  background: #fff;
+}
+
+.zte-item .label {
+  width: 325rpx;
+  padding-right: 10rpx;
+  flex: 0 0 auto;
+}
+
+.zte-item .value {
+  width: 345rpx;
+  flex: 0 0 auto;
+  padding: 0 25rpx;
+  position: relative;
+}
+
+.upDownAlign .label {
+  width: 100%;
+  border-bottom: 1rpx solid #d6d6d6;
+  color: rgba(136, 136, 136, 1);
+}
+
+.upDownAlign .value {
+  width: 700rpx;
+  padding-left: 0;
+  padding-right: 25rpx;
+}
+
+.upDownAlign {
+  flex-direction: column;
+  width: 725rpx;
+  padding-right: 0;
+}
+
+.mark-icon {
+  color: red;
+}
+.tagView {
+  position: absolute;
+  padding-right:10px;
+  width:325rpx;
+  line-height:1.2;
+  top:50%;
+  transform:translate(0,-50%);
+  white-space: wrap;
+}
+.tagView:before {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 1px 1px 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0) translate(0, -50%);
+  position: absolute;
+  top: 50%;
+  right: 10rpx;
+}

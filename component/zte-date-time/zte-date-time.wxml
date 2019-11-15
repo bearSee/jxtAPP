@@ -1,0 +1,13 @@
+<!-- 日期/时间选择器 -->
+<view class="zte-date">
+  <picker
+    mode="multiSelector"
+    value="{{dateTime}}"
+    range="{{dateTimeArray}}"
+    bindchange="changeDateTime"
+    data-disabled="{{ disabled }}">
+    <view class="picker {{ disabled ?  '' : 'picker-mark' }}">
+      {{ value }}
+    </view>
+  </picker>
+</view>

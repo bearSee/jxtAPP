@@ -1,0 +1,8 @@
+.zte-upload {
+  height: 140rpx;
+}
+.pic {
+  width: 100rpx;
+  height: 100rpx;
+  padding: 20rpx 0;
+}

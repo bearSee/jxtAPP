@@ -1,0 +1,89 @@
+
+<view class="zte-item {{ !isLast && 'border_bottom_shallow' }} {{ currentItem.differentLine && 'upDownAlign' }}"  >
+  <label wx:if='{{ currentItem.label }}' class="label {{ currentItem.type }}Label">
+    <text>{{ currentItem.label }}</text>
+    <text class='mark-icon' wx:if='{{ requested || importantMark }}'>*</text>
+  </label>
+  <view class="value {{ disabled ? 'theme_fontColor_deputy' : '' }}">
+    <zte-input
+      wx:if="{{ currentItem.type === 'text' || currentItem.type === 'textarea' || currentItem.type === 'labelarea' }}"
+      type="{{ currentItem.type }}"
+      inputType='{{ currentItem.inputType }}'
+      maxLength='{{ currentItem.maxLength || -1 }}'
+      placeholder="{{ currentItem.placeholder || currentItem.label }}"
+      height='{{ currentItem.height }}'
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+      bindblur="handlertTextBlur"
+    />
+    <zte-check
+      wx:if="{{ currentItem.type === 'radio' || currentItem.type === 'check' }}"
+      type="{{ currentItem.type }}"
+      value="{{ value }}"
+      options="{{ currentItem.options }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <zte-select
+      wx:if="{{ currentItem.type === 'select' || currentItem.type === 'list' }}"
+      type="{{ currentItem.type }}"
+      label="{{ label }}"
+      value="{{ value }}"
+      showValue='{{ showValue }}'
+      searchTips="{{ currentItem.searchTips || '请输入关键字搜索' }}"
+      options="{{ currentItem.options }}"
+      optionProp="{{ currentItem.optionProp }}"
+      additionalProps="{{ currentItem.additionalProps }}"
+      headConfig="{{ currentItem.headConfig }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+      bindrefresh="handlerRefresh"
+      bindloadMore="handlerLoadMore"
+      bindsearch="handlerSearch"
+    />
+    <zte-date
+      wx:if="{{ currentItem.type === 'date' || currentItem.type === 'time' }}"
+      type="{{ currentItem.type }}"
+      fields="{{ currentItem.fields || 'day' }}"
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <zte-date-time
+      wx:if="{{ currentItem.type === 'dateTime' }}"
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <zte-switch
+      wx:if="{{ currentItem.type === 'switch' || currentItem.type === 'checkbox' }}"
+      type="{{ currentItem.type }}"
+      on="{{ currentItem.on || true }}"
+      off="{{ currentItem.off || false }}"
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <zte-upload
+      wx:if="{{ currentItem.type === 'upload' }}"
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <zte-select-area
+      wx:if="{{ currentItem.type === 'region' }}"
+      codeList='{{ currentItem.code }}'
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <zte-upload
+      wx:if="{{ currentItem.type === 'upload' }}"
+      value="{{ value }}"
+      disabled="{{ disabled }}"
+      bindinput="handlerInput"
+    />
+    <view class='tagView {{ !showValue && "theme_fontColor_deputy" }}' bindtap='clickTag' data-item='{{ currentItem }}' wx:if="{{ currentItem.type === 'tagView' }}">{{ showValue || '请选择' }}</view>
+  </view>
+</view>

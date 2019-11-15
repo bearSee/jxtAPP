@@ -1,0 +1,59 @@
+<!--logs.wxml-->
+<view class="container">
+  <view class="register-box">
+    <view class="register-btn {{ isPesonal && 'lightFont' }}" bindtap="changeType" data-type="isPesonal">
+      <text>个人注册</text>
+      <view></view>
+    </view>/
+    <view class="register-btn {{ !isPesonal && 'lightFont' }}" bindtap="changeType" data-type="isCompany">
+      <text>企业注册</text>
+      <view></view>
+    </view>
+  </view>
+
+  <view>
+    <view class="form-item border_bottom">
+      <i class="ri-smartphone-line icon"></i>
+      <input
+        class="input-item flex-line"
+        type="text"
+        placeholder-class="placeholderClass"
+        placeholder="请输入您的手机号"
+        maxlength="11"
+        value="{{ mobileNumber }}"
+        bindblur="handlerBlur"
+        data-key="mobileNumber"/>
+    </view>
+    <view class="form-item border_bottom verifyCode">
+      <i class="ri-keyboard-box-line icon"></i>
+      <input
+        class="input-item"
+        type="text"
+        placeholder-class="placeholderClass"
+        placeholder="请输入验证码"
+        maxlength="6"
+        bindblur="handlerBlur"
+        data-key="verifyCode"/>
+      <view class="vCode-btn" bindtap="getVerifyCode">{{ (seconds !== 60 && seconds && seconds + '秒') || '获取验证码' }}</view>
+    </view>
+    <view class="form-item border_bottom">
+      <i class="ri-lock-password-line icon"></i>
+      <input
+        class="input-item flex-line"
+        type="password"
+        placeholder-class="placeholderClass"
+        placeholder="请输入登陆密码"
+        maxlength="20"
+        value="{{ password }}"
+        bindblur="handlerBlur"
+        data-key="password"/>
+    </view>
+  </view>
+  <checkbox-group class="hasReady-checkbox" bindchange="checkboxChange">
+    <label>
+      <checkbox/>我已阅读并同意
+    </label>
+    <text class="blue-font" bindtap="readAgreement">《网站协议》</text>
+  </checkbox-group>
+  <button bindtap="submit" class="submit-btn">立即注册</button>
+</view>

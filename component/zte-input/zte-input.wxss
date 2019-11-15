@@ -1,0 +1,32 @@
+.zte-input {
+  min-height: 80rpx;
+  line-height: 80rpx;
+}
+
+.zte-input .placeholder {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.zte-input input {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.zte-input textarea {
+  width: 100%;
+  line-height: 40rpx;
+  padding-top: 20rpx;
+}
+
+.zte-input .textarea-counter {
+  text-align: right;
+}
+
+.labelarea {
+  overflow-y: auto;
+  word-break: break-all;
+  line-height: 1.6;
+  padding: 20rpx 0;
+}

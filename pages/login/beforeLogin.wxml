@@ -1,0 +1,9 @@
+<view class="beforeLogin">
+  <text class="helloText">{{ helloText }}</text>
+  <view class="helloTextEn">{{ helloTextEn }}</view>
+  <image class="backImage" src="/image/before-lodin.png"></image>
+  <view wx:for="{{ loginBtnList }}" wx:key='{{ index }}' class="{{ item.className }} login-btn space_between" bindtap="gotoLogin" data-type='{{ item.type }}'>
+    <text class="label">{{ item.btnName }}</text>
+    <image class="icon" src="/image/{{ item.icon }}"/>
+  </view>
+</view>

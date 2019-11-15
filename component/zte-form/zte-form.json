@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zte-item": "../zte-item/zte-item"
+  }
+}

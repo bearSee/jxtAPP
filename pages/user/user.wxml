@@ -1,0 +1,15 @@
+<!--pages/user/user.wxml-->
+<view class="user">
+  <view class="content-head">
+    <view class="content">
+      <view class="info-box">
+        <view class="userTypeName">{{ userTypeName }}</view>
+        <view class="mobileNumber">{{ userInfo.mobileNumber || '暂无手机号' }}</view>
+      </view>
+      <image src="/image/avatar.png"></image>
+    </view>
+  </view>
+  <view class="list">
+    <list-tag list="{{ list }}" bindclickView="clickView"/>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+.zte-search {
+  width: 100%;
+  height: 60rpx;
+  padding: 16rpx;
+  display: flex;
+  align-items:center;
+}
+
+.zte-search .zte-search-inner {
+  width: calc(100% - 80rpx);
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  display: flex;
+  align-items:center;
+}
+.zte-search .zte-search-inner input {
+  width: 100%;
+  padding: 0 16rpx;
+}
+
+.zte-search .cancel {
+  width: 80rpx;
+  padding: 0 16rpx;
+  color: #4285F4;
+}
+.weui-icon-search_in-box {
+  padding-left: 15rpx;
+}

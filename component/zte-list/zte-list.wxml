@@ -1,0 +1,9 @@
+<scroll-view
+  class="zte-list"
+  scroll-y
+  enable-back-to-top
+  catchtouchmove="handlerTouchmove"
+  catchscrolltoupper="handlerRefresh"
+  catchscrolltolower="handlerLoadMore">
+  <slot></slot>
+</scroll-view>

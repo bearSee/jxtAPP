@@ -1,0 +1,47 @@
+
+@import '/common/common.wxss';
+.area-box {
+  height: 80rpx;
+  line-height: 80rpx;
+  position: relative;
+  font-size: 29rpx;
+  color: #222;
+  padding-right: 30rpx;
+  display: flex;
+  width: 100%;
+}
+
+.labelStyle {
+  width: 340rpx;
+  flex: 0 0 auto;
+}
+
+.date-picker {
+  min-width: 200rpx;
+}
+
+.zte-select {
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+}
+
+.zte-select-mark:before {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0) translate(0, -50%);
+  position: absolute;
+  top: 50%;
+  right: 10rpx;
+}
+.value {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

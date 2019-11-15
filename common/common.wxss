@@ -1,0 +1,119 @@
+page{
+  background-color: #ffffff;
+  font-family: "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
+  font-size: 30rpx;
+  min-height: 100%;
+  width: 750rpx;
+  overflow-x: hidden;
+}
+page view {
+  box-sizing: border-box;
+}
+.navigator-hover{
+  background: none;
+}
+
+/* 主背景色(蓝) */
+.theme_background_main {
+  background: #348DFB;
+  color: #ffffff;
+}
+/* 副背景色(灰) */
+.theme_background_deputy {
+  background: #f8f8f8;
+  color: rgba(136,136,136,1);
+}
+.theme_background_white {
+  background: #ffffff;
+  color: #222222;
+}
+/* 主字体色(蓝) */
+.theme_fontColor_main {
+  color: #4285F4;
+}
+/* 次要字体色(灰) */
+.theme_fontColor_deputy {
+  color: #888888;
+}
+/* 占位字体色(浅灰) */
+.secondary_fontColor {
+  color: #C0C4CC;
+}
+/* 状态字体色(黄) */
+.state_fontColor {
+  color: orange;
+}
+/* border样式 */
+
+.border_bottom_deep {
+  border-bottom: 1rpx solid #d6d6d6;
+}
+.border_top_deep {
+  border-top: 1rpx solid #d6d6d6;
+}
+.border_top {
+  border-top: 1rpx solid #f2f2f2;
+}
+.border_right {
+  border-right: 1rpx solid #f2f2f2;
+}
+.border_left {
+  border-left: 1rpx solid #f2f2f2;
+}
+.border_bottom {
+  border-bottom: 1rpx solid #f2f2f2;
+}
+/* border样式 */
+.border_around_style {
+  border: 1rpx solid #d6d6d6;
+}
+.submit-btn-fixed {
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #4285F4;
+  color: #ffffff;
+  width: 750rpx;
+  /* width: 690rpx; */
+  /* margin: 27rpx 30rpx; */
+  border-radius: 0;
+  text-align: center;
+  font-size: 34rpx;
+  z-index: 99;
+}
+.submit-btn {
+  background:linear-gradient(329deg,rgba(0,183,255,1) 0%,rgba(0,129,255,1) 100%);
+  box-shadow: 0px 2px 4px 0px rgba(0,129,255,0.24);
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  line-height: 92rpx;
+  font-family: PingFang-SC-Bold,PingFang-SC;
+  font-weight: bold;
+  color:rgba(255,255,255,1);
+  margin-top: 50rpx;
+}
+.flex {
+  display: flex;
+}
+.space_around {
+  display: flex;
+  justify-content: space-around;
+}
+.space_between {
+  display: flex;
+  justify-content: space-between;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+.cut_font {
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.word-break {
+  word-break: break-all;
+}
+/* @import '/common/common.wxss'; */

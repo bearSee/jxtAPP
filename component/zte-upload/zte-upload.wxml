@@ -1,0 +1,4 @@
+
+  <view class='zte-upload' bindtap='uploadPic'>
+    <image class='pic' src='{{ path }}'></image>
+  </view>

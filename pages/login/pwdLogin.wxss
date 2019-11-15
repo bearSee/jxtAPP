@@ -1,0 +1,41 @@
+@import '/common/common.wxss';
+.pwdlogin {
+  padding: 50rpx 40rpx;
+  height: 100%;
+  overflow-y: auto;
+}
+.title {
+  font-size: 56rpx;
+  font-weight: 600;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  color:rgba(34,34,34,1);
+  margin-bottom: 60rpx;
+}
+.input-box {
+}
+.input-box image {
+  width: 26rpx;
+  height: 30rpx;
+  margin: auto 0;
+}
+.input-box input {
+  flex: 1 1 auto;
+  height: 115rpx;
+  padding-left: 24rpx;
+}
+.placeholderClass {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular,PingFang SC;
+  font-weight: 400;
+  color: rgba(203,203,203,1);
+}
+.no_account {
+  font-size: 26rpx;
+  font-family: PingFang-SC-Medium,PingFang-SC;
+  color: rgba(153,153,153,1);
+  text-align: center;
+  margin-top: 28rpx;
+}
+.no_account text {
+  color: #00A9FF;
+}

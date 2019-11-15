@@ -1,0 +1,110 @@
+@import '/common/common.wxss';
+
+.authorize-warning {
+  padding-top: 60rpx;
+}
+
+.head {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  flex-direction: column;
+  border-bottom: 1rpx solid #cbcbcb;
+}
+
+.log-container {
+  display: flex;
+  justify-content: center;
+}
+
+.log {
+  height: 128rpx;
+  width: 128rpx;
+  border-radius: 50%;
+}
+
+.logName {
+  font-size: 36rpx;
+  text-align: center;
+  margin-top: 14rpx;
+  margin-bottom: 53rpx;
+}
+
+.authorize-text {
+  margin: 47rpx 58rpx 0 58rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  font-family: PingFangSC-Regular;
+  color: #000;
+}
+
+.getPhone {
+  margin: 22rpx 73rpx 0rpx 73rpx;
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 8rpx;
+  height: 8rpx;
+  background-color: #777;
+  border-radius: 4rpx;
+}
+
+.getPhone-text {
+  color: #777;
+  font-size: 28rpx;
+  margin-left: 26rpx;
+}
+
+.loginBtn {
+  margin: 60rpx 70rpx 0rpx 70rpx;
+  color: white;
+  font-size: 34rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  border-radius: 0rpx;
+}
+
+.des {
+  position: fixed;
+  bottom: 30rpx;
+  margin: 0 20rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: #a5a5a5;
+}
+
+.icon-head {
+  text-align: center;
+  line-height: 1.8;
+  padding-bottom: 33rpx;
+  width: 650rpx;
+  margin: 0 50rpx;
+}
+
+.mobile-icon {
+  width: 94rpx;
+  height: 150rpx;
+  padding-top: 150rpx;
+}
+
+.curentMobile-title {
+  font-size: 26rpx;
+}
+
+.curentMobile {
+  font-size: 38rpx;
+  font-weight: 600;
+}
+
+.warning-tips {
+  text-align: center;
+  width: 100vw;
+  display: block;
+  line-height: 1.6;
+  font-size: 26rpx;
+  padding: 0 20px;
+  box-sizing: border-box;
+  padding-top: 60rpx;
+}

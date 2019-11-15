@@ -1,0 +1,30 @@
+.zte-check {
+  width: 100%;
+}
+
+.zte-check .check-item {
+}
+
+.zte-check .check-item .check-option {
+  width: 100%;
+  line-height: 50rpx;
+  padding: 15rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20rpx;
+  position: relative;
+}
+.zte-check .check-item .check-option label {
+  max-width: 680rpx;
+}
+.checkbox-group:last-child {
+  border: 0;
+}
+.zte-check .check-item .check-option .icon-checked {
+  height: 50%;
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  transform: translate(0, -50%);
+}

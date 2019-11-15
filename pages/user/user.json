@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#0081FF",
+  "usingComponents": {
+    "list-tag": "/component/list-tag/list-tag"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zte-list": "../zte-list/zte-list",
+    "zte-popup": "../zte-popup/zte-popup",
+    "zte-search": "../zte-search/zte-search"
+  }
+}

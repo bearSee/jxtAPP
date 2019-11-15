@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zte-input": "../zte-input/zte-input",
+    "zte-check": "../zte-check/zte-check",
+    "zte-select": "../zte-select/zte-select",
+    "zte-date": "../zte-date/zte-date",
+    "zte-date-time": "../zte-date-time/zte-date-time",
+    "zte-switch": "../zte-switch/zte-switch",
+    "zte-upload": "../zte-upload/zte-upload",
+    "zte-select-area": "../zte-select-area/zte-select-area"
+  }
+}

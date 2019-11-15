@@ -1,0 +1,38 @@
+@import '/common/common.wxss';
+.beforeLogin {
+  padding: 50rpx 40rpx;
+  box-sizing: border-box;
+  font-size: 56rpx;
+  height: 100%;
+  overflow-y: auto;
+}
+.helloTextEn {
+  font-size: 30rpx;
+  color: #888;
+  margin-top: 24rpx;
+}
+.backImage {
+  width: 100%;
+}
+.login-btn {
+  width: 100%;
+  font-size: 32rpx;
+  line-height: 120rpx;
+  border-radius: 60rpx;
+  color: #fff;
+  padding: 0 62rpx;
+}
+.pwd-login {
+  background:linear-gradient(329deg,rgba(0,183,255,1) 0%,rgba(0,129,255,1) 100%);
+  box-shadow:0px 2px 5px 0px rgba(0,129,255,0.56);
+}
+.wx-login {
+  background:linear-gradient(129deg,rgba(0,171,135,1) 0%,rgba(0,213,188,1) 100%);
+  box-shadow:0px 2px 5px 0px rgba(0,171,135,0.47);
+  margin-top: 32rpx;
+}
+.icon {
+  width: 30rpx;
+  height: 32rpx;
+  margin: auto 0;
+}

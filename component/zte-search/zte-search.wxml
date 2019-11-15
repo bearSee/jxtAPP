@@ -1,0 +1,11 @@
+<view class="zte-search theme_background_deputy">
+  <view class="zte-search-inner">
+    <icon color='#888888' class="weui-icon-search_in-box" type="search" size="14" style='height:18px;'></icon>
+    <input
+      placeholder="{{ placeholder }}"
+      placeholder-style="color:#C0C4CC;font-size:28rpx;"
+      value="{{ value }}"
+      bindinput="handlerInput"/>
+  </view>
+  <text class="cancel" bindtap="handlerCancel">取消</text>
+</view>

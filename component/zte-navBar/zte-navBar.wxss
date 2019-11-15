@@ -1,0 +1,29 @@
+@import '/common/common.wxss';
+.nav-wrap {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9999999;
+  display: flex;
+  padding-bottom: 10rpx;
+}
+/* 标题要居中 */
+.nav-title {
+  color: #fff;
+  text-align: center;
+  max-width: 400rpx;
+  max-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 34rpx;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.back-pre {
+  width: 13px;
+  height: 23px;
+  padding: 0 25rpx;
+  position: relative;
+}
