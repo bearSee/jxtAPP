@@ -1,6 +1,6 @@
 
 <view class="zte-form">
-  <form class="border_bottom_shallow">
+  <form class="border_bottom">
     <view 
       wx:for="{{ formItems }}"
       wx:for-item="item"
@@ -19,5 +19,5 @@
         bindclickTag="clickTag"/>
     </view>
   </form>
-  <button class="submit submitBtn" wx:if='{{ !removeSubmit }}' bindtap="handlerSubmit">{{ submitText }}</button>
+  <button class="submit submit-btn" wx:if='{{ !removeSubmit }}' bindtap="handlerSubmit">{{ submitText }}</button>
 </view>

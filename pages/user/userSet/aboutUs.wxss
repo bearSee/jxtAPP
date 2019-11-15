@@ -1,0 +1,39 @@
+/* pages/user/user.wxss */
+@import '/common/common.wxss';
+.aboutUs {
+  height: 100vh;
+  width: 100vw;
+  background: #F7F7F7;
+  padding: 24rpx 0;
+}
+.logo-box {
+  width: 136rpx;
+  height: 136rpx;
+  background: #fff;
+  border-radius: 50%;
+  margin: auto;
+}
+.logo {
+  width: 136rpx;
+  height: 136rpx;
+}
+.version {
+  text-align: center;
+  color: #666666;
+  font-size: 34rpx;
+  margin: 26rpx 0;
+}
+.introduce {
+  color: #666666;
+  font-size: 34rpx;
+  margin: 26rpx 0;
+  text-indent: 2rem;
+  padding: 0 30rpx;
+}
+.list-tag {
+  background: #fff;
+}
+.right-config-value {
+  color: #666666;
+  font-size: 30rpx;
+}

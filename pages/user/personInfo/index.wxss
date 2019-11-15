@@ -1,0 +1,12 @@
+/* pages/user/user.wxss */
+@import '/common/common.wxss';
+.personInfo {
+  background: #F7F7F7;
+  height: 100vh;
+}
+.title {
+  line-height: 80rpx;
+  color: #999999;
+  padding: 0 30rpx;
+  font-size: 26rpx;
+}

@@ -1,0 +1,19 @@
+/* pages/user/user.wxss */
+@import '/common/common.wxss';
+.tips {
+  line-height: 75rpx;
+  font-size: 26rpx;
+  color: #999999;
+  padding: 0 30rpx;
+}
+.container {
+  padding: 0;
+  padding-bottom: 24rpx ;
+}
+.submit {
+  margin: 0 30rpx;
+  width: calc(100% - 60rpx)!important;
+}
+.zte-form {
+  height: calc(100% - 75rpx)!important;
+}

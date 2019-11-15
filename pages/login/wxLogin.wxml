@@ -2,7 +2,7 @@
   <view class="box">
     <view class='head'>
       <view class='log-container'>
-        <image class='log' src='/image/authorize_logo.png'></image>
+        <image class='log' src='/image/logo.png'></image>
       </view>
       <text class='logName'>及信通</text>
     </view>

@@ -4,6 +4,7 @@
 }
 .list-box {
   width: 100%;
+  background: #fff;
 }
 .item {
   display: flex;
@@ -13,7 +14,6 @@
   padding-right: 25rpx;
   line-height: 115rpx;
   font-size: 32rpx;
-  background: #fff;
   color: #333333;
 }
 .icon {

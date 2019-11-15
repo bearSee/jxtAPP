@@ -2,7 +2,7 @@
 <view class="pwdlogin">
   <view class="title">账号登录</view>
   <view class="account input-box space_around border_bottom">
-    <image src="/image/avatar.png"/>
+    <i class="ri-user-line"></i>
     <input
       class="weui-input"
       type="text"
@@ -13,7 +13,7 @@
       bindblur="handlerPhoneBlur"/>
   </view>
   <view class="pwdword input-box space_around border_bottom">
-    <image src="/image/avatar.png"/>
+    <i class="ri-lock-password-line"></i>
     <input
       type="password"
       placeholder-class="placeholderClass"

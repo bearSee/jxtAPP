@@ -1,0 +1,5 @@
+
+<view class="container">
+<view class="tips">请设置您的密码 (密码必须至少6个符)</view>
+  <zte-form formItems="{{ formItems }}" bindsubmit="submit"></zte-form>
+</view>

@@ -1,0 +1,9 @@
+
+<view class="aboutUs">
+  <view class="logo-box">
+    <image class='logo' src='/image/logo.png'></image>
+  </view>
+  <view class="version">{{ version }}</view>
+  <view class="introduce">{{ introduce }}</view>
+  <list-tag list="{{ list }}"/>
+</view>

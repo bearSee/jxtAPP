@@ -7,33 +7,40 @@ Page({
       {
         iconName: 'ri-smartphone-line',
         labelName: '个人资料',
+        url: '/pages/user/personInfo/index',
       },
       {
         iconName: 'ri-smartphone-line',
         labelName: '我的发布',
+        url: '',
       },
       {
         iconName: 'ri-smartphone-line',
         labelName: '我的收藏',
+        url: '',
       },
       {
         iconName: 'ri-smartphone-line',
         labelName: '黑名单管理',
+        url: '',
       },
       {
         iconName: 'ri-smartphone-line',
         labelName: '意见反馈',
+        url: '',
       },
       {
         iconName: 'ri-smartphone-line',
         labelName: '设置',
+        url: '/pages/user/userSet/index',
       },
     ],
     userInfo: {},
     userTypeName: '',
   },
   clickView({ detail }) {
-    console.log(detail);
+    const { url } = detail;
+    wx.navigateTo({ url });
   },
   onLoad: function () {
     const userInfo = app.globalData.userInfo;

@@ -1,10 +1,17 @@
 @import '/common/common.wxss';
+page {
+  position: relative;
+}
 .beforeLogin {
   padding: 50rpx 40rpx;
   box-sizing: border-box;
   font-size: 56rpx;
-  height: 100%;
   overflow-y: auto;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .helloTextEn {
   font-size: 30rpx;
@@ -12,7 +19,8 @@
   margin-top: 24rpx;
 }
 .backImage {
-  width: 100%;
+  margin: auto;
+  display: block;
 }
 .login-btn {
   width: 100%;
@@ -32,7 +40,6 @@
   margin-top: 32rpx;
 }
 .icon {
-  width: 30rpx;
-  height: 32rpx;
-  margin: auto 0;
+  font-size: 36rpx;
+  color: #fff;
 }

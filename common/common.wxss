@@ -74,7 +74,7 @@ page view {
   line-height: 100rpx;
   background: #4285F4;
   color: #ffffff;
-  width: 750rpx;
+  width: 100vw;
   /* width: 690rpx; */
   /* margin: 27rpx 30rpx; */
   border-radius: 0;
@@ -91,7 +91,9 @@ page view {
   font-family: PingFang-SC-Bold,PingFang-SC;
   font-weight: bold;
   color:rgba(255,255,255,1);
+  box-sizing: border-box;
   margin-top: 50rpx;
+  width: 100%;
 }
 .flex {
   display: flex;

@@ -13,15 +13,14 @@
 }
 .input-box {
 }
-.input-box image {
-  width: 26rpx;
-  height: 30rpx;
+.input-box i {
+  font-size: 32rpx;
   margin: auto 0;
 }
 .input-box input {
   flex: 1 1 auto;
   height: 115rpx;
-  padding-left: 24rpx;
+  padding-left: 14rpx;
 }
 .placeholderClass {
   font-size: 30rpx;

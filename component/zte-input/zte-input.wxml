@@ -1,16 +1,4 @@
-<!-- 文本 -->
-<view class="zte-input" wx:if="{{ type === 'text' }}">
-  <input
-    class="weui-input"
-    placeholder-class="placeholder secondary_fontColor"
-    type="{{ inputType }}"
-    placeholder="{{ disabled ? '' : placeholder }}"
-    maxlength="{{ maxLength }}"
-    disabled="{{ disabled }}"
-    value="{{ value }}"
-    bindinput="handlerInput"
-    bindblur="handlerBlur"/>
-</view>
+
 <!-- 文本域 -->
 <view class="zte-input" wx:if="{{ type === 'textarea' }}">
   <textarea
@@ -26,4 +14,17 @@
   <view class="textarea-counter theme_fontColor_deputy">{{ textLength }}/140</view>
 </view>
 <!-- 多行展示(文本域有bug) -->
-<view class="labelarea theme_fontColor_deputy" wx:if="{{ type === 'labelarea' }}" style="height: {{ height || 160 + 'rpx' }}">{{ value || '无' }}</view>
+<view class="labelarea theme_fontColor_deputy" wx:elif="{{ type === 'labelarea' }}" style="height: {{ height || 160 + 'rpx' }}">{{ value || '无' }}</view>
+<!-- 文本 -->
+<view class="zte-input" wx:else>
+  <input
+    class="weui-input"
+    type="{{ type }}"
+    placeholder-class="placeholder secondary_fontColor"
+    placeholder="{{ disabled ? '' : placeholder }}"
+    maxlength="{{ maxLength }}"
+    disabled="{{ disabled }}"
+    value="{{ value }}"
+    bindinput="handlerInput"
+    bindblur="handlerBlur"/>
+</view>

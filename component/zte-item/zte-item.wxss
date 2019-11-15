@@ -10,13 +10,13 @@
 }
 
 .zte-item .label {
-  width: 325rpx;
+  width: 285rpx;
   padding-right: 10rpx;
   flex: 0 0 auto;
 }
 
 .zte-item .value {
-  width: 345rpx;
+  width: calc(100% - 285rpx);
   flex: 0 0 auto;
   padding: 0 25rpx;
   position: relative;

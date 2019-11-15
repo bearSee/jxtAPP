@@ -12,10 +12,6 @@ Component({
       type: String,
       value: 'text',
     },
-    inputType: {
-      type: String,
-      value: 'text',
-    },
     value: null,
     placeholder: String,
     maxLength: {

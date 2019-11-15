@@ -46,6 +46,21 @@ App({
     if (openid) this.globalData.openid = openid;
     wx.reLaunch({ url: '/pages/index/index' });
   },
+  // 退出登录
+  loginOut() {
+    wx.$http.post('/init/logout').then(
+      () => {
+        wx.showToast({ title: '退出登录成功' });
+        wx.setStorageSync('Authorization', '');
+        this.globalData.userInfo = {};
+        this.globalData.openid = '';
+        setTimeout(() => {
+          wx.redirectTo({ url: '/pages/login/beforeLogin' });
+        }, 1000);
+      },
+      () => { },
+    );
+  },
   // 弹窗封装
   showModal(data) {
     return new Promise((resolve, reject) => {

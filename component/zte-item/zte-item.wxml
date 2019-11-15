@@ -1,14 +1,13 @@
 
-<view class="zte-item {{ !isLast && 'border_bottom_shallow' }} {{ currentItem.differentLine && 'upDownAlign' }}"  >
+<view class="zte-item {{ !isLast && 'border_bottom' }} {{ currentItem.differentLine && 'upDownAlign' }}"  >
   <label wx:if='{{ currentItem.label }}' class="label {{ currentItem.type }}Label">
     <text>{{ currentItem.label }}</text>
     <text class='mark-icon' wx:if='{{ requested || importantMark }}'>*</text>
   </label>
   <view class="value {{ disabled ? 'theme_fontColor_deputy' : '' }}">
     <zte-input
-      wx:if="{{ currentItem.type === 'text' || currentItem.type === 'textarea' || currentItem.type === 'labelarea' }}"
+      wx:if="{{ currentItem.type === 'password' || currentItem.type === 'text' || currentItem.type === 'textarea' || currentItem.type === 'labelarea' || currentItem.type === 'number' || currentItem.type === 'idcard' || currentItem.type === 'digit' }}"
       type="{{ currentItem.type }}"
-      inputType='{{ currentItem.inputType }}'
       maxLength='{{ currentItem.maxLength || -1 }}'
       placeholder="{{ currentItem.placeholder || currentItem.label }}"
       height='{{ currentItem.height }}'
