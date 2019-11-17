@@ -19,6 +19,9 @@ Component({
     options: {
       type: Array,
       value: [],
+      observer() {
+        this.resetOptions();
+      },
     },
     optionProp: {
       type: Object,
@@ -46,10 +49,14 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    handlerChange(e) {
+    resetOptions() {
+      const checkOptions = this.properties.options;
+      this.setData({ checkOptions });
+    },
+    handlerChange({ detail }) {
       const type = this.properties.type;
 
-      const value = type === 'radio' ? e.detail.value.slice(-1).join() : e.detail.value.join();
+      const value = type === 'radio' ? detail.value.slice(-1).join() : detail.value.join();
       this.triggerEvent('input', { value });
       this.setCheckedChange();
     },

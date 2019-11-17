@@ -1,6 +1,6 @@
 <!-- 单选、多选框 -->
 <view class="zte-check">
-  <checkbox-group bindchange="handlerChange">
+  <checkbox-group bindchange="handlerChange" class="checkbox-group">
     <label class="check-item" wx:for="{{ checkOptions }}" wx:for-item="option" wx:key="{{ index }}">
       <checkbox
         hidden
@@ -8,17 +8,17 @@
         checked="{{ option.checked }}"
         disabled="{{ disabled }}"
       />
-      <view class="check-option {{ checkOptions.length -1 === index ? '' : 'border_bottom' }}">
-        <slot wx:if="{{ option.slot }}"></slot>
-        <label wx:else>{{ option[optionProp.label] }}</label>
+      <view class="check-option">
         <icon
           wx:if="{{ option.checked }}"
           color="#4285F4"
           class="icon-checked"
           type="success"
-          size="20"
-        >
+          size="14">
         </icon>
+        <view wx:else class="no-checked"></view>
+        <slot wx:if="{{ option.slot }}"></slot>
+        <label wx:else class="cut_font">{{ option[optionProp.label] }}</label>
       </view>
     </label>
   </checkbox-group>

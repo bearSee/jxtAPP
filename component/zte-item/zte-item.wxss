@@ -1,11 +1,11 @@
 .zte-item {
   display: flex;
-  width: 700rpx;
+  width: calc(100% - 30rpx);
   min-height: 80rpx;
   line-height: 80rpx;
   font-size: 29rpx;
-  margin-left: 25rpx;
-  padding-right: 25rpx;
+  margin-left: 30rpx;
+  padding-right: 30rpx;
   background: #fff;
 }
 
@@ -18,26 +18,7 @@
 .zte-item .value {
   width: calc(100% - 285rpx);
   flex: 0 0 auto;
-  padding: 0 25rpx;
   position: relative;
-}
-
-.upDownAlign .label {
-  width: 100%;
-  border-bottom: 1rpx solid #d6d6d6;
-  color: rgba(136, 136, 136, 1);
-}
-
-.upDownAlign .value {
-  width: 700rpx;
-  padding-left: 0;
-  padding-right: 25rpx;
-}
-
-.upDownAlign {
-  flex-direction: column;
-  width: 725rpx;
-  padding-right: 0;
 }
 
 .mark-icon {
@@ -46,7 +27,7 @@
 .tagView {
   position: absolute;
   padding-right:10px;
-  width:325rpx;
+  width: 100%;
   line-height:1.2;
   top:50%;
   transform:translate(0,-50%);

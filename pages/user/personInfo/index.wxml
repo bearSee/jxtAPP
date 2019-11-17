@@ -1,9 +1,7 @@
 <!--pages/user/user.wxml-->
 <view class="personInfo">
-<view class="title">基础信息</view>
-<view>
-  <zte-form formItems="{{ basalItem }}" formData="{{ basalData }}" removeSubmit="{{ true }}"></zte-form>
-</view>
-<view class="title">公司信息</view>
-  <zte-form formItems="{{ formItems }}" formData="{{ formData }}" bindsubmit="submit"></zte-form>
+    <view class="title">基础信息</view>
+    <zte-form formItems="{{ basalItem }}" formData="{{ basalData }}" removeSubmit="{{ true }}"></zte-form>
+    <view class="title">公司信息</view>
+    <zte-form formItems="{{ formItems }}" formData="{{ formData }}" bindsubmit="submit"></zte-form>
 </view>

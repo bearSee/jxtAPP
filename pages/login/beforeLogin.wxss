@@ -21,6 +21,8 @@ page {
 .backImage {
   margin: auto;
   display: block;
+  height: 480rpx;
+  width: auto;
 }
 .login-btn {
   width: 100%;

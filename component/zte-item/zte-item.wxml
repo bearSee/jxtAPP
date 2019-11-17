@@ -1,7 +1,7 @@
 
-<view class="zte-item {{ !isLast && 'border_bottom' }} {{ currentItem.differentLine && 'upDownAlign' }}"  >
+<view class="zte-item {{ !isLast && 'border_bottom' }} {{ currentItem.code }}">
   <label wx:if='{{ currentItem.label }}' class="label {{ currentItem.type }}Label">
-    <text>{{ currentItem.label }}</text>
+    <text>{{ currentItem.label }} {{ (currentItem.type === 'check' && '(多选)') || (currentItem.type === 'radio' && '(单选)') || '' }}</text>
     <text class='mark-icon' wx:if='{{ requested || importantMark }}'>*</text>
   </label>
   <view class="value {{ disabled ? 'theme_fontColor_deputy' : '' }}">
@@ -83,6 +83,11 @@
       disabled="{{ disabled }}"
       bindinput="handlerInput"
     />
-    <view class='tagView {{ !showValue && "theme_fontColor_deputy" }}' bindtap='clickTag' data-item='{{ currentItem }}' wx:if="{{ currentItem.type === 'tagView' }}">{{ showValue || '请选择' }}</view>
+    <view
+      class='tagView {{ !showValue && "theme_fontColor_deputy" }}'
+      bindtap='clickTag'
+      data-item='{{ currentItem }}'
+      wx:if="{{ currentItem.type === 'tagView' }}"
+    >{{ showValue || '请选择' }}</view>
   </view>
 </view>

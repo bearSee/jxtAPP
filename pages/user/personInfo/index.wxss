@@ -3,10 +3,20 @@
 .personInfo {
   background: #F7F7F7;
   height: 100vh;
+  overflow-y: auto;
+  padding-bottom: 50rpx;
 }
 .title {
   line-height: 80rpx;
   color: #999999;
   padding: 0 30rpx;
   font-size: 26rpx;
+}
+.personInfo .submit-btn {
+  width: calc(100% - 60rpx)!important;
+  margin: auto;
+  margin-top: 50rpx;
+}
+.personInfo .zte-form {
+  height: auto!important;
 }
