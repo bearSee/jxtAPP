@@ -46,7 +46,7 @@ page view {
 /* border样式 */
 
 .border_bottom_deep {
-  border-bottom: 1rpx solid #d6d6d6;
+  border-bottom: 1rpx solid #e5e5e5;
 }
 .border_top_deep {
   border-top: 1rpx solid #d6d6d6;
@@ -113,7 +113,9 @@ page view {
 .cut_font {
   overflow:hidden;
   text-overflow:ellipsis;
-  white-space:nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 .word-break {
   word-break: break-all;

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "发布",
-  "usingComponents": {}
+  "usingComponents": {
+    "messageSmallList": "/pages/module/messageSmallList/messageSmallList"
+  }
 }
