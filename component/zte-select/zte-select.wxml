@@ -25,7 +25,7 @@
       <view  class='content_list border_around_style cut_font' wx:for="{{ headOptions }}" data-option='{{item}}' bindtap='handlerSelect' wx:key="index">{{ item[headLael] }}</view>
     </view>
   </view>
-  <scroll-list
+  <zte-list
     bindrefresh="handlerRefresh"
     bindloadMore="handlerLoadMore">
     <view
@@ -35,5 +35,5 @@
       data-option="{{ option }}"
       bindtap="handlerSelect"
       class='list'>{{ option[optionProp.label] }}</view>
-  </scroll-list>
+  </zte-list>
 </zte-popup>
