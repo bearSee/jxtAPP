@@ -1,0 +1,57 @@
+
+@import '/common/common.wxss';
+.zte-select, .picker, picker {
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.zte-select-mark:before {
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 1px 1px 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  right: 1px;
+  margin-top: -4px;
+}
+.list {
+  padding: 0 25rpx;
+}
+
+/* 顶部list样式 */
+.list_head_title {
+  padding-left: 25rpx;
+  line-height:40rpx;
+  padding-bottom: 10rpx;
+}
+.list_head_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5rpx 25rpx;
+  background: #fff;
+}
+.content_list {
+  width: 21%;
+  box-sizing: border-box;
+  border-radius: 5rpx;
+  text-align: center;
+  background: #fff;
+  margin: 8rpx 0;
+  margin-right: 20rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  height: 60rpx;
+}
+/*  */

@@ -22,11 +22,8 @@
   margin: auto 10rpx;
   width: 32rpx;
   height: 32rpx;
-  position: relative;
-  top: -3rpx;
 }
 .no-checked {
   border-radius: 50%;
-  border: 1rpx solid #eee;
-  top: -1rpx;
+  border: 1rpx solid #d6d6d6;
 }

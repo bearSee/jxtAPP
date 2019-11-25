@@ -9,22 +9,23 @@ Page({
         label: '头像',
         type: 'img',
       },
-      // {
-      //   code: 'receiveObject',
-      //   label: '接收对象',
-      //   type: 'check',
-      //   fastCode: 'Z001000',
-      // },
-      // {
-      //   code: 'messageType',
-      //   label: '消息类型',
-      //   type: 'radio',
-      //   fastCode: 'Z003000',
-      // },
+      {
+        code: 'receiveObject',
+        label: '接收对象',
+        type: 'check',
+        fastCode: 'Z001000',
+      },
+      {
+        code: 'messageType',
+        label: '消息类型',
+        type: 'radio',
+        fastCode: 'Z003000',
+      },
       {
         code: 'account',
         label: '账号',
         type: 'text',
+        disabled: true,
       },
       {
         code: 'name',
@@ -32,7 +33,9 @@ Page({
         type: 'text',
       },
     ],
-    basalData: {},
+    basalData: {
+      account: '呀呀呀'
+    },
     formItems: [
       {
         code: 'companyName',

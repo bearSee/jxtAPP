@@ -19,6 +19,7 @@
   width: calc(100% - 285rpx);
   flex: 0 0 auto;
   position: relative;
+  /* text-align: right; */
 }
 
 .mark-icon {

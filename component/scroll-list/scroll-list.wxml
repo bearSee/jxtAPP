@@ -1,5 +1,5 @@
 <scroll-view
-  class="zte-list"
+  class="scroll-list"
   scroll-y
   enable-back-to-top
   catchtouchmove="handlerTouchmove"
