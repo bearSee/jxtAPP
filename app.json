@@ -22,26 +22,26 @@
   },
   "tabBar": {
     "color": "#b7b7b7",
-    "selectedColor": "#4285F4",
+    "selectedColor": "#222",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "image/index_Home.png",
-        "selectedIconPath": "image/index_HomeHlight.png",
+        "iconPath": "image/home.png",
+        "selectedIconPath": "image/home1.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/release/release",
-        "iconPath": "image/index_center.png",
-        "selectedIconPath": "image/index_centerHlight.png",
+        "iconPath": "image/addarticle.png",
+        "selectedIconPath": "image/addarticle.png",
         "text": "发布"
       },
       {
         "pagePath": "pages/user/user",
-        "iconPath": "image/index_mine.png",
-        "selectedIconPath": "image/index_mineHlight.png",
+        "iconPath": "image/person.png",
+        "selectedIconPath": "image/person1.png",
         "text": "我的"
       }
     ]

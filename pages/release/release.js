@@ -61,14 +61,15 @@ Page({
       isBlacklist: {
         'N': {
           url: 'blacklist/save',
-          tips: '添加黑名单成功',
+          warningTips: '是否将该用户添加至黑名单?',
+          successTips: '添加黑名单成功',
           params: {
             blackUserId: item.id,
           },
         },
         'Y': {
           url: 'blacklist/delete',
-          tips: '黑名单已取消',
+          successTips: '黑名单已取消',
           params: {
             blackUserId: item.id,
           },
@@ -77,14 +78,14 @@ Page({
       isCollection: {
         'N': {
           url: 'collection/save',
-          tips: '收藏成功',
+          successTips: '收藏成功',
           params: {
             newsId: item.id,
           },
         },
         'Y': {
           url: 'collection/delete',
-          tips: '已取消收藏',
+          successTips: '已取消收藏',
           params: {
             newsId: item.id,
           },
@@ -93,7 +94,8 @@ Page({
       isComplaint: {
         'N': {
           url: 'complaint/submit',
-          tips: '举报成功',
+          warningTips: '是否举报该用户?',
+          successTips: '举报成功',
           params: {
             newsId: item.id,
           },
@@ -105,11 +107,32 @@ Page({
 
     const url = obj[type][currentState].url;
     const params = obj[type][currentState].params;
-    const tips = obj[type][currentState].tips;
+    const successTips = obj[type][currentState].successTips;
+    const warningTips = obj[type][currentState].warningTips;
+
+    if (warningTips) {
+      app.showModal({ content: obj[type][currentState].warningTips }).then(
+        () => {
+          wx.$http.post(url, params).then(
+            () => {
+              wx.showToast({ title: successTips });
+              const msgList = this.data.msgList.map((d, i) => ({
+                ...d,
+                [type]: currentState === 'N' && i === index ? 'Y' : 'N',
+              }))
+              this.setData({ msgList });
+            },
+            () => { },
+          );
+        },
+        () => {},
+      );
+      return;
+    }
 
     wx.$http.post(url, params).then(
       () => {
-        wx.showToast({ title: tips });
+        wx.showToast({ title: successTips });
         const msgList = this.data.msgList.map((d, i) => ({
           ...d,
           [type]: currentState === 'N' && i === index ? 'Y' : 'N',
@@ -118,6 +141,9 @@ Page({
       },
       () => { },
     );
+  },
+  handlerDelete({ detail }) {
+    console.log(detail);
   },
   onLoad: function () {
     this.getList();
