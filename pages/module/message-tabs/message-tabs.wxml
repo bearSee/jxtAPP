@@ -1,0 +1,16 @@
+
+<view class="messag-tabs">
+  <view
+    class="content"
+    wx:for="{{ tabs }}"
+    wx:key="index">
+    <view
+      class="tab {{ currentCode === item.code && 'is-active' }}"
+      bindtap="change"
+      data-code="{{ item.code }}">
+      <text>{{ item.name }}</text>
+      <view></view>
+    </view>
+    <text class="separate" wx:if="{{ index < tabs.length - 1  }}">/</text>
+  </view>
+</view>

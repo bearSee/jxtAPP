@@ -4,19 +4,51 @@ var app = getApp();
 
 Page({
   data: {
+    tabs: [
+      {
+        name: '招聘消息',
+        code: 'industryNews',
+      },
+      {
+        name: '行业消息',
+        code: 'recruitmentNews',
+      },
+    ],
     type: 'industryNews',
+    title: '',
     msgList: [
       {
-        createdDt: "2019-11-24 13:36:57",
-        enabled: "Y",
-        fullName: "广东省深圳市罗湖区桂园街道",
-        id: "a4db4a6c89474698abea3bd24cd30a07",
-        matcherUser: 0,
-        messageType: "二手设备及转让",
-        receiveObject: "企业,个人",
-        receiveRegion: 440303001,
-        title: "77",
-        userId: "3",
+        reviceIndustryList: [
+          {
+            industryId: "106",
+            industryLabel: "Z002002",
+            industryLabelName: "方案研发设计",
+            industryName: "电池",
+          },
+          {
+            industryId: "106",
+            industryLabel: "Z002002",
+            industryLabelName: "方案研发设计",
+            industryName: "电池",
+          },
+        ],
+        userId: "3", area: 130202,
+        areaName: "路南区",
+        city: 1302,
+        cityName: "唐山市",
+        content: "<p>123123123</p>",
+        createdDt: "2019-10-23 20:22:05",
+        id: "fa889a32bd7e466aa41030dc7d0bf5b3",
+        isBlacklist: "N",
+        isCollection: "N",
+        isComplaint: "N",
+        messageType: "Z003001",
+        province: 13,
+        provinceName: "河北省",
+        publisher: "qiye1",
+        receiveObject: "Z001001,Z001002",
+        receiveRegion: 130202006,
+        title: "123",
       },
       {
         createdDt: "2019-09-02 23:08:07",
@@ -34,17 +66,36 @@ Page({
       },
     ],
   },
-  clickList({ detail }) {
-    console.log('clickList', detail);
+  onLoad: function () {
   },
-  getList(type) {
-    const urlObj = {
+  clearInput() {
+    this.setData({ title: '' });
+    this.getList();
+  },
+  search({ detail }) {
+    const { value: title } = detail;
+    this.setData({ title });
+    this.getList();
+  },
+  tabsChange({ detail }) {
+    const { code: type } = detail;
+    this.setData({ type });
+    this.getList();
+  },
+  getList() {
+    const obj = {
       industryNews: 'industryNews/list',
       recruitmentNews: 'recruitmentNews/list',
     };
-    wx.$http.post(urlObj[this.data.type], { pageNum: 1, pageSize: 10 }).then(
+    const { type, title } = this.data;
+    wx.$http.post(obj[type], {
+      pageNum: 1,
+      pageSize: 10,
+      title,
+    }).then(
       ({ list }) => {
-        this.msgList = list;
+        const msgList = list || [];
+        // this.setData({ msgList });
       },
       () => { },
     );
@@ -142,10 +193,39 @@ Page({
       () => { },
     );
   },
-  handlerDelete({ detail }) {
-    console.log(detail);
+  clickList({ detail }) {
+    console.log('clickList', detail);
   },
-  onLoad: function () {
-    this.getList();
-  }
+  handlerDelete({ detail }) {
+    const { item } = detail;
+    const { type } = this.data;
+    const obj = {
+      industryNews: {
+        url: 'industryNews/delete',
+        params: { industryNewsId: item.id },
+      },
+      recruitmentNews: {
+        url: 'recruitmentNews/delete',
+        params: { recruitmentNewsId: item.id },
+      },
+    };
+    app.showModal({ content: '是否删除该条数据' }).then(
+      () => {
+        wx.$http.post(obj[type].url, obj[type].params).then(
+          () => {
+            wx.showToast({ title: '删除成功' });
+            setTimeout(() => {
+              this.getList();
+            }, 1000);
+          },
+          () => {
+            this.selectComponent('#list').hiddenDel();
+          },
+        );
+      },
+      () => {
+        this.selectComponent('#list').hiddenDel();
+      },
+    );
+  },
 })

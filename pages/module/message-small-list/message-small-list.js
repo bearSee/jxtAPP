@@ -9,6 +9,9 @@ Component({
     list: {
       type: Array,
       value: [],
+      observe() {
+        this.hiddenDel();
+      },
     },
   },
   data: {
@@ -61,7 +64,7 @@ Component({
     },
     // 外部调用，隐藏删除按钮
     hiddenDel() {
-      this.setData({ itemIndex: -1 });
+      this.setData({ itemIndex: -1, x: 0 });
     },
   },
 });

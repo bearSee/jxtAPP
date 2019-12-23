@@ -1,6 +1,6 @@
 .release {
   height: 100vh;
-  overflow-y: auto;
+  overflow: hidden;
   background: #f8f8f8;
 }
 .no_data_box {
@@ -18,4 +18,9 @@
   font-size: 28rpx;
   margin-top: 20rpx;
   text-align: center;
+}
+.message-small-list {
+  height: calc(100% - 88rpx - 86rpx);
+  overflow-y: auto;
+  background: #fff;
 }

@@ -10,6 +10,10 @@ Component({
       type: Array,
       value: [],
     },
+    edit: {
+      type: Boolean,
+      value: false,
+    },
   },
   data: {
     x: 0,
@@ -23,12 +27,27 @@ Component({
       {
         type: 'isBlacklist',
         selected: 'ri-user-unfollow-fill',
-        select: 'ri-user-add-line',
+        select: 'ri-user-unfollow-line',
+        // select: 'ri-user-add-line',
       },
       {
         type: 'isComplaint',
         selected: 'ri-shield-star-fill',
         select: 'ri-shield-star-line',
+      },
+    ],
+    editList: [
+      {
+        type: 'edit',
+        name: '编辑',
+        selected: 'ri-edit-line',
+        select: 'ri-edit-line',
+      },
+      {
+        type: 'delete',
+        name: '删除',
+        selected: 'ri-delete-bin-5-line',
+        select: 'ri-delete-bin-5-line',
       },
     ],
   },
@@ -42,26 +61,6 @@ Component({
     oprate({ currentTarget }) {
       const { item, index, type } = currentTarget.dataset;
       this.triggerEvent('oprate', { item, type, index });
-    },
-    handlerDelete({ currentTarget }) {
-      const { item, index } = currentTarget.dataset;
-      this.triggerEvent('handlerDelete', { item, index });
-      const itemIndex = '';
-      this.setData({ itemIndex });
-    },
-    changeDrag({ detail, currentTarget }) {
-      clearTimeout(timer);
-      const { x, source } = detail;
-      if (x < 0) {
-        timer = setTimeout(() => {
-          const { itemindex } = currentTarget.dataset;
-          this.setData({ itemindex, x });
-        }, 200);
-      }
-    },
-    // 外部调用，隐藏删除按钮
-    hiddenDel() {
-      this.setData({ itemIndex: -1 });
     },
   },
 });
