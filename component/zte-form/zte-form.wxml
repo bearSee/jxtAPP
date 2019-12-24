@@ -4,7 +4,7 @@
     <view 
       wx:for="{{ formItems }}"
       wx:for-item="item"
-      wx:key='{{ index }}'
+      wx:key='index'
       style='margin-bottom: {{ item.spacing }}rpx; background:#fff;'>
       <zte-item
         item="{{ item }}"

@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/release/release",
-    "pages/user/user",
     "pages/login/beforeLogin",
+    "pages/index/index",
+    "pages/index/releaseForm/releaseForm",
+    "pages/index/messageDetail/messageDetail",
+    "pages/user/user",
     "pages/login/wxLogin",
     "pages/login/pwdLogin",
-    "pages/index/index",
     "pages/register/register",
     "pages/register/agreement",
     "pages/user/userSet/index",
@@ -22,26 +23,20 @@
   },
   "tabBar": {
     "color": "#b7b7b7",
-    "selectedColor": "#4285F4",
+    "selectedColor": "#222",
     "borderStyle": "white",
     "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "image/index_Home.png",
-        "selectedIconPath": "image/index_HomeHlight.png",
+        "iconPath": "image/home.png",
+        "selectedIconPath": "image/home1.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/release/release",
-        "iconPath": "image/index_center.png",
-        "selectedIconPath": "image/index_centerHlight.png",
-        "text": "发布"
-      },
-      {
         "pagePath": "pages/user/user",
-        "iconPath": "image/index_mine.png",
-        "selectedIconPath": "image/index_mineHlight.png",
+        "iconPath": "image/person.png",
+        "selectedIconPath": "image/person1.png",
         "text": "我的"
       }
     ]

@@ -15,10 +15,6 @@
         </label>
       </view>
       <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-      <slot name='head'></slot>
-    </view>
-    <view class="weui-cells searchbar-result">
-      <slot name='content'></slot>
     </view>
   </view>
 </view>

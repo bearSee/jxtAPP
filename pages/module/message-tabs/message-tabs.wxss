@@ -1,0 +1,38 @@
+.messag-tabs {
+  background: #fff;
+  width: 100%;
+  display: flex;
+  padding: 15rpx 30rpx;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  font-size: 45rpx;
+  color: rgba(221, 221, 221, 1);
+
+}
+.content {
+  display: flex;
+}
+.tab {
+  font-family: PingFangSC-Semibold, PingFang SC;
+  z-index: 1;
+}
+
+.is-active {
+  color: #222;
+  position: relative;
+  font-weight: 600;
+}
+
+.is-active view {
+  position: absolute;
+  bottom: -2rpx;
+  left: 0;
+  width: 100%;
+  height: 15rpx;
+  background: #ffe873;
+  border-radius: 12rpx;
+  z-index: -1;
+}
+.separate {
+  margin: 0 8rpx;
+}

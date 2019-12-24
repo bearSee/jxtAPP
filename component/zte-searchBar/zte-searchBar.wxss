@@ -1,8 +1,4 @@
 @import '/common/common.wxss';
-.search-bar-page {
-  height: 100vh;
-  background: #fff;
-}
 .weui-search-bar {
   position: relative;
   display: -webkit-box;

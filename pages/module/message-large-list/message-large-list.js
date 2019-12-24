@@ -1,5 +1,5 @@
-
 const app = getApp();
+var timer = null;
 
 Component({
   options: {
@@ -10,8 +10,14 @@ Component({
       type: Array,
       value: [],
     },
+    edit: {
+      type: Boolean,
+      value: false,
+    },
   },
   data: {
+    x: 0,
+    itemindex: 0,
     oprateList: [
       {
         type: 'isCollection',
@@ -21,12 +27,27 @@ Component({
       {
         type: 'isBlacklist',
         selected: 'ri-user-unfollow-fill',
-        select: 'ri-user-add-line',
+        select: 'ri-user-unfollow-line',
+        // select: 'ri-user-add-line',
       },
       {
         type: 'isComplaint',
         selected: 'ri-shield-star-fill',
         select: 'ri-shield-star-line',
+      },
+    ],
+    editList: [
+      {
+        type: 'edit',
+        name: '编辑',
+        selected: 'ri-edit-line',
+        select: 'ri-edit-line',
+      },
+      {
+        type: 'delete',
+        name: '删除',
+        selected: 'ri-delete-bin-5-line',
+        select: 'ri-delete-bin-5-line',
       },
     ],
   },

@@ -1,4 +1,5 @@
 //logs.js
+const util = require('../../../utils/ajax.js');
 var app = getApp();
 
 Page({
@@ -18,7 +19,55 @@ Page({
     ],
     type: 'industryNews',
     title: '',
-    msgList: [],
+    msgList: [
+      {
+        reviceIndustryList: [
+          {
+            industryId: "106",
+            industryLabel: "Z002002",
+            industryLabelName: "方案研发设计",
+            industryName: "电池",
+          },
+          {
+            industryId: "106",
+            industryLabel: "Z002002",
+            industryLabelName: "方案研发设计",
+            industryName: "电池",
+          },
+        ],
+        userId: "3", area: 130202,
+        areaName: "路南区",
+        city: 1302,
+        cityName: "唐山市",
+        content: "<p>123123123</p>",
+        createdDt: "2019-10-23 20:22:05",
+        id: "fa889a32bd7e466aa41030dc7d0bf5b3",
+        isBlacklist: "N",
+        isCollection: "N",
+        isComplaint: "N",
+        messageType: "Z003001",
+        province: 13,
+        provinceName: "河北省",
+        publisher: "qiye1",
+        receiveObject: "Z001001,Z001002",
+        receiveRegion: 130202006,
+        title: "123",
+      },
+      {
+        createdDt: "2019-09-02 23:08:07",
+        enabled: "Y",
+        fullName: "天津市非市辖区静海县唐官屯镇",
+        id: "1f60c151232643448688d1a1374c00f0",
+        matcherUser: 0,
+        receiveObject: "企业",
+        receiveRegion: 120223101,
+        recruitmentPosition: "厂长",
+        recruitmentProfessional: "翻译",
+        recruitmentWork: "临时工",
+        title: "嘎嘎嘎",
+        userId: "3",
+      },
+    ],
   },
   clearInput() {
     this.setData({ title: '' });
@@ -40,7 +89,6 @@ Page({
       recruitmentNews: 'recruitmentNews/list',
     };
     const { type, title } = this.data;
-    this.hiddenDel()
     wx.$http.post(obj[type], {
       pageNum: 1,
       pageSize: 10,
@@ -48,14 +96,18 @@ Page({
     }).then(
       ({ list }) => {
         const msgList = list || [];
-        this.setData({ msgList });
+        // this.setData({ msgList });
       },
       () => { },
     );
   },
   oprate({ detail }) {
-    this.hiddenDel()
     const { item, type, index } = detail;
+    const {
+      isBlacklist,
+      isCollection,
+      isComplaint
+    } = item;
 
     const obj = {
       isBlacklist: {
@@ -164,40 +216,29 @@ Page({
               this.getList();
             }, 1000);
           },
-          () => {},
+          () => {
+            this.selectComponent('#list').hiddenDel();
+          },
         );
       },
       () => {
-        this.hiddenDel()
+        this.selectComponent('#list').hiddenDel();
       },
     );
   },
   openDialog() {
     this.setData({ visible: true });
-    this.hiddenDel()
   },
   closeDialog() {
     this.setData({ visible: false });
   },
   chooseReleaseType({ currentTarget }) {
     const { code } = currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/index/releaseForm/releaseForm?type=${code}` });
+    wx.navigateTo({ url: `/pages/release/releaseForm/releaseForm?type=${code}` });
     this.setData({ visible: false });
   },
   clickList({ detail }) {
     const { type } = this.data;
-    const { id } = detail;
-    wx.navigateTo({ url: `/pages/index/messageDetail/messageDetail?type=${type}&id=${id}` });
-  },
-  viewMsg() {
-    wx.navigateTo({ url: '/pages/index/notices/notices' });
-  },
-  onUnload() {
-    this.hiddenDel();
-  },
-  hiddenDel() {
-    if (this.selectComponent('#list')) {
-      this.selectComponent('#list').hiddenDel();
-    }
+    wx.navigateTo({ url: `/pages/release/messageDetail/messageDetail?type=${type}&code=${code}` });
   },
 })

@@ -2,6 +2,7 @@
 Component({
   options: {
     multipleSlots: true,
+    addGlobalClass: true,
   },
   /**
    * 组件的属性列表
@@ -36,11 +37,11 @@ Component({
     },
     // 隐藏搜索栏
     hideInput: function () {
-      this.setData({
-        inputVal: "",
-        inputShowed: false,
-      });
-      this.triggerEvent('clearInput');
+      this.setData({ inputShowed: false });
+      if (this.data.inputVal) {
+        this.setData({ inputVal: '' });
+        this.triggerEvent('clearInput');
+      }
     },
     // 清除搜索框内容
     clearInput: function () {
@@ -57,7 +58,7 @@ Component({
         this.setData({
           inputVal: value,
         })
-        this.triggerEvent('inputTyping', { value });
+        this.triggerEvent('search', { value });
       }, 1000)
     },
   },

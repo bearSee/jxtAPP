@@ -1,0 +1,94 @@
+
+.list {
+  background: #fff;
+  width: 100%;
+  padding: 20rpx 30rpx 10rpx 30rpx;
+  margin-bottom: 12rpx;
+}
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.head-info {
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  margin: auto 0;
+}
+.head-title {
+  max-width: 450rpx;
+  height: 70rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+}
+.avatar-name {
+  width: 100%;
+  font-size: 26rpx;
+}
+.time {
+  width: 100%;
+  font-size: 20rpx;
+  color: #999999;
+}
+
+.title-info {
+  font-size: 32rpx;
+  color: #333333;
+  padding: 10rpx 0;
+  word-break: break-all;
+}
+
+.message-large-list-pic {
+  margin: 10rpx 0;
+  width: 100%;
+  height: 261rpx;
+}
+
+.foot-info {
+  display: flex;
+}
+.tags-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+}
+.tag {
+  border-radius: 4rpx;
+  background: #BCDDFE;
+  font-size: 22rpx;
+  color: #333333;
+  padding: 0 10rpx;
+  line-height: 44rpx;
+  margin: 5rpx 10rpx 5rpx 0;
+}
+
+.oprate-box {
+  min-width: 300rpx;
+  display: flex;
+  justify-content: flex-end;
+  height: 44rpx;
+  margin: auto 0;
+  color: #999999;
+}
+.oprate-icon {
+  font-size: 36rpx;
+  margin-left: 20rpx;
+  line-height: 44rpx;
+}
+.oprate-box text {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  position: relative;
+  top: -5rpx;
+}
+
+.ri-heart-fill {
+  color: #F7563A;
+}

@@ -1,39 +1,14 @@
-.index {
+.release {
   height: 100vh;
   overflow: hidden;
   background: #f8f8f8;
 }
-.tab-box, .search-box {
+.tab-box {
   width: 100%;
   display: flex;
   justify-content: space-between;
   background: #fff;
   padding-right: 30rpx;
-}
-.search-box {
-  background: #f8f8f8;
-  padding-right: 20rpx;
-}
-.search-bar-page {
-  width: calc(100vw - 70rpx)!important;
-}
-.message-box {
-  display: flex;
-}
-.message-icon {
-  font-size: 50rpx;
-  position: relative;
-  color: #999999;
-  margin: auto;
-}
-.icon-dot {
-  position: absolute;
-  right: 5rpx;
-  top: 5rpx;
-  width: 15rpx;
-  height: 15rpx;
-  border-radius: 50%;
-  background: #F7563A;
 }
 .messag-tabs {
   width: calc(100vw - 200rpx)!important;
@@ -70,12 +45,9 @@
 .message-small-list {
   height: calc(100% - 88rpx - 86rpx);
   overflow-y: auto;
-  background: #f8f8f8;
-}
-.list-content {
   background: #fff;
-  width: 100%;
 }
+
 .dialog {
   width: 100vw;
   height: 100vh;

@@ -1,0 +1,63 @@
+
+  <view
+    class="list"
+    wx:for="{{ list }}"
+    wx:key="index">
+    <view
+      class="content"
+      bindtap="clickList"
+      data-item="{{ item }}">
+      <view class="head-info">
+        <image class="avatar" src="/image/avatar.png"></image>
+        <view class="head-title">
+          <text class="avatar-name cut_font">{{ item.publisher }}</text>
+          <text class="time cut_font">{{ item.createdDt }}</text>
+        </view>
+      </view>
+      <view class="title-info">{{ item.title }}</view>
+      <image class="message-large-list-pic" src="/image/messageLargePic.png"></image>
+      <view class="foot-info">
+        <view class="tags-box">
+          <view
+            class="tag"
+            wx:for="{{ item.reviceIndustryList }}"
+            wx:for-item="industryItem"
+            wx:for-index="i"
+            wx:key="i">
+            {{ industryItem.industryName }}
+          </view>
+        </view>
+        <view
+          class="oprate-box"
+          wx:if="{{ edit }}">
+          <i
+            wx:for="{{ editList }}"
+            wx:for-item="oprateItem"
+            wx:for-index="i"
+            wx:key="index"
+            class="oprate-icon {{ item[oprateItem.type] === 'Y' ? oprateItem.selected : oprateItem.select }}"
+            catchtap="oprate"
+            data-type="{{ oprateItem.type }}"
+            data-item="{{ item }}"
+            data-index="{{ index }}">
+            <text>{{ oprateItem.name }}</text>
+          </i>
+        </view>
+        <view
+          class="oprate-box"
+          wx:else>
+          <i
+            wx:for="{{ oprateList }}"
+            wx:for-item="oprateItem"
+            wx:for-index="i"
+            wx:key="index"
+            class="oprate-icon {{ item[oprateItem.type] === 'Y' ? oprateItem.selected : oprateItem.select }}"
+            catchtap="oprate"
+            data-type="{{ oprateItem.type }}"
+            data-item="{{ item }}"
+            data-index="{{ index }}">
+          </i>
+        </view>
+      </view>
+    </view>
+  </view>
