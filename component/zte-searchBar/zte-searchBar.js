@@ -2,6 +2,7 @@
 Component({
   options: {
     multipleSlots: true,
+    addGlobalClass: true,
   },
   /**
    * 组件的属性列表

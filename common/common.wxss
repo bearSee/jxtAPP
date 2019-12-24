@@ -52,16 +52,10 @@ page view {
   border-top: 1rpx solid #d6d6d6;
 }
 .border_top {
-  border-top: 1rpx solid #d6d6d6;
-}
-.border_right {
-  border-right: 1rpx solid #d6d6d6;
-}
-.border_left {
-  border-left: 1rpx solid #d6d6d6;
+  border-top: 1rpx solid #eee;
 }
 .border_bottom {
-  border-bottom: 1rpx solid #d6d6d6;
+  border-bottom: 1rpx solid #eee;
 }
 .border_bottom_shallow {
   border-bottom: 1rpx solid #f6f6f6;

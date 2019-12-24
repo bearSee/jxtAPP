@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/release/release",
-    "pages/user/user",
     "pages/login/beforeLogin",
+    "pages/index/index",
+    "pages/index/releaseForm/releaseForm",
+    "pages/index/messageDetail/messageDetail",
+    "pages/user/user",
     "pages/login/wxLogin",
     "pages/login/pwdLogin",
-    "pages/index/index",
     "pages/register/register",
     "pages/register/agreement",
     "pages/user/userSet/index",
@@ -31,12 +32,6 @@
         "iconPath": "image/home.png",
         "selectedIconPath": "image/home1.png",
         "text": "首页"
-      },
-      {
-        "pagePath": "pages/release/release",
-        "iconPath": "image/addarticle.png",
-        "selectedIconPath": "image/addarticle.png",
-        "text": "发布"
       },
       {
         "pagePath": "pages/user/user",

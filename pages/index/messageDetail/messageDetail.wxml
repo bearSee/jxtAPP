@@ -1,0 +1,22 @@
+<!--logs.wxml-->
+<view class="message-detail">
+  <view class="content">
+    <view class="title">{{ detailData.title }}</view>
+    <view class="date">
+      <text wx:if="{{detailData.publisher}}">发布者：{{ detailData.publisher }}</text>
+      <text>{{ detailData.createdDt }}</text>
+    </view>
+    <view wx:if="{{reviceIndustryName}}" class="reviceIndustryName">行业：{{ reviceIndustryName }}</view>
+    <view class="content-body">{{ detailData.content }}</view>
+  </view>
+  <view class="oprate-box">
+    <i
+      wx:for="{{ oprateList }}"
+      wx:for-item="oprateItem"
+      wx:key="index"
+      class="oprate-icon {{ detailData[oprateItem.type] === 'Y' ? oprateItem.selected : oprateItem.select }}"
+      catchtap="oprate"
+      data-type="{{ oprateItem.type }}">
+    </i>
+  </view>
+</view>

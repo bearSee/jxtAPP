@@ -1,13 +1,6 @@
 <!--logs.wxml-->
-<view class="index">
-  <view class="search-box">
-    <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
-    <view class="message-box" bindtap="viewMsg">
-      <i class="ri-message-3-line message-icon">
-        <view class="icon-dot"></view>
-      </i>
-    </view>
-  </view>
+<view class="release">
+  <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
   <view class="tab-box">
     <message-tabs
       tabs="{{ tabs }}"
@@ -21,16 +14,14 @@
   <view
     class="message-small-list"
     wx:if="{{ msgList.length }}">
-    <view class="list-content">
-      <message-small-list
-        id="list"
-        list="{{ msgList }}"
-        edit="{{ false }}"
-        bindclickList="clickList"
-        bindhandlerDelete="handlerDelete"
-        bindoprate="oprate">
-      </message-small-list>
-    </view>
+    <message-small-list
+      id="list"
+      list="{{ msgList }}"
+      edit="{{ false }}"
+      bindclickList="clickList"
+      bindhandlerDelete="handlerDelete"
+      bindoprate="oprate">
+    </message-small-list>
   </view>
   <view wx:else class="no_data_box">
     <image class="no_data_pic" src="/image/nofilie_icon.png"></image>

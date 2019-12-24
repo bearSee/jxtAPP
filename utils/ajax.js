@@ -6,7 +6,7 @@
 function post(url, data, hiddenFailModal, hiddenLoading) {
   const app = getApp();
   const host = app.globalData.host;
-  const Authorization = wx.getStorageSync('Authorization') || '';
+  const Authorization = wx.getStorageSync('Authorization') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJleHAiOjE1NzM4MTIxMjEsImlzcyI6InpoaWRpYW4iLCJuYmYiOjE1NzM4MDg1MjEsImVtcGxveWVlTnVtYmVyIjoiIiwiY29tcGFueU5hbWUiOiIiLCJpYXQiOjE1NzM4MDg1MjEsInJlbWVtYmVyVGltZSI6MTU3NDQxMzMyMSwiZW1wbG95ZWVOYW1lIjoiIiwiY29tcGFueUNvZGUiOiIiLCJ1c2VyVHlwZSI6IlowMDEwMDEifQ.KOwHb1K6ijXuh7fZZm74onwg5nUjBnAeEzh';
   return new Promise((resolve, reject) => {
     if (!hiddenLoading) {
       wx.showLoading({

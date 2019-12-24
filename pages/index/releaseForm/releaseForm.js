@@ -1,17 +1,20 @@
 //logs.js
-const util = require('../../utils/ajax.js');
+const util = require('../../../utils/ajax.js');
 var app = getApp();
 
 Page({
   data: {
+    visible: false,
     tabs: [
       {
         name: '招聘消息',
         code: 'industryNews',
+        icon: 'zp.png',
       },
       {
         name: '行业消息',
         code: 'recruitmentNews',
+        icon: 'hy.png',
       },
     ],
     type: 'industryNews',
@@ -65,8 +68,6 @@ Page({
         userId: "3",
       },
     ],
-  },
-  onLoad: function () {
   },
   clearInput() {
     this.setData({ title: '' });
@@ -193,9 +194,6 @@ Page({
       () => { },
     );
   },
-  clickList({ detail }) {
-    console.log('clickList', detail);
-  },
   handlerDelete({ detail }) {
     const { item } = detail;
     const { type } = this.data;
@@ -227,5 +225,20 @@ Page({
         this.selectComponent('#list').hiddenDel();
       },
     );
+  },
+  openDialog() {
+    this.setData({ visible: true });
+  },
+  closeDialog() {
+    this.setData({ visible: false });
+  },
+  chooseReleaseType({ currentTarget }) {
+    const { code } = currentTarget.dataset;
+    wx.navigateTo({ url: `/pages/release/releaseForm/releaseForm?type=${code}` });
+    this.setData({ visible: false });
+  },
+  clickList({ detail }) {
+    const { type } = this.data;
+    wx.navigateTo({ url: `/pages/release/messageDetail/messageDetail?type=${type}&code=${code}` });
   },
 })

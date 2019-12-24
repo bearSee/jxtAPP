@@ -44,9 +44,13 @@
 .oprate-icon {
   margin-right: 20rpx;
   font-size: 36rpx;
+  color: #999999;
 }
 .ri-shield-star-fill {
   opacity: 0.6;
+}
+.ri-heart-fill {
+  color: #F7563A;
 }
 .message-pic {
   width: 160rpx;

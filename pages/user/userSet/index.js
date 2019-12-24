@@ -21,7 +21,9 @@ Page({
     wx.navigateTo({ url });
   },
   loginOut() {
-    app.loginOut();
+    app.showModal({ content: '确定退出登录?' }).then(() => {
+      app.loginOut();
+    });
   },
   onLoad: function () {
   },
