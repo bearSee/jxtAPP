@@ -1,0 +1,13 @@
+<!--pages/user/user.wxml-->
+  <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
+  <view
+    class="list"
+    wx:for="{{ blackList }}"
+    wx:key="index">
+    <image class="user-icon" src="/image/avatar.png"></image>
+    <view class="content border_bottom_shallow">
+      <text class="name cut_font">{{ item.blackName || '' }}</text>
+      <view class="del-btn">移除</view>
+    </view>
+  </view>
+  <view class="loadingWord" wx:if="msgList.length">{{ loadingWord }}</view>

@@ -1,5 +1,5 @@
 <!--logs.wxml-->
-<view class="index">
+<view class="head-box">
   <view class="search-box">
     <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
     <view class="message-box" bindtap="viewMsg">
@@ -18,24 +18,25 @@
       <text>发布消息</text>
     </view>
   </view>
-  <view
-    class="message-small-list"
-    wx:if="{{ msgList.length }}">
-    <view class="list-content">
-      <message-small-list
-        id="list"
-        list="{{ msgList }}"
-        edit="{{ false }}"
-        bindclickList="clickList"
-        bindhandlerDelete="handlerDelete"
-        bindoprate="oprate">
-      </message-small-list>
-    </view>
+</view>
+<view
+  class="message-small-list"
+  wx:if="{{ msgList.length }}">
+  <view class="list-content">
+    <message-small-list
+      id="list"
+      list="{{ msgList }}"
+      edit="{{ false }}"
+      bindclickList="clickList"
+      bindhandlerDelete="handlerDelete"
+      bindoprate="oprate">
+    </message-small-list>
+    <view class="loadingWord" wx:if="msgList.length">{{ loadingWord }}</view>
   </view>
-  <view wx:else class="no_data_box">
-    <image class="no_data_pic" src="/image/nofilie_icon.png"></image>
-    <view class="tips">暂无相关内容</view>
-  </view>
+</view>
+<view wx:else class="no_data_box">
+  <image class="no_data_pic" src="/image/nofilie_icon.png"></image>
+  <view class="tips">暂无相关内容</view>
 </view>
 <view class="dialog" wx:if="{{ visible }}" bindtap="closeDialog">
   <view class="release-type-box" catchtap="openDialog">

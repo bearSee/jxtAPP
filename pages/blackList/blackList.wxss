@@ -1,0 +1,47 @@
+/* pages/user/user.wxss */
+@import '/common/common.wxss';
+page {
+  background: #f8f8f8!important;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+.loadingWord {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  padding: 20rpx 0;
+  background: #f8f8f8;
+}
+.list {
+  background: #fff;
+  padding: 0 30rpx;
+  display: flex;
+}
+.user-icon {
+  width: 74rpx;
+  height: 74rpx;
+  margin: auto 0;
+}
+.content {
+  flex:  1 1 auto;
+  display: flex;
+  height: 100rpx;
+  justify-content: space-between;
+  padding-left: 20rpx;
+}
+.name {
+  max-width: 300rpx;
+  line-height: 100rpx;
+}
+.del-btn {
+  height: 45rpx;
+  line-height: 45rpx;
+  border-radius: 30rpx;
+  border: 1px solid rgba(0,129,255,1);
+  font-size: 28rpx;
+  color: #0081FF;
+  padding: 0 20rpx;
+  margin: auto 0;
+}

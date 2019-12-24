@@ -19,20 +19,22 @@ Page({
     type: 'industryNews',
     title: '',
     msgList: [],
+    pageSize: 20,
+    loadingWord: '',
   },
   clearInput() {
     this.setData({ title: '' });
-    this.getList();
+    this.initList();
   },
   search({ detail }) {
     const { value: title } = detail;
     this.setData({ title });
-    this.getList();
+    this.initList();
   },
   tabsChange({ detail }) {
     const { code: type } = detail;
     this.setData({ type });
-    this.getList();
+    this.initList();
   },
   getList() {
     const obj = {
@@ -41,14 +43,18 @@ Page({
     };
     const { type, title } = this.data;
     this.hiddenDel()
+    this.setData({ loadingWord: '正在加载' });
     wx.$http.post(obj[type], {
       pageNum: 1,
       pageSize: 10,
       title,
     }).then(
-      ({ list }) => {
+      ({ list, total }) => {
         const msgList = list || [];
-        this.setData({ msgList });
+        this.setData({
+          msgList,
+          loadingWord: list.length < total ? '上拉加载更多' : '已全部加载',
+        });
       },
       () => { },
     );
@@ -199,5 +205,22 @@ Page({
     if (this.selectComponent('#list')) {
       this.selectComponent('#list').hiddenDel();
     }
+  },
+  initList() {
+    const { title } = this.data;
+    this.setData({
+      title,
+      pageSize: 10,
+    });
+    this.getList();
+  },
+  getNextPage() {
+    let { pageSize } = this.data;
+    pageSize += 10;
+    this.setData({ pageSize });
+    this.getList();
+  },
+  onReachBottom: function () {
+    this.getNextPage();
   },
 })

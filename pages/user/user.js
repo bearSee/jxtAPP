@@ -22,7 +22,7 @@ Page({
       {
         iconName: 'ri-smartphone-line',
         labelName: '黑名单管理',
-        url: '',
+        url: '/pages/blackList/blackList',
       },
       {
         iconName: 'ri-smartphone-line',

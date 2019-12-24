@@ -1,7 +1,15 @@
-.index {
+page {
   height: 100vh;
-  overflow: hidden;
-  background: #f8f8f8;
+  overflow-y: auto;
+  background: #f8f8f8!important;
+  position: relative;
+}
+.head-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
 .tab-box, .search-box {
   width: 100%;
@@ -53,7 +61,7 @@
 }
 .no_data_box {
   margin: auto;
-  margin-top: 50%;
+  margin-top: 400rpx;
 }
 .no_data_pic {
   margin: auto;
@@ -68,13 +76,20 @@
   text-align: center;
 }
 .message-small-list {
-  height: calc(100% - 88rpx - 86rpx);
-  overflow-y: auto;
-  background: #f8f8f8;
+  padding-top: 185rpx;
+  background: #fff;
 }
 .list-content {
   background: #fff;
   width: 100%;
+}
+.loadingWord {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  padding: 20rpx 0;
+  background: #f8f8f8;
 }
 .dialog {
   width: 100vw;

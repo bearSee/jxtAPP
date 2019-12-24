@@ -33,7 +33,7 @@ App({
             },
             err => {
               reject(err);
-              // wx.reLaunch({ url: '/pages/index/index' });
+              wx.reLaunch({ url: '/pages/index/index' });
             }
           );
         }

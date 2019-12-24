@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/index/releaseForm/releaseForm",
     "pages/index/messageDetail/messageDetail",
+    "pages/blackList/blackList",
     "pages/user/user",
     "pages/login/wxLogin",
     "pages/login/pwdLogin",

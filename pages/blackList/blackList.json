@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "黑名单管理",
+  "usingComponents": {
+    "zte-searchBar": "/component/zte-searchBar/zte-searchBar"
+  }
+}
