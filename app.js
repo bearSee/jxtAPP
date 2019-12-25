@@ -33,7 +33,7 @@ App({
             },
             err => {
               reject(err);
-              wx.reLaunch({ url: '/pages/index/index' });
+              // wx.reLaunch({ url: '/pages/myReceive/myReceive' });
             }
           );
         }
@@ -45,7 +45,7 @@ App({
     wx.setStorageSync('Authorization', Authorization);
     this.globalData.userInfo = user;
     if (openid) this.globalData.openid = openid;
-    wx.reLaunch({ url: '/pages/index/index' });
+    wx.reLaunch({ url: '/pages/myReceive/myReceive' });
   },
   // 退出登录
   loginOut() {

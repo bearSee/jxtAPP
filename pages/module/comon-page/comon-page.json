@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zte-searchBar": "/component/zte-searchBar/zte-searchBar",
+    "message-small-list": "/pages/module/message-small-list/message-small-list",
+    "message-large-list": "/pages/module/message-large-list/message-large-list",
+    "message-tabs": "/pages/module/message-tabs/message-tabs"
+  }
+}

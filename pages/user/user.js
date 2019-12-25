@@ -9,15 +9,15 @@ Page({
         labelName: '个人资料',
         url: '/pages/user/personInfo/index',
       },
-      {
-        iconName: 'ri-smartphone-line',
-        labelName: '我的发布',
-        url: '',
-      },
+      // {
+      //   iconName: 'ri-smartphone-line',
+      //   labelName: '我的发布',
+      //   url: '',
+      // },
       {
         iconName: 'ri-smartphone-line',
         labelName: '我的收藏',
-        url: '',
+        url: '/pages/myCollect/myCollect',
       },
       {
         iconName: 'ri-smartphone-line',

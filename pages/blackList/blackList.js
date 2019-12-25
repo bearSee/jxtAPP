@@ -34,6 +34,20 @@ Page({
       () => { },
     );
   },
+  remove({ currentTarget }) {
+    const { item } = currentTarget.dataset;
+    app.showModal({ content: `是否将${item.blackName || '该用户'}从黑名单列表移除?` }).then(() => {
+      wx.$http.post('blacklist/delete', { blackUserId: item.blacklistId }).then(
+        () => {
+          wx.showToast({ title: '黑名单已移除', mask: true });
+          setTimeout(() => {
+            this.initList();
+          }, 1000);
+        },
+        () => { },
+      );
+    });
+  },
   initList() {
     const { blackName } = this.data;
     this.setData({

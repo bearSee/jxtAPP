@@ -1,5 +1,4 @@
 const app = getApp();
-var timer = null;
 
 Component({
   options: {

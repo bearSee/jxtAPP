@@ -1,9 +1,11 @@
 {
   "pages": [
     "pages/login/beforeLogin",
-    "pages/index/index",
-    "pages/index/releaseForm/releaseForm",
-    "pages/index/messageDetail/messageDetail",
+    "pages/myCollect/myCollect",
+    "pages/myReceive/myReceive",
+    "pages/myRelease/myRelease",
+    "pages/myRelease/releaseForm/releaseForm",
+    "pages/messageDetail/messageDetail",
     "pages/blackList/blackList",
     "pages/user/user",
     "pages/login/wxLogin",
@@ -29,16 +31,22 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/myReceive/myReceive",
         "iconPath": "image/home.png",
         "selectedIconPath": "image/home1.png",
-        "text": "首页"
+        "text": "我的接收"
+      },
+      {
+        "pagePath": "pages/myRelease/myRelease",
+        "iconPath": "image/home.png",
+        "selectedIconPath": "image/home1.png",
+        "text": "我的发布"
       },
       {
         "pagePath": "pages/user/user",
         "iconPath": "image/person.png",
         "selectedIconPath": "image/person1.png",
-        "text": "我的"
+        "text": "个人中心"
       }
     ]
   },

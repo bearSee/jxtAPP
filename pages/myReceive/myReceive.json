@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的接收",
+  "usingComponents": {
+    "comon-page": "/pages/module/comon-page/comon-page"
+  }
+}

@@ -10,8 +10,8 @@
       <view class="head-info">
         <image class="avatar" src="/image/avatar.png"></image>
         <view class="head-title">
-          <text class="avatar-name cut_font">{{ item.publisher }}</text>
-          <text class="time cut_font">{{ item.createdDt }}</text>
+          <text class="avatar-name cut_font">{{ item.publisher || '匿名' }}</text>
+          <text class="time cut_font">{{ item.createdDt || item.publishDt }}</text>
         </view>
       </view>
       <view class="title-info">{{ item.title }}</view>

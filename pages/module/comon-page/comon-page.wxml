@@ -1,0 +1,71 @@
+<view class="comon-page">
+  <view class="head-box">
+    <view class="search-box">
+      <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
+      <!-- 我的接收页面才存在查看通知按钮 -->
+      <view
+        class="message-box"
+        wx:if="{{ pageType === 'receive'}}"
+        bindtap="viewNotice">
+        <i class="ri-message-3-line message-icon">
+          <view class="icon-dot"></view>
+        </i>
+      </view>
+    </view>
+    <view class="tab-box">
+      <message-tabs
+        class="message-tabs"
+        tabs="{{ tabs }}"
+        bindchange="tabsChange">
+      </message-tabs>
+      <!-- 我的发布页面才存在发布消息按钮 -->
+      <view
+        class="oprate-box theme_fontColor_main"
+        wx:if="{{ pageType === 'release'}}"
+        bindtap="openDialog">
+        <image class="release-icon" src="/image/addarticle.png"></image>
+        <text>发布消息</text>
+      </view>
+    </view>
+  </view>
+  <view
+    class="message-small-list"
+    wx:if="{{ msgList.length }}">
+    <view class="list-content">
+      <message-small-list
+        id="list"
+        wx:if="{{ pageType === 'receive' }}"
+        list="{{ msgList }}"
+        bindclickList="clickList"
+        bindhandlerDelete="handlerDelete"
+        bindoprate="oprate">
+      </message-small-list>
+      <message-large-list
+        wx:else
+        list="{{ msgList }}"
+        edit="{{ pageType === 'release' }}"
+        bindclickList="clickList"
+        bindhandlerDelete="handlerDelete"
+        bindoprate="oprate">
+      </message-large-list>
+      <view class="loadingWord" wx:if="msgList.length">{{ loadingWord }}</view>
+    </view>
+  </view>
+  <view wx:else class="no_data_box">
+    <image class="no_data_pic" src="/image/nofilie_icon.png"></image>
+    <view class="tips">暂无相关内容</view>
+  </view>
+</view>
+<view class="dialog" wx:if="{{ visible }}" bindtap="closeDialog">
+  <view class="release-type-box" catchtap="openDialog">
+    <view
+      class="type-box"
+      wx:for="{{ tabs }}"
+      wx:key="index"
+      bindtap="chooseReleaseType"
+      data-type="{{ item.code }}">
+      <image class="type-icon" src="/image/{{ item.icon }}"></image>
+      <text>{{ item.name }}</text>
+    </view>
+  </view>
+</view>
