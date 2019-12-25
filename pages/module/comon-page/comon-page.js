@@ -115,12 +115,13 @@ Component({
     oprate({ detail }) {
       this.hiddenDel()
       const { item, type } = detail;
+      const { id, userId, newsId } = item;
   
       if (type === 'edit') {
         const currentTarget = {
           dataset: {
             type: this.data.type,
-            id: item.id,
+            id,
           },
         };
         this.chooseReleaseType({ currentTarget });
@@ -139,14 +140,14 @@ Component({
             warningTips: '是否将该用户添加至黑名单?',
             successTips: '添加黑名单成功',
             params: {
-              blackUserId: item.userId || item.newsId,
+              blackUserId: userId,
             },
           },
           'Y': {
             url: 'blacklist/delete',
             successTips: '黑名单已取消',
             params: {
-              blackUserId: item.userId || item.newsId,
+              blackUserId: userId,
             },
           },
         },
@@ -155,14 +156,14 @@ Component({
             url: 'collection/save',
             successTips: '收藏成功',
             params: {
-              newsId: item.id || item.newsId,
+              newsId: id || newsId,
             },
           },
           'Y': {
             url: 'collection/delete',
             successTips: '已取消收藏',
             params: {
-              newsId: item.id || item.newsId,
+              newsId: id || newsId,
             },
           },
         },
@@ -172,7 +173,7 @@ Component({
             warningTips: '是否举报该用户?',
             successTips: '举报成功',
             params: {
-              newsId: item.id || item.newsId,
+              newsId: id || newsId,
             },
           },
         }
@@ -246,18 +247,18 @@ Component({
     // 点击发布消息跳转选择
     chooseReleaseType({ currentTarget }) {
       const { type, id } = currentTarget.dataset;
-      wx.navigateTo({ url: `/pages/index/releaseForm/releaseForm?type=${type}&id=${id}` });
+      wx.navigateTo({ url: `/pages/releaseForm/releaseForm?type=${type}&id=${id}` });
       this.setData({ visible: false });
     },
     // 查看消息详情
     clickList({ detail }) {
       const { type } = this.data;
-      const { id } = detail;
-      wx.navigateTo({ url: `/pages/index/messageDetail/messageDetail?type=${type}&id=${id}` });
+      const { id, newsId } = detail;
+      wx.navigateTo({ url: `/pages/messageDetail/messageDetail?type=${type}&id=${id || newsId}&skipFrom=${this.properties.pageType}` });
     },
     // 查看消息通知
     viewNotice() {
-      wx.navigateTo({ url: '/pages/index/notices/notices' });
+      wx.navigateTo({ url: '/pages/notices/notices' });
     },
     // 恢复列表左滑距离
     hiddenDel() {

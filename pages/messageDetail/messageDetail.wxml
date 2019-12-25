@@ -9,7 +9,7 @@
     <view wx:if="{{reviceIndustryName}}" class="reviceIndustryName">行业：{{ reviceIndustryName }}</view>
     <view class="content-body">{{ detailData.content }}</view>
   </view>
-  <view class="oprate-box">
+  <view class="oprate-box" wx:if="{{ showOprate }}">
     <i
       wx:for="{{ oprateList }}"
       wx:for-item="oprateItem"

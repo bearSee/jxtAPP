@@ -33,7 +33,6 @@ App({
             },
             err => {
               reject(err);
-              // wx.reLaunch({ url: '/pages/myReceive/myReceive' });
             }
           );
         }

@@ -4,8 +4,8 @@ var app = getApp();
 
 Page({
   data: {
-    mobileNumber: '',
-    password: '',
+    mobileNumber: wx.getStorageSync('mobileNumber') || '',
+    password: wx.getStorageSync('password') || '',
   },
   onLoad: function () {
   },
@@ -22,6 +22,8 @@ Page({
     wx.$http.post('init/login', { mobileNumber, password }, true).then(
       res => {
         app.finishLogin(res);
+        wx.setStorageSync('mobileNumber', mobileNumber);
+        wx.setStorageSync('password', password);
       },
       err => {
         app.showModal({ content: err.message || '登录失败', hiddenCancel: true, confirmText: '好的' });

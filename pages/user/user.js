@@ -5,32 +5,32 @@ Page({
   data: {
     list: [
       {
-        iconName: 'ri-smartphone-line',
+        iconName: 'ri-user-5-line',
         labelName: '个人资料',
         url: '/pages/user/personInfo/index',
       },
       // {
-      //   iconName: 'ri-smartphone-line',
+      //   iconName: 'ri-book-open-line',
       //   labelName: '我的发布',
       //   url: '',
       // },
       {
-        iconName: 'ri-smartphone-line',
+        iconName: 'ri-heart-line',
         labelName: '我的收藏',
         url: '/pages/myCollect/myCollect',
       },
       {
-        iconName: 'ri-smartphone-line',
+        iconName: 'ri-forbid-2-line',
         labelName: '黑名单管理',
         url: '/pages/blackList/blackList',
       },
       {
-        iconName: 'ri-smartphone-line',
+        iconName: 'ri-edit-box-line',
         labelName: '意见反馈',
         url: '',
       },
       {
-        iconName: 'ri-smartphone-line',
+        iconName: 'ri-settings-line',
         labelName: '设置',
         url: '/pages/user/userSet/index',
       },

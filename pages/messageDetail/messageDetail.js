@@ -22,12 +22,18 @@ Page({
     ],
     detailData: {},
     reviceIndustryName: '',
+    options: {},
+    showOprate: false,
   },
-  onLoad(optios) {
-    const { type, id } = optios;
-    this.getDetail({ type, id });
+  onLoad(options) {
+    this.setData({
+      options,
+      showOprate: options.skipFrom !== 'release',
+    });
+    this.getDetail();
   },
-  getDetail({ type, id }) {
+  getDetail() {
+    const { type, id } = this.data.options;
     const params = {};
     const obj = {
       industryNews: 'industryNewsId',
@@ -42,11 +48,11 @@ Page({
       () => { },
     );
   },
+  // 收藏、拉黑、举报
   oprate({ currentTarget }) {
     const { type } = currentTarget.dataset;
     const { detailData } = this.data;
-    const { id } = detailData;
-
+    const { id, userId, newsId } = detailData;
     const obj = {
       isBlacklist: {
         'N': {
@@ -54,14 +60,14 @@ Page({
           warningTips: '是否将该用户添加至黑名单?',
           successTips: '添加黑名单成功',
           params: {
-            blackUserId: id,
+            blackUserId: userId,
           },
         },
         'Y': {
           url: 'blacklist/delete',
           successTips: '黑名单已取消',
           params: {
-            blackUserId: id,
+            blackUserId: userId,
           },
         },
       },
@@ -70,14 +76,14 @@ Page({
           url: 'collection/save',
           successTips: '收藏成功',
           params: {
-            newsId: id,
+            newsId: id || newsId,
           },
         },
         'Y': {
           url: 'collection/delete',
           successTips: '已取消收藏',
           params: {
-            newsId: id,
+            newsId: id || newsId,
           },
         },
       },
@@ -87,7 +93,7 @@ Page({
           warningTips: '是否举报该用户?',
           successTips: '举报成功',
           params: {
-            newsId: id,
+            newsId: id || newsId,
           },
         },
       }
@@ -103,24 +109,21 @@ Page({
     if (warningTips) {
       app.showModal({ content: obj[type][currentState].warningTips }).then(
         () => {
-          wx.$http.post(url, params).then(
-            () => {
-              wx.showToast({ title: successTips });
-              detailData[type] = currentState === 'N' ? 'Y' : 'N';
-              this.setData({ detailData });
-            },
-            () => { },
-          );
+          this.handlerOprate({ url, params, successTips });
         },
-        () => {},
+        () => { },
       );
       return;
     }
+    this.handlerOprate({ url, params, successTips });
+  },
+  handlerOprate({ url, params, successTips }) {
     wx.$http.post(url, params).then(
       () => {
         wx.showToast({ title: successTips });
-        detailData[type] = currentState === 'N' ? 'Y' : 'N';
-        this.setData({ detailData });
+        setTimeout(() => {
+          this.getDetail();
+        }, 1000);
       },
       () => { },
     );
@@ -128,6 +131,6 @@ Page({
   onUnload() {
     const pages = getCurrentPages(); // 获取页面栈
     const prevPage = pages[pages.length - 2]; // 上一个页面
-    prevPage.getList();
+    prevPage.selectComponent('#comon-page').getList();
   },
 })

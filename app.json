@@ -38,8 +38,8 @@
       },
       {
         "pagePath": "pages/myRelease/myRelease",
-        "iconPath": "image/home.png",
-        "selectedIconPath": "image/home1.png",
+        "iconPath": "image/addarticle.png",
+        "selectedIconPath": "image/addarticle.png",
         "text": "我的发布"
       },
       {
