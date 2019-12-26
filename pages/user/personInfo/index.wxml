@@ -1,7 +1,36 @@
-<!--pages/user/user.wxml-->
-<view class="personInfo">
-    <view class="title">基础信息</view>
-    <zte-form formItems="{{ basalItem }}" formData="{{ basalData }}" removeSubmit="{{ true }}"></zte-form>
-    <view class="title">公司信息</view>
-    <zte-form formItems="{{ formItems }}" formData="{{ formData }}" bindsubmit="submit"></zte-form>
+<view
+    class="person-info"
+    wx:for="{{ dataItems }}"
+    wx:key="index"
+    bindtap="clickTagView"
+    data-item="{{ item }}">
+    <view class="tag-title" wx:if="{{ item.type === 'title' }}">{{ item.label }}</view>
+    <view class="tag-view" wx:elif="{{ item.type === 'view' }}">
+        <view class="label cut_font">{{ item.label }}</view>
+        <view class="value cut_font">{{ formData[item.code] || '暂无' }}</view>
+    </view>
+    <view class="tag-skip" wx:elif="{{ item.type === 'tag' }}">
+        <view class="label cut_font">{{ item.label }}</view>
+        <view class="value cut_font arrow">{{ formData[item.code] || '请完善' }}</view>
+    </view>
+    <view class="tag-img" wx:elif="{{ item.type === 'img' }}">
+        <view class="label cut_font">{{ item.label }}</view>
+        <view class="value cut_font arrow">
+            <image class="avatar" src="{{ formData[item.code] || '/image/avatar.png' }}"/>
+        </view>
+    </view>
+</view>
+
+
+<view class="dialog" wx:if="{{ visible }}" bindtap="closeDialog">
+    <view class="dialog-content" catchtap="openDialog">
+        <linkage-selection
+            class="content-box"
+            requestUrl="city/list"
+            parentKey="parentId"
+            optionProps="{{ optionProps }}"
+            value="{{ defaulVal }}"
+            bindhandlerConfirm="handlerConfirm">
+        </linkage-selection>
+    </view>
 </view>

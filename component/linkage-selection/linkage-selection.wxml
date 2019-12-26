@@ -1,0 +1,19 @@
+
+  <!-- 省市区街道 选择器 -->
+  <view class="linkage-selection">
+    <view class="head-box">
+      <view
+        class="steps"
+        wx:for="{{ steps }}"
+        wx:key="index"
+        bindtap="chooseStep"
+        data-step="{{ index + 1 }}">{{ selection[index] ? selection[index][optionProps.label] : '待选择' }}
+      </view>
+    </view>
+    <picker-view class="content" value="{{ indexList[currentStep - 1] ? [indexList[currentStep - 1]] : [] }}" bindchange="selectChange">
+      <picker-view-column class="column">
+        <view class="item" wx:for="{{ currentList }}" wx:key="i">{{ item[optionProps.label] }}</view>
+      </picker-view-column>
+    </picker-view>
+    <view class="oprate-btn" bindtap="chooseNextStep">{{ currentStep < steps ? '下一步' : '确定'}}</view>
+  </view>

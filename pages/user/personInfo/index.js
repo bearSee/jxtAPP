@@ -3,80 +3,241 @@ const app = getApp()
 
 Page({
   data: {
-    basalItem: [
+    /**
+     * type
+     * title:标题类
+     * img：图片类
+     * view：只查看类
+     * tag：点击跳转类
+     */
+    personItems: [
+      {
+        label: '基础信息',
+        type: 'title',
+      },
       {
         code: 'touxiang',
         label: '头像',
         type: 'img',
       },
-      // {
-      //   code: 'receiveObject',
-      //   label: '接收对象',
-      //   type: 'check',
-      //   fastCode: 'Z001000',
-      // },
-      // {
-      //   code: 'messageType',
-      //   label: '消息类型',
-      //   type: 'radio',
-      //   fastCode: 'Z003000',
-      // },
       {
         code: 'account',
         label: '账号',
-        type: 'text',
+        type: 'view',
       },
       {
         code: 'name',
-        label: '昵称',
-        type: 'text',
-      },
-    ],
-    basalData: {},
-    formItems: [
-      {
-        code: 'companyName',
-        label: '公司名称',
-        type: 'text',
+        label: '姓名',
+        inputType: 'text',
+        type: 'tag',
       },
       {
-        code: 'orgCode',
-        label: '机构代码',
-        type: 'text',
-      },
-      {
-        code: 'personInCharge',
-        label: '负责人',
-        type: 'text',
+        code: 'email',
+        label: '电子邮箱',
+        inputType: 'text',
+        type: 'tag',
       },
       {
         code: 'fullAdressName',
         label: '地址',
-        type: 'tagView',
+        type: 'tag',
+      },
+      {
+        label: '接收行业信息',
+        type: 'title',
+      },
+      {
+        code: 'industryInfoName',
+        label: '行业名称',
+        type: 'tag',
+      },
+    ],
+    companyItems: [
+      {
+        label: '基础信息',
+        type: 'title',
+      },
+      {
+        code: 'touxiang',
+        label: '头像',
+        type: 'img',
+      },
+      {
+        code: 'account',
+        label: '账号',
+        type: 'view',
+      },
+      {
+        code: 'name',
+        label: '姓名',
+        inputType: 'text',
+        type: 'tag',
+      },
+      {
+        label: '公司信息',
+        type: 'title',
+      },
+      {
+        code: 'companyName',
+        label: '公司名称',
+        inputType: 'text',
+        type: 'tag',
+      },
+      {
+        code: 'orgCode',
+        label: '机构代码',
+        inputType: 'text',
+        type: 'tag',
+      },
+      {
+        code: 'personInCharge',
+        label: '负责人',
+        inputType: 'text',
+        type: 'tag',
+      },
+      {
+        code: 'fullAdressName',
+        label: '地址',
+        type: 'tag',
+      },
+      {
+        code: 'address',
+        label: '详细地址',
+        inputType: 'textarea',
+        type: 'tag',
       },
       {
         code: 'description',
         label: '公司介绍',
-        type: 'textarea',
+        inputType: 'textarea',
+        type: 'tag',
       },
       {
         code: 'industryInfoName',
         label: '所属行业',
-        type: 'tagView',
+        type: 'tag',
       },
     ],
-    formData: {
-      industryInfoName: '涤纶-生产/销售运营/n电子设备-生产/销售运营',
-      description: '及信通是连接电子产品及啊实打实大所多',
-      fullAdressName: '深圳市南山区粤海街道203房',
-      personInCharge: '马德逼',
-      orgCode: '231231313',
-      companyName: '及信通通讯有限公司',
+    dataItems: [],
+    formData: {},
+    saveUrl: '',
+    visible: false,
+    optionProps: {
+      label: 'name',
+      value: 'id',
     },
+    defaulVal: [],
   },
-  clickTagView({ detail }) {
-    console.log(detail);
+  getBasicInfo() {
+    wx.$http.post('my/info').then(
+      ({ info }) => {
+        const formData = info || {};
+        const { provinceName, cityName, areaName, streetName, belongIndustryList } = formData;
+        formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
+        if (belongIndustryList && belongIndustryList.length) {
+          formData.industryInfoName = belongIndustryList.map(({ industryName }) => industryName).join('、');
+        }
+        this.setData({ formData });
+      },
+      () => { },
+    );
+  },
+  clickTagView({ currentTarget }) {
+    const { item } = currentTarget.dataset;
+    const { type, code, inputType } = item;
+    if (type === 'img') {
+      this.chooseImg();
+      return;
+    };
+    if (type !== 'tag') return;
+    let url = `/pages/changeInputData/changeInputData?type=${inputType}`;
+    if (code === 'industryInfoName') {
+      url = '/pages/chooseIndustry/chooseIndustry';
+    }
+    if (code === 'fullAdressName') {
+      this.setData({ visible: true });
+      return;
+    }
+    wx.navigateTo({ url });
+  },
+  chooseImg() {
+    wx.chooseImage({
+      success: function(res) {
+        wx.showToast({
+          title: '头像更换功能暂未开放',
+          icon: 'none',
+          mask: true,
+        });
+      },
+    });
+  },
+  submit() {
+    const { saveUrl, formData } = this.data;
+    const params = JSON.parse(JSON.stringify(formData));
+    params.belongIndustryList = JSON.stringify(params.belongIndustryList);
+    wx.$http.post(saveUrl, params).then(
+      () => {
+        wx.showToast({ title: '保存成功', mask: true });
+        setTimeout(() => {
+          this.getBasicInfo();
+        }, 1000);
+      },
+      () => { },
+    );
+  },
+  // 打开弹窗
+  openDialog() {
+    this.setData({ visible: true });
+  },
+  // 关闭弹窗
+  closeDialog() {
+    this.setData({ visible: false });
+  },
+  handlerConfirm({ detail  }) {
+    const { selection } = detail;
+    const { formData } = this.data;
+    const adressCodes = [
+      {
+        label: 'provinceName',
+        code: 'province',
+      },
+      {
+        label: 'cityName',
+        code: 'city',
+      },
+      {
+        label: 'areaName',
+        code: 'area',
+      },
+      {
+        label: 'streetName',
+        code: 'street',
+      },
+    ];
+    selection.forEach(({ id, name }, i) => {
+      formData[adressCodes[i].label] = name || '';
+      formData[adressCodes[i].code] = id || '';
+    });
+    // const { provinceName, cityName, areaName, streetName } = formData;
+    // formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
+    this.setData({ formData });
+    setTimeout(() => {
+      this.closeDialog();
+      this.submit();
+    }, 100);
   },
   onLoad: function () {
+    // 'ADMIN': '管理员',
+    // 'Z001002': '个人用户',
+    // 'Z001001': '企业用户',
+    const { userInfo } = app.globalData;
+    const { personItems, companyItems } = this.data;
+    const dataItems = userInfo.userType === 'Z001001' ? companyItems : personItems;
+    const saveUrl = userInfo.userType === 'Z001001' ? 'my/company/save' : 'my/personal/save';
+    this.setData({
+      dataItems,
+      saveUrl,
+    });
+    this.getBasicInfo();
   },
 })

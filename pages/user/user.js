@@ -9,11 +9,6 @@ Page({
         labelName: '个人资料',
         url: '/pages/user/personInfo/index',
       },
-      // {
-      //   iconName: 'ri-book-open-line',
-      //   labelName: '我的发布',
-      //   url: '',
-      // },
       {
         iconName: 'ri-heart-line',
         labelName: '我的收藏',
@@ -27,7 +22,7 @@ Page({
       {
         iconName: 'ri-edit-box-line',
         labelName: '意见反馈',
-        url: '',
+        url: '/pages/leaveMassage/leaveMassage',
       },
       {
         iconName: 'ri-settings-line',
@@ -43,7 +38,7 @@ Page({
     wx.navigateTo({ url });
   },
   onLoad: function () {
-    const userInfo = app.globalData.userInfo;
+    const { userInfo } = app.globalData;
     const userTypeObj = {
       'ADMIN': '管理员',
       'Z001002': '个人用户',
@@ -51,6 +46,7 @@ Page({
     };
     this.setData({
       userInfo,
-      userTypeName: userTypeObj[userInfo.userType] || '--' });
+      userTypeName: userTypeObj[userInfo.userType] || '--',
+    });
   },
 })

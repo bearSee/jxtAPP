@@ -9,11 +9,11 @@ Page({
   },
   onLoad: function () {
   },
-  handlerPhoneBlur(e) {
+  handlerPhoneChange(e) {
     const { value: mobileNumber } = e.detail;
     this.setData({ mobileNumber });
   },
-  handlerPwdBlur(e) {
+  handlerPwdChange(e) {
     const { value: password } = e.detail;
     this.setData({ password });
   },

@@ -10,7 +10,7 @@
       placeholder="请输入手机号"
       maxlength="11"
       value="{{ mobileNumber }}"
-      bindblur="handlerPhoneBlur"/>
+      bindinput="handlerPhoneChange"/>
   </view>
   <view class="pwdword input-box space_around border_bottom">
     <i class="ri-lock-password-line"></i>
@@ -20,7 +20,7 @@
       placeholder="请输入密码"
       maxlength="20"
       value="{{ password }}"
-      bindblur="handlerPwdBlur"/>
+      bindinput="handlerPwdChange"/>
   </view>
   <button bindtap="login" class="submit-btn">立即登录</button>
   <view class="no_account">还没有账号？<text bindtap="gotoRegister">去注册</text></view>

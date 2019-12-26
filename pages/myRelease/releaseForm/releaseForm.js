@@ -4,6 +4,21 @@ var app = getApp();
 
 Page({
   data: {
+    /**
+     * 
+      {
+        code: 'receiveObject',
+        label: '接收对象',
+        type: 'check',
+        fastCode: 'Z001000',
+      },
+      {
+        code: 'messageType',
+        label: '消息类型',
+        type: 'radio',
+        fastCode: 'Z003000',
+      },
+     */
     visible: false,
     tabs: [
       {

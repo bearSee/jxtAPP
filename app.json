@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/user/personInfo/index",
     "pages/login/beforeLogin",
+    "pages/leaveMassage/leaveMassage",
     "pages/notices/notices",
     "pages/notices/noticesDetail/noticesDetail",
     "pages/myCollect/myCollect",
@@ -9,15 +11,14 @@
     "pages/myRelease/releaseForm/releaseForm",
     "pages/messageDetail/messageDetail",
     "pages/blackList/blackList",
-    "pages/user/user",
     "pages/login/wxLogin",
     "pages/login/pwdLogin",
     "pages/register/register",
     "pages/register/agreement",
+    "pages/user/user",
     "pages/user/userSet/index",
     "pages/user/userSet/aboutUs",
-    "pages/user/userSet/pwdSet",
-    "pages/user/personInfo/index"
+    "pages/user/userSet/pwdSet"
   ],
   "window": {
     "backgroundTextStyle": "light",

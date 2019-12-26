@@ -1,0 +1,17 @@
+<!--logs.wxml-->
+<view class="message-box">
+  <view class="head-tips">尊敬的及信通用户，感谢您对及信通信息平台的支持。欢迎您对我们提出宝贵的意见和建议！</view>
+  <zte-input
+    type="text"
+    placeholder="请输入手机号"
+    bindinput="handerInput"
+    data-code="mobileNumber">
+  </zte-input>
+  <zte-input
+    type="textarea"
+    placeholder="请留下您宝贵的建议..."
+    bindinput="handerInput"
+    data-code="content">
+  </zte-input>
+  <button class="submit-btn" bindtap="submit">确认提交</button>
+</view>

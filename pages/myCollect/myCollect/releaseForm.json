@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "发布",
-  "usingComponents": {
-    "zte-searchBar": "/component/zte-searchBar/zte-searchBar",
-    "message-small-list": "/pages/module/message-small-list/message-small-list",
-    "message-tabs": "/pages/module/message-tabs/message-tabs"
-  }
-}

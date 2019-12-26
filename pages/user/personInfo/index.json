@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "个人资料",
   "usingComponents": {
-    "zte-form": "/component/zte-form/zte-form",
-    "zte-item": "/component/zte-item/zte-item"
+    "linkage-selection": "/component/linkage-selection/linkage-selection"
   }
 }
