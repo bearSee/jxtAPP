@@ -34,7 +34,7 @@
             </i>
           </view>
         </view>
-        <image class="message-pic" src="{{ item.imageUrl || '/image/before-lodin.png' }}"></image>
+        <image class="message-pic" src="{{ item.imageUrl || '/image/messageSmallPic2.png' }}"></image>
       </view>
 
       <view

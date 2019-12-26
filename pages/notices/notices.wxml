@@ -1,0 +1,17 @@
+<view class="notices">
+  <view
+    class="list border_bottom"
+    wx:for="{{ noticeList }}"
+    wx:key="index"
+    bindtap="viewNotice"
+    data-index="{{ index }}">
+    <image class="notice-icon" src="/image/notice.png"></image>
+    <view class="content border_bottom">
+      <view class="title-box">
+        <text class="title cut_font">{{ item.title || '' }}</text>
+        <text class="data">{{ item.createdDt || '' }}</text>
+      </view>
+      <view class="des cut_font">{{ item.content || '' }}</view>
+    </view>
+  </view>
+</view>

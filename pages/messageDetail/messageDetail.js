@@ -34,7 +34,6 @@ Page({
   },
   getDetail() {
     const { type, id } = this.data.options;
-    const params = {};
     const obj = {
       industryNews: 'industryNewsId',
       recruitmentNews: 'recruitmentNewsId',

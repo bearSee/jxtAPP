@@ -1,0 +1,5 @@
+<view class="notice-detail">
+  <view class="title">{{ detailData.title }}</view>
+  <view class="date">{{ detailData.createdDt }}</view>
+  <view class="content-body">{{ detailData.content }}</view>
+</view>

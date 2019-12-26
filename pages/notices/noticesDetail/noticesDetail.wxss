@@ -1,0 +1,29 @@
+/* pages/user/user.wxss */
+@import '/common/common.wxss';
+.notice-detail {
+  height: 100vh;
+  overflow-y: auto;
+  background: #fff;
+  padding: 30rpx;
+}
+.content-body {
+  border-top: 2rpx solid #E5E5E5;
+  font-size: 30rpx;
+  color:#666666;
+  line-height: 42rpx;
+  padding-top: 20rpx;
+  margin-top: 20rpx;
+  text-indent: 2rem;
+}
+.title {
+  font-size: 40rpx;
+  color:#2C2C2C;
+  line-height: 46rpx;
+  margin-bottom: 20rpx;
+}
+.date {
+  margin-right: 20rpx;
+  color: #929292;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}

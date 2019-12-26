@@ -15,7 +15,7 @@
         </view>
       </view>
       <view class="title-info">{{ item.title }}</view>
-      <image class="message-large-list-pic" src="/image/messageLargePic.png"></image>
+      <image class="message-large-list-pic" src="/image/messageLargePic2.png"></image>
       <view class="foot-info">
         <view class="tags-box">
           <view

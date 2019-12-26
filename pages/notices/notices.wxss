@@ -1,0 +1,45 @@
+/* pages/user/user.wxss */
+@import '/common/common.wxss';
+.notices {
+  background: #F7F7F7;
+  height: 100vh;
+  width: 100%;
+}
+.list {
+  width: 100%;
+  height: 162rpx;
+  background: #fff;
+  display: flex;
+  padding: 0 30rpx;
+}
+.notice-icon {
+  width: 104rpx;
+  height: 104rpx;
+  margin: auto 0;
+}
+.content {
+  padding: 20rpx 0;
+  padding-left: 15rpx;
+  font-size: 28rpx;
+  color: #999999;
+  width: calc(100% - 104rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.title-box {
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  max-width: 350rpx;
+  color: #2C2C2C;
+  font-size: 32rpx;
+}
+.data {
+  line-height: 46rpx;
+  font-size: 26rpx;
+}
+.des {
+  width: 100%;
+}

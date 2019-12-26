@@ -28,7 +28,7 @@ Page({
         const blackList = list || [];
         this.setData({
           blackList,
-          loadingWord: list.length < total ? '上拉加载更多' : '已全部加载',
+          loadingWord: !list.length ? '暂无数据' : list.length < total ? '上拉加载更多' : '已全部加载',
         });
       },
       () => { },
@@ -37,7 +37,7 @@ Page({
   remove({ currentTarget }) {
     const { item } = currentTarget.dataset;
     app.showModal({ content: `是否将${item.blackName || '该用户'}从黑名单列表移除?` }).then(() => {
-      wx.$http.post('blacklist/delete', { blackUserId: item.blacklistId }).then(
+      wx.$http.post('blacklist/delete', { blackUserId: item.blackUserId }).then(
         () => {
           wx.showToast({ title: '黑名单已移除', mask: true });
           setTimeout(() => {
