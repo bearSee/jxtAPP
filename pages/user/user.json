@@ -2,6 +2,7 @@
   "navigationBarTitleText": "",
   "navigationBarTextStyle": "white",
   "navigationBarBackgroundColor": "#0081FF",
+  "disableScroll": true,
   "usingComponents": {
     "list-tag": "/component/list-tag/list-tag"
   }
