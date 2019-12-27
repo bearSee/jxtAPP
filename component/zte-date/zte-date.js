@@ -1,4 +1,14 @@
-import formatTime from '../../utils/dateUtil.js';
+// type: year,month,day,time
+const getNowTime = (type) => {
+  const date = new Date();
+  const clear = d => (d > 9 ? d : `0${d}`);
+  let value = '';
+  if (type === 'year') value = `${date.getFullYear()}`;
+  if (type === 'month') value = `${date.getFullYear()}-${clear(date.getMonth() + 1)}`;
+  if (type === 'day') value = `${date.getFullYear()}-${clear(date.getMonth() + 1)}-${clear(date.getDate())}`;
+  if (type === 'time') value = `${clear(date.getHours())}:${clear(date.getMinutes())}`;
+  return value;
+};
 const app = getApp();
 
 Component({
@@ -14,10 +24,13 @@ Component({
       type: String,
       value: '',
     },
+    // fields：有效值 year,month,day，表示选择器的粒度
     fields: {
       type: String,
       value: 'day',
     },
+    // start： fields为day时，表示有效时间范围的开始，字符串格式为"hh:mm"
+    // start： fields为date时，表示有效日期范围的开始，字符串格式为"YYYY-MM-DD"
     start: String,
     end: String,
     disabled: {
@@ -28,25 +41,30 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+  },
 
   ready: function () {
-    if (!this.properties.value) {
-      const date = new Date();
-      let value = '';
-      if (this.properties.type === 'date') {
-        const index = ['year', 'month', 'day'].indexOf(this.properties.fields);
-        // value = formatTime(date).split('-').slice(0, index + 1).join('-');
-      }
-      this.triggerEvent('input', { value });
-    }
+    // this.getCreatedData();
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    handlerDateChange(e) {
-      const value = e.detail.value;
+    getCreatedData() {
+      const { value, type, fields } = this.properties;
+      if (!value) {
+        let currentTime;
+        if (type === 'date') {
+          currentTime = getNowTime(fields);
+        } else {
+          currentTime = getNowTime('time');
+        }
+        this.triggerEvent('input', { value: currentTime });
+      }
+    },
+    handlerDateChange({ detail }) {
+      const value = detail.value;
       this.triggerEvent('input', { value });
     },
   },

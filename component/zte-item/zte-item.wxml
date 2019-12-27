@@ -1,40 +1,44 @@
 
-<view class="zte-item {{ !isLast && 'border_bottom' }} {{ currentItem.code }}">
-  <label wx:if='{{ currentItem.label }}' class="label {{ currentItem.type }}Label">
-    <text>{{ currentItem.label }} {{ (currentItem.type === 'check' && '(多选)') || (currentItem.type === 'radio' && '(单选)') || '' }}</text>
-    <text class='mark-icon' wx:if='{{ requested || importantMark }}'>*</text>
+<view class="zte-item {{ currentItem.code }} {{ !isLast && 'border_bottom_shallow' }}">
+  <label class="label">
+    <text>{{ currentItem.label }}</text>
+    <text class='mark-icon' wx:if='{{ currentItem.required }}'>*</text>
   </label>
   <view class="value {{ disabled ? 'theme_fontColor_deputy' : '' }}">
     <zte-input
-      wx:if="{{ currentItem.type === 'password' || currentItem.type === 'text' || currentItem.type === 'textarea' || currentItem.type === 'labelarea' || currentItem.type === 'number' || currentItem.type === 'idcard' || currentItem.type === 'digit' }}"
+      wx:if="{{ currentItem .type === 'text' || currentItem .type === 'textarea' || currentItem .type === 'number' || currentItem .type === 'idcard' || currentItem .type === 'digit' || currentItem .type === 'password' }}"
       type="{{ currentItem.type }}"
-      maxLength='{{ currentItem.maxLength || -1 }}'
+      password="{{ currentItem.type === 'password' }}"
+      maxlength='{{ currentItem.maxlength }}'
       placeholder="{{ currentItem.placeholder || currentItem.label }}"
-      height='{{ currentItem.height }}'
       value="{{ value }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
-      bindblur="handlertTextBlur"
+      bindblur="handlertBlur"
     />
     <zte-check
       wx:if="{{ currentItem.type === 'radio' || currentItem.type === 'check' }}"
       type="{{ currentItem.type }}"
       value="{{ value }}"
+      code="{{ currentItem.code }}"
+      trans="{{ currentItem.trans }}"
       options="{{ currentItem.options }}"
+      optionProps="{{ currentItem.optionProps }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
     />
     <zte-select
-      wx:if="{{ currentItem.type === 'select' || currentItem.type === 'list' }}"
+      wx:if="{{ currentItem.type === 'select' || currentItem.type === 'table' }}"
       type="{{ currentItem.type }}"
-      label="{{ label }}"
+      label="{{ currentItem.label }}"
+      code="{{ currentItem.code }}"
+      showLabel="{{ currentItem.showLabel }}"
+      trans="{{ currentItem.trans }}"
       value="{{ value }}"
-      showValue='{{ showValue }}'
+      selectedIndex="{{ currentItem.selectedIndex }}"
       searchTips="{{ currentItem.searchTips || '请输入关键字搜索' }}"
       options="{{ currentItem.options }}"
-      optionProp="{{ currentItem.optionProp }}"
-      additionalProps="{{ currentItem.additionalProps }}"
-      headConfig="{{ currentItem.headConfig }}"
+      optionProps="{{ currentItem.optionProps }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
       bindrefresh="handlerRefresh"
@@ -45,49 +49,39 @@
       wx:if="{{ currentItem.type === 'date' || currentItem.type === 'time' }}"
       type="{{ currentItem.type }}"
       fields="{{ currentItem.fields || 'day' }}"
+      start="{{ currentItem.start }}"
+      end="{{ currentItem.end }}"
       value="{{ value }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
     />
     <zte-date-time
-      wx:if="{{ currentItem.type === 'dateTime' }}"
+      wx:if="{{ currentItem.type === 'dateTime' || currentItem.type === 'datetime' }}"
       value="{{ value }}"
+      start="{{ currentItem.start }}"
+      end="{{ currentItem.end }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
     />
     <zte-switch
-      wx:if="{{ currentItem.type === 'switch' || currentItem.type === 'checkbox' }}"
+      wx:if="{{ currentItem.type === 'switch' }}"
       type="{{ currentItem.type }}"
-      on="{{ currentItem.on || true }}"
-      off="{{ currentItem.off || false }}"
-      value="{{ value }}"
-      disabled="{{ disabled }}"
-      bindinput="handlerInput"
-    />
-    <zte-upload
-      wx:if="{{ currentItem.type === 'upload' }}"
+      on="{{ currentItem.on }}"
+      off="{{ currentItem.off }}"
       value="{{ value }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
     />
     <zte-select-area
       wx:if="{{ currentItem.type === 'region' }}"
-      codeList='{{ currentItem.code }}'
-      value="{{ value }}"
-      disabled="{{ disabled }}"
-      bindinput="handlerInput"
-    />
-    <zte-upload
-      wx:if="{{ currentItem.type === 'upload' }}"
       value="{{ value }}"
       disabled="{{ disabled }}"
       bindinput="handlerInput"
     />
     <view
-      class='tagView {{ !showValue && "theme_fontColor_deputy" }}'
-      bindtap='clickTag'
-      data-item='{{ currentItem }}'
       wx:if="{{ currentItem.type === 'tagView' }}"
-    >{{ showValue || '请选择' }}</view>
+      class='tagView arrow {{ !value && "theme_fontColor_deputy" }}'
+      bindtap='clickTag'
+      data-item='{{ currentItem }}'>{{ showLabel || value || '请选择' }}</view>
   </view>
 </view>

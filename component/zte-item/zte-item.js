@@ -1,5 +1,5 @@
-import getSelectOptions from '../../behaviors/getSelectOptions.js'; // 请求下拉框事件
-import getListOptions from '../../behaviors/getListOptions.js'; // 请求弹出框事件
+import getSelectOptions from '../behaviors/getSelectOptions.js'; // 请求下拉框事件
+import getListOptions from '../behaviors/getListOptions.js'; // 请求弹出框事件
 const app = getApp();
 
 Component({
@@ -18,25 +18,10 @@ Component({
         this.initItem();
       },
     },
-    label: String,
+    disabled: Boolean,
     value: null,
-    showValue: null,
-    requested: {
-      type: Boolean,
-      value: false,
-    },
-    importantMark: {
-      type: Boolean,
-      value: false,
-    },
-    disabled: {
-      type: Boolean,
-      value: false,
-    },
-    isLast: {
-      type: Boolean,
-      value: false,
-    },
+    showLabel: null,
+    isLast: Boolean,
   },
   data: {
     currentItem: {},
@@ -46,31 +31,37 @@ Component({
   methods: {
     // 初始化组件信息
     initItem () {
-      const currentItem = this.properties.item;
+      const { item: currentItem } = this.properties;
+      const transType = {
+        bankCard: 'number',
+        phone: 'number',
+        num: 'number',
+        amount: 'digit',
+        mobile: 'number',
+        money: 'digit',
+        city: 'tagView',
+      };
+      currentItem.type = transType[currentItem.type] || currentItem.type;
       this.setData({ currentItem });
-
-      const optionsArray = ['select', 'radio', 'check'];
-      if (optionsArray.includes(currentItem.type)) {
-        this.getOptions();
-      }
+      // 初始化options数据
+      const optionsArray = ['select', 'radio', 'check', 'table'];
+      if (optionsArray.includes(currentItem.type)) this.getOptions();
     },
     // 值变更事件
-    handlerInput(e) {
-      const value = e.detail.value;
-      const selected = e.detail.selected;
-      const additObj = e.detail.additObj || {};
+    handlerInput({ detail }) {
+      const { value, selected } = detail;
       const item = this.data.currentItem;
-      this.triggerEvent('input', { value, item, selected, additObj });
+      this.triggerEvent('input', { value, selected, item });
     },
     // 文本框失去焦点事件
-    handlertTextBlur(e) {
-      const value = e.detail.value;
+    handlertBlur({ detail }) {
+      const value = detail.value;
       const item = this.data.currentItem;
-      this.triggerEvent('textBlur', { value, item });
+      this.triggerEvent('blur', { value, item });
     },
     // 点击view
-    clickTag(e) {
-      const { item } = e.currentTarget.dataset;
+    clickTag({ currentTarget }) {
+      const { item } = currentTarget.dataset;
       this.triggerEvent('clickTag', { item });
     },
   },

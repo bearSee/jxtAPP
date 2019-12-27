@@ -16,14 +16,21 @@ Component({
       type: String,
       value: '',
     },
+    code: String,
+    trans: {
+      type: Array,
+      value: [],
+    },
     options: {
       type: Array,
       value: [],
       observer() {
-        this.resetOptions();
+        if (this.properties.options.length) {
+          this.setCheckedChange();
+        }
       },
     },
-    optionProp: {
+    optionProps: {
       type: Object,
       value: {
         label: 'value',
@@ -43,32 +50,29 @@ Component({
   },
   
   ready: function () {
-    this.setCheckedChange();
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    resetOptions() {
-      const checkOptions = this.properties.options;
-      this.setData({ checkOptions });
-    },
     handlerChange({ detail }) {
-      const type = this.properties.type;
-
-      const value = type === 'radio' ? detail.value.slice(-1).join() : detail.value.join();
+      const { options, optionProps, type, trans, code } = this.properties;
+      const value = {};
+      value[code] = type === 'radio' ? detail.value.slice(-1).join() : detail.value.join();
+      const data = detail.value.map(d => options.find(v => v[optionProps.value] === d) || {});
+      trans.forEach(d => {
+        value[d.to] = type === 'radio' ? data.map(obj => obj[d.from]).slice(-1).join() : data.map(obj => obj[d.from]).join();
+      });
       this.triggerEvent('input', { value });
       this.setCheckedChange();
     },
     setCheckedChange() {
-      const { value, optionProp } = this.properties;
-      const checkOptions = this.properties.options.map(option => ({
+      const { value, optionProps, options } = this.properties;
+      const checkOptions = options.map(option => ({
         ...option,
-        checked: value.split(',').includes(option[optionProp.value]),
+        checked: value.split(',').includes(option[optionProps.value]),
       }));
-      this.setData({
-        checkOptions,
-      });
+      this.setData({ checkOptions });
     },
   },
 })

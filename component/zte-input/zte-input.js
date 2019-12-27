@@ -12,15 +12,15 @@ Component({
       type: String,
       value: 'text',
     },
+    password: {
+      type: Boolean,
+      value: false,
+    },
     value: null,
     placeholder: String,
-    maxLength: {
+    maxlength: {
       type: Number,
       value: -1,
-    },
-    height: {
-      type: Number,
-      value: 160,
     },
     disabled: {
       type: Boolean,
@@ -42,24 +42,22 @@ Component({
    */
   methods: {
     // 文本框input事件
-    handlerInput(e) {
-      const value = e.detail.value;
+    handlerInput({ detail }) {
+      const value = detail.value;
       this.triggerEvent('input', { value });
       this.getTextLength();
     },
     // 文本域计算文本长度方法
     getTextLength() {
-      if (this.properties.type === 'textarea') {
-        const textLength = this.properties.value ? this.properties.value.length : 0;
-        this.setData({
-          textLength,
-        });
+      const { type, value } = this.properties;
+      if (type === 'textarea') {
+        const textLength = value ? value.length : 0;
+        this.setData({ textLength });
       }
     },
     // 文本框blur事件
-    handlerBlur(e) {
-      const value = e.detail.value;
-      this.triggerEvent('blur', { value });
+    handlerBlur({ detail }) {
+      this.triggerEvent('blur', { value: detail.value });
     },
   }
 })

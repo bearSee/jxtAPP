@@ -1,21 +1,7 @@
 
 @import '/common/common.wxss';
-.zte-date picker .picker {
-  height: 80rpx;
+.zte-date, picker, .picker {
   line-height: 80rpx;
+  width: 100%;
   position: relative;
-}
-.picker-mark:before {
-  content: " ";
-  display: inline-block;
-  height: 6px;
-  width: 6px;
-  border-width: 1px 1px 0 0;
-  border-color: #c8c8cd;
-  border-style: solid;
-  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
-  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0) translate(0, -50%);
-  position: absolute;
-  top: 50%;
-  right: 10rpx;
 }

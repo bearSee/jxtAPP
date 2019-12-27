@@ -1,30 +1,27 @@
-
+<!-- 文本 -->
+<view
+  class="zte-input"
+  wx:if="{{ type === 'text' || type === 'number' || type === 'idcard' || type === 'digit' || type === 'password' }}">
+  <input
+    placeholder-class="placeholder secondary_fontColor"
+    type="{{ type }}"
+    placeholder="{{ disabled ? '' : placeholder }}"
+    maxlength="{{ maxlength }}"
+    disabled="{{ disabled }}"
+    value="{{ value }}"
+    bindinput="handlerInput"
+    bindblur="handlerBlur"/>
+</view>
 <!-- 文本域 -->
 <view class="zte-input" wx:if="{{ type === 'textarea' }}">
   <textarea
-    class="textarea"
+    auto-height
     placeholder-class="placeholder"
-    style="height: {{ height || 160 + 'rpx' }}"
     placeholder="{{ disabled ? '' : placeholder }}"
-    disabled="{{ disabled }}"
-    fixed="{{ false }}"
-    value="{{ value }}"
-    bindinput="handlerInput"
-    bindblur="handlerBlur"/>
-  <view class="textarea-counter theme_fontColor_deputy">{{ textLength }}/140</view>
-</view>
-<!-- 多行展示(文本域有bug) -->
-<view class="labelarea theme_fontColor_deputy" wx:elif="{{ type === 'labelarea' }}" style="height: {{ height || 160 + 'rpx' }}">{{ value || '无' }}</view>
-<!-- 文本 -->
-<view class="zte-input" wx:else>
-  <input
-    class="weui-input"
-    type="{{ type }}"
-    placeholder-class="placeholder secondary_fontColor"
-    placeholder="{{ disabled ? '' : placeholder }}"
-    maxlength="{{ maxLength }}"
+    maxlength="{{ maxlength }}"
     disabled="{{ disabled }}"
     value="{{ value }}"
     bindinput="handlerInput"
     bindblur="handlerBlur"/>
+  <view class="textarea-counter theme_fontColor_deputy">{{ textLength }}/{{ maxlength > 0 ? maxlength : '无限制' }}</view>
 </view>

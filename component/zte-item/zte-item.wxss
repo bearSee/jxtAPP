@@ -1,49 +1,37 @@
 .zte-item {
   display: flex;
-  width: calc(100% - 30rpx);
+  box-sizing: border-box;
+  width: 100%;
   min-height: 80rpx;
   line-height: 80rpx;
-  font-size: 29rpx;
+  font-size: 30rpx;
   margin-left: 30rpx;
   padding-right: 30rpx;
   background: #fff;
 }
 
 .zte-item .label {
-  width: 285rpx;
+  width: 325rpx;
+  box-sizing: border-box;
   padding-right: 10rpx;
-  flex: 0 0 auto;
 }
 
 .zte-item .value {
-  width: calc(100% - 285rpx);
-  flex: 0 0 auto;
+  width: calc(100% - 325rpx);
   position: relative;
+  padding-right: 20rpx;
 }
 
 .mark-icon {
   color: red;
 }
 .tagView {
-  position: absolute;
-  padding-right:10px;
+  box-sizing: border-box;
   width: 100%;
-  line-height:1.2;
-  top:50%;
-  transform:translate(0,-50%);
-  white-space: wrap;
-}
-.tagView:before {
-  content: " ";
-  display: inline-block;
-  height: 6px;
-  width: 6px;
-  border-width: 1px 1px 0 0;
-  border-color: #c8c8cd;
-  border-style: solid;
-  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
-  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0) translate(0, -50%);
-  position: absolute;
+  padding-right: 20rpx;
+  /* position: absolute!important;
+  line-height: 1.2;
   top: 50%;
-  right: 10rpx;
+  transform: translate(0,-50%); */
+  /* white-space: wrap; */
 }

@@ -5,54 +5,36 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    codeList: {
-      type: Array,
-      value: [], // ['省code', '市code', ''区code]
-    },
     value: {
-      type: Object,
-      value: {}, // { 省: '', 市: '' 区: '' }
+      type: String,
+      value: '',
+      observer() {
+        this.initSelected();
+      },
     },
     disabled: {
       type: Boolean,
       value: false,
     }
   },
-  /**
-   * 组件的初始数据
-   */
   data: {
-    list: [],
-    listData: [],
+    selected: [],
   },
   
   ready: function () {
-    this.initFormItem();
+    this.initSelected();
   },
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    // 初始化数据
-    initFormItem() {
-      const data = this.properties.value;
-      const list = this.properties.codeList;
-      const listData = data ? [data[list[0]], data[list[1]], data[list[2]]] : [];
-
-      this.setData({
-        listData,
-        list,
-      });
+    initSelected() {
+      const { value } = this.properties;
+      const selected = value.split(',');
+      this.setData({ selected });
     },
-
     // 地区选择
-    regionChange: function (e) {
-      const list = e.currentTarget.dataset.list;
-      const placeInfo = e.detail;
-      const listData = placeInfo.value;
-      this.setData({ listData });
-
-      this.triggerEvent('input', { placeInfo, value: listData });
+    regionChange: function ({ detail }) {
+      const value = detail.value;
+      this.setData({ selected: value });
+      this.triggerEvent('input', { value });
     },
   }
 })

@@ -13,23 +13,19 @@ Component({
       value: 'switch',
     },
     value: {
-      type: null,
+      type: Boolean,
       value: false,
-      observer(newVal) {
-        const oldVal = this.properties.on;
-        const isContain = newVal && newVal.indexOf(oldVal) != -1 || oldVal.indexOf(newVal) != -1;
-        const checked = newVal === oldVal || isContain;
-        // 遇到一个情况：在真机调试和编译器中正常，但是开发版与线上版表现为newVal、this.properties.on 都为Y，但是长度分别为2、1，多了个空格，很奇怪
-        // console.log(newVal.length, this.properties.on.length, checked);
-        this.setData({ checked });
+      observer(val) {
+        const { on } = this.properties;
+        this.setData({ checked: val === on });
       },
     },
     on: {
-      type: null,
+      type: [Boolean, String],
       value: true,
     },
     off: {
-      type: null,
+      type: [Boolean, String],
       value: false,
     },
     disabled: {
@@ -50,10 +46,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // 文本框input事件
-    handlerChange(e) {
+    handlerChange({ detail }) {
       const { on, off } = this.properties;
-      const value = e.detail.value ? on : off;
+      const value = detail.value ? on : off;
       this.triggerEvent('input', { value });
     },
   }

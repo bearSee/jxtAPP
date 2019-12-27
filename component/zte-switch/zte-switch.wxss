@@ -1,3 +1,4 @@
 .zte-switch {
   text-align: right;
+  width: 100%;
 }

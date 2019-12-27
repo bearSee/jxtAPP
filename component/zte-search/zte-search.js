@@ -1,3 +1,4 @@
+var timer = null;
 Component({
   options: {
     addGlobalClass: true,
@@ -12,9 +13,12 @@ Component({
   data: {
   },
   methods: {
-    handlerInput(e) {
-      const value = e.detail.value;
-      this.triggerEvent('input', { value });
+    handlerInput({ detail }) {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const value = detail.value;
+        this.triggerEvent('input', { value });
+      }, 1000);
     },
     handlerCancel() {
       const value = '';

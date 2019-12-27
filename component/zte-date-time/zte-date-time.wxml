@@ -2,12 +2,10 @@
 <view class="zte-date">
   <picker
     mode="multiSelector"
-    value="{{dateTime}}"
-    range="{{dateTimeArray}}"
+    value="{{ indexList }}"
+    range="{{ dataList }}"
     bindchange="changeDateTime"
     data-disabled="{{ disabled }}">
-    <view class="picker {{ disabled ?  '' : 'picker-mark' }}">
-      {{ value }}
-    </view>
+    <view class="picker {{ !disabled && 'arrow' }} {{ !value && 'theme_fontColor_deputy' }}">{{ value || '请选择' }}</view>
   </picker>
 </view>

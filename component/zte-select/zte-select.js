@@ -6,62 +6,47 @@ Component({
   properties: {
     type: {
       type: String,
-      value: 'check',
+      value: 'select',
     },
-    showValue: null,
     searchTips: {
       type: String,
+      value: '',
+    },
+    // select类型，初始选中的下标
+    selectedIndex: {
+      type: [Number, String],
       value: '',
     },
     value: {
       type: String,
       value: '',
+      observer() {
+      },
     },
     label: {
       type: String,
       value: '',
-      observer() {
-        this.getCurrentLabel();
-      },
     },
+    code: String,
+    trans: {
+      type: Array,
+      value: [],
+    },
+    showLabel: String,
     options: {
       type: Array,
       value: [],
       observer() {
-        var { value, options, optionProp, additionalProps, showLabel } = this.properties;
-        optionProp = optionProp ? optionProp : { label: 'value', value: 'key' };
-        let index = options.findIndex(opt => opt[optionProp.value] === value || value.indexOf(opt[optionProp.value]) != -1);
-        this.setData({ index });
+        this.initSelect();
       },
     },
-    // additionalProps: { code: '', valueCode: '' }
-    // 附加字段，将options内valueCode的值赋给code
-    additionalProps: {
-      type: Object,
-      value: {},
-    },
-    optionProp: {
+    optionProps: {
       type: Object,
       value: {
         label: 'value',
         value: 'key',
       },
-    },
-    // 搜索弹窗页，头部配置
-    headConfig: {
-      type: Object,
-      value: {
-        options: [],
-        optionProp: {
-          label: 'value',
-          value: 'key',
-        },
-        title: '',
-        url: '',
-      },
-      observer(newVal) {
-        if (!newVal) return;
-        this.setData({ headLael: newVal.optionProp.label });
+      observer() {
       },
     },
     disabled: {
@@ -73,66 +58,50 @@ Component({
    * 组件的初始数据
    */
   data: {
-    index: 0,
+    index: '',
     popupVisible: false,
     currentLabel: '',
     searchValue: '',
-    headOptions: [],
-    headLael: '',
   },
   
   ready: function () {
-    if (this.properties.options.length) this.getSelectIndex();
-    const { headConfig } = this.properties;
-    if (headConfig && headConfig.url) this.getHeadList(headConfig.url);
+    this.initSelect();
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    // 下拉选择事件
-    getSelectIndex() {
-      var { value, options, optionProp, additionalProps, showLabel } = this.properties;
-      optionProp = optionProp ? optionProp : { label: 'value', value: 'key' };
-      // let index = options.findIndex(opt => opt[optionProp.value] === value || value.indexOf(opt[optionProp.value]) != -1);
-      let index = options.findIndex(opt => {
-        return opt[optionProp.value] === value || value.indexOf(opt[optionProp.value]) != -1;
-      });
-      // 默认选中第一个
-      // index = index === -1 ? 0 : index;
-      this.setData({ index });
-      const additObj = {};
-      if (options.length) {
-        // value = value || options[index][optionProp.value];
-        if (additionalProps && additionalProps.code) {
-          additObj[additionalProps.code] = options[index === -1 ? 0 : index][additionalProps.valueCode]
+    initSelect() {
+      var { label, value, options, optionProps, selectedIndex } = this.properties;
+      let index = options.findIndex(opt => opt[optionProps.value] === value);
+      const defaultIndex = isNaN(parseInt(selectedIndex)) ? '' : selectedIndex;
+
+      if (index === -1) {
+        if (isNaN(parseInt(selectedIndex))) {
+          index = '';
+        } else {
+          index = selectedIndex;
+          const val = options[index];
+          this.triggerEvent('input', { value: val });
         }
       }
-      this.triggerEvent('input', { value, additObj });
-    },
-    handlerPickerChange(e) {
-      const index = e.detail.value;
       this.setData({ index });
-      const { options, optionProp } = this.properties;
-      const selected = options[index];
-      const value = options[index][optionProp.value];
-      const additionalProps = this.properties.additionalProps;
-      const additObj = {};
-      if (additionalProps && additionalProps.code) {
-        additObj[additionalProps.code] = options[index][additionalProps.valueCode]
-      }
-
-      this.triggerEvent('input', { value, selected, additObj });
     },
-    // 弹出选择事件
-    getCurrentLabel() {
-      const currentLabel = this.properties.label;
-      this.setData({ currentLabel });
+    handlerPickerChange({ detail }) {
+      const index = detail.value;
+      const { options, optionProps, trans, code } = this.properties;
+      const selected = options[index];
+      const value = {};
+      value[code] = selected[optionProps.value];
+
+      trans.forEach((d) => {
+        value[d.to] = selected[d.from] || '';
+      });
+      this.setData({ index });
+      this.triggerEvent('input', { value, selected });
     },
     handlerOpenPopup() {
-      if (this.properties.disabled) {
-        return;
-      }
+      if (this.properties.disabled) return;
       this.setData({
         popupVisible: true,
         searchValue: '',
@@ -146,43 +115,28 @@ Component({
       this.triggerEvent('loadMore');
     },
     handlerCancel() {
-      this.setData({
-        popupVisible: false,
-      });
+      this.setData({ popupVisible: false });
     },
-    handlerSearch(e) {
-      const value = e.detail.value;
-      this.setData({
-        searchValue: value,
-      });
+    handlerSearch({ detail }) {
+      const searchValue = detail.value;
+      this.setData({ searchValue });
       this.triggerEvent('search', { value });
     },
-    handlerSelect(e) {
-      const optionProp = this.properties.optionProp;
-      const { additionalProps, headConfig } = this.properties;
-      const selected = e.currentTarget.dataset.option;
-      const value = selected[optionProp.value] || selected[headConfig.optionProp.value];
-      const currentLabel = selected[optionProp.label];
+    handlerSelect({ currentTarget }) {
+      const { optionProps, trans, code, showLabel } = this.properties;
+      const selected = currentTarget.dataset.option;
+      const value = {};
+      value[code] = selected[optionProps.value];
+      trans.forEach((d) => {
+        value[d.to] = selected[d.from] || '';
+      });
+      const currentLabel = value[showLabel || optionProps.label];
       
-      const additObj = {};
-      if (additionalProps && additionalProps.code) {
-        additObj[additionalProps.code] = selected[additionalProps.valueCode]
-      }
-      this.triggerEvent('input', { value, selected, additObj });
+      this.triggerEvent('input', { value, selected });
       this.setData({
         popupVisible: false,
         currentLabel,
       });
-    },
-    getHeadList(url) {
-      wx.$http.post(url, {}).then(
-        res => {
-          const list = res.list || [];
-          const headOptions = list.splice(0, 4);
-          this.setData({ headOptions });
-        },
-        err => { }
-      )
     },
   }
 })

@@ -1,16 +1,12 @@
 
   <!-- 省市区 选择器 -->
-  <view class='area-box'>
-    <picker
-      mode="region"
-      value="{{ listData }}"
-      bindchange="regionChange"
-      data-list='{{ list }}'
-      disabled='{{ disabled }}'>
-      <view class="zte-select {{ disabled ?  '' : 'zte-select-mark' }}">
-        <view class='theme_fontColor_deputy value' wx:if='{{ listData.length }}'>
-          {{ listData[0] }}-{{ listData[1] }}-{{ listData[2] }}
-        </view>
-      </view>
-    </picker>
-  </view>
+  <picker
+    mode="region"
+    value="{{ selected }}"
+    bindchange="regionChange"
+    disabled='{{ disabled }}'>
+    <view class="box {{ !disabled && 'arrow' }}">
+      <view wx:if="{{ selected.length }}" class="content">{{ selected[0] }}-{{ selected[1] }}-{{ selected[2] }}</view>
+      <view wx:else class="tips theme_fontColor_deputy">请选择</view>
+    </view>
+  </picker>

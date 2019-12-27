@@ -1,23 +1,20 @@
 
 <view class="zte-form">
-  <form class="border_bottom">
+  <form class="border_bottom_shallow">
     <view 
       wx:for="{{ formItems }}"
       wx:for-item="item"
-      wx:key='index'
-      style='margin-bottom: {{ item.spacing }}rpx; background:#fff;'>
+      wx:key='index'>
       <zte-item
         item="{{ item }}"
         isLast="{{ index === formItems.length - 1 }}"
-        label="{{ form[item.labelCode] }}"
-        value="{{ item.codeType ? form : form[item.code] }}"
-        showValue='{{ form[item.showLabel] }}'
+        value="{{ form[item.code] }}"
+        showLabel="{{ form[item.showLabel] }}"
         disabled="{{ disabled || item.disabled }}"
-        importantMark="{{ item.importantMark }}"
-        requested="{{ item.requested }}"
-        bindinput="handlerDataChange"
-        bindclickTag="clickTag"/>
+        bindinput="handlerChange"
+        bindclickTag="clickTag"
+        data-index='{{ index }}'/>
     </view>
   </form>
-  <button class="submit submit-btn" wx:if='{{ !removeSubmit }}' bindtap="handlerSubmit">{{ submitText }}</button>
+  <button class="submit submit-btn" wx:if='{{ isSubmit }}' bindtap="handlerSubmit">{{ submitText }}</button>
 </view>
