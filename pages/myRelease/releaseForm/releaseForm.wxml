@@ -1,43 +1,20 @@
-<!--logs.wxml-->
-<view class="release">
-  <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
-  <view class="tab-box">
-    <message-tabs
-      tabs="{{ tabs }}"
-      bindchange="tabsChange">
-    </message-tabs>
-    <view class="oprate-box theme_fontColor_main" bindtap="openDialog">
-      <image class="release-icon" src="/image/addarticle.png"></image>
-      <text>发布消息</text>
-    </view>
-  </view>
+<view class="release-form" wx:if="{{ type }}">
   <view
-    class="message-small-list"
-    wx:if="{{ msgList.length }}">
-    <message-small-list
-      id="list"
-      list="{{ msgList }}"
-      edit="{{ false }}"
-      bindclickList="clickList"
-      bindhandlerDelete="handlerDelete"
-      bindoprate="oprate">
-    </message-small-list>
+    class="info-item"
+    wx:for="{{ infoItems[type] }}"
+    wx:key="index">
+    <zte-item
+      class="zte-item-box"
+      item="{{ item }}"
+      value="{{ formData[item.code] }}"
+      bindinput="formChange">
+    </zte-item>
   </view>
-  <view wx:else class="no_data_box">
-    <image class="no_data_pic" src="/image/nofilie_icon.png"></image>
-    <view class="tips">暂无相关内容</view>
-  </view>
-</view>
-<view class="dialog" wx:if="{{ visible }}" bindtap="closeDialog">
-  <view class="release-type-box" catchtap="openDialog">
-    <view
-      class="type-box"
-      wx:for="{{ tabs }}"
-      wx:key="index"
-      bindtap="chooseReleaseType"
-      data-code="{{ item.code }}">
-      <image class="type-icon" src="/image/{{ item.icon }}"></image>
-      <text>{{ item.name }}</text>
-    </view>
-  </view>
+  <choose-industry
+    id="choose-industry"
+    data="{{ formData.reviceIndustryList || [] }}"
+    removeBtn
+    bindhandlerConfirm="industryChange">
+  </choose-industry>
+  <view class="submit-btn" bindtap="submit">保存</view>
 </view>

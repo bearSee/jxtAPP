@@ -247,7 +247,7 @@ Component({
     // 点击发布消息跳转选择
     chooseReleaseType({ currentTarget }) {
       const { type, id } = currentTarget.dataset;
-      wx.navigateTo({ url: `/pages/releaseForm/releaseForm?type=${type}&id=${id}` });
+      wx.navigateTo({ url: `/pages/myRelease/releaseForm/releaseForm?type=${type}&id=${id}` });
       this.setData({ visible: false });
     },
     // 查看消息详情

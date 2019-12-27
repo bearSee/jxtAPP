@@ -13,6 +13,10 @@ Component({
         this.initData();
       },
     },
+    removeBtn: {
+      type: Boolean,
+      value: false,
+    },
   },
   /**
    * 组件的初始数据
@@ -62,6 +66,7 @@ Component({
       const { data } = this.properties;
       const industryList = data && data.length && data || [{}];
       this.setData({ industryList });
+      // this.submitChange();
     },
     // 标签选择
     checkChange({ detail, currentTarget }) {
@@ -69,6 +74,7 @@ Component({
       const { industryList } = this.data;
       industryList[index] = { ...industryList[index], ...detail.value };
       this.setData({ industryList });
+      // this.submitChange();
     },
     changeIndustry({ currentTarget }) {
       const { index } = currentTarget.dataset;
@@ -77,14 +83,16 @@ Component({
       const { industryList } = this.data;
       industryList.push([{}]);
       this.setData({ industryList });
+      // this.submitChange();
     },
     deletIndustry({ currentTarget }) {
       const { index } = currentTarget.dataset;
       const { industryList } = this.data;
       industryList.splice(index, 1);
       this.setData({ industryList });
+      // this.submitChange();
     },
-    save() {
+    submitChange() {
       const { industryList } = this.data;
       setTimeout(() => {
         this.triggerEvent('handlerConfirm', { industryList });

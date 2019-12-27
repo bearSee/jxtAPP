@@ -41,6 +41,13 @@ App({
   },
   // 登陆完成处理
   finishLogin({ user, openid, Authorization }) {
+    if (user.userType === 'ADMIN') {
+      this.showModal({
+        content: '管理员请登陆PC端进行操作',
+        hiddenCancel: true,
+      });
+      return;
+    }
     wx.setStorageSync('Authorization', Authorization);
     this.globalData.userInfo = user;
     if (openid) this.globalData.openid = openid;
