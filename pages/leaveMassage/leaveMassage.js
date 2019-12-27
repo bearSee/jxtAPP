@@ -18,7 +18,7 @@ Page({
       () => { },
     );
   },
-  handerInput({ detail, currentTarget }) {
+  handlerInput({ detail, currentTarget }) {
     const { value } = detail;
     const { code } = currentTarget.dataset;
     this.setData({ [code]: value });

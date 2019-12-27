@@ -3,92 +3,60 @@
  * POST请求，
  * URL：接口
  */
-function post(url, data, hiddenFailModal, hiddenLoading) {
-  const app = getApp();
-  const host = app.globalData.host;
-  const Authorization = wx.getStorageSync('Authorization') || '';
+// function post(url, data, hiddenFailModal, hiddenLoading
+function post(url, data, config = {}) {
+  const { hiddenErrModal, hiddenLoading, header } = config;
   return new Promise((resolve, reject) => {
-    if (!hiddenLoading) {
-      wx.showLoading({
-        title: '加载中',
-        mask: true,
-      })
-    }
-    wx.request({
-      url: host + url,
-      header: { 'content-type': 'application/x-www-form-urlencoded', Authorization },
-      data,
-      method: 'POST',
-      success: res => {
-        wx.hideLoading();
-        interceptors(res, resolve, reject, hiddenFailModal);
-      },
-      fail: (err) => {
-        wx.hideLoading();
-        wx.showToast({
-          title: '啊噢，好像服务器遇上了点问题',
-          icon: 'none',
-          duration: 2000,
-        })
-        reject(err);
-      },
-    })
+    requestBody('post', url, data, header, hiddenErrModal, hiddenLoading, resolve, reject);
+  })
+}
+function get(url, config = {}) {
+  const { hiddenErrModal, hiddenLoading, header } = config;
+  return new Promise((resolve, reject) => {
+    requestBody('get', url, {}, header, hiddenErrModal, hiddenLoading, resolve, reject);
   })
 }
 
-//GET请求，不需传参，直接URL调用，
-function get(url) {
+function requestBody(type, url, data, header, hiddenErrModal, hiddenLoading, resolve, reject) {
+  if (url[0] === '/') url = url.substring(1);
+  const typeObj = {
+    get: 'GET',
+    post: 'POST',
+  };
   const app = getApp();
-  const host = app.globalData.host;
+  const { host, cookie } = app.globalData;
   const Authorization = wx.getStorageSync('Authorization') || '';
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url: host + url,
-      header: { 'content-type': 'application/x-www-form-urlencoded', Authorization },
-      method: 'GET',
-      success: (res) => {
-        interceptors(res, resolve, reject);
-      },
-      fail: (err) => {
-        wx.showToast({
-          title: '啊噢，好像服务器遇上了点问题',
-          icon: 'none',
-          duration: 2000,
-        })
-        reject(err);
-      },
-    })
+  if (!hiddenLoading) {
+    wx.showLoading({ title: '加载中', mask: true });
+  }
+  wx.request({
+    url: host + url,
+    header: { 'content-type': 'application/x-www-form-urlencoded', Authorization, Cookie: `ZTESSCAUTH=${cookie || ''};path=/;`, ...(header || {}) },
+    data,
+    method: typeObj[type],
+    success: ({ data }) => {
+      wx.hideLoading();
+      interceptors(data, resolve, reject, hiddenErrModal);
+    },
+    fail: (err) => {
+      wx.hideLoading();
+      wx.showToast({ title: '啊噢，好像服务器遇上了点问题', icon: 'none', duration: 2000 });
+      reject(err);
+    },
   })
-}
-
+};
 // 拦截器方法
-function interceptors(res, resolve, reject, hiddenFailModal) {
+function interceptors(res, resolve, reject, hiddenErrModal) {
   const app = getApp();
-  res = res.data;
-  const { ok, code } = res;
-  if (ok) {
+  if (res.ok) {
     resolve(res);
     return;
   }
-  if (res.code === '10000') {
-    app.showModal({
-      content: '登陆已失效，请重新登陆',
-      confirmText: '重新登陆',
-    }).then(
-      () => {
-        wx.redirectTo({ url: '/pages/login/beforLogin' });
-      },
-      () => {},
-    );
-    return;
-  }
   reject(res);
-  // 其他可配置的条件(取消默认弹窗)
-  const checkArr = [];
-  if (checkArr.indexOf(res.code) > -1 || hiddenFailModal) return;
+  if (hiddenErrModal) return;
   app.showModal({
     hiddenCancel: true,
-    content: res.message || '操作失败',
+    content: res.message || '后台接口请求失败，请联系后台人员',
     confirmText: '好的',
   });
 }
@@ -97,7 +65,4 @@ function interceptors(res, resolve, reject, hiddenFailModal) {
  * module.exports导出
  * js文件中通过var myAjax = require("/utils/ajax.js")
  */
-export default {
-  post,
-  get,
-};
+export default { post, get };

@@ -1,0 +1,10 @@
+<view class="head-tips">请修改{{ config.label }}</view>
+<input
+  class="input"
+  type="{{ config.type || 'text' }}"
+  placeholder-class="placeholder secondary_fontColor"
+  placeholder="请点击输入"
+  maxlength="{{ config.maxlength || -1 }}"
+  value="{{ value }}"
+  bindinput="handlerInput"/>
+<button class="submit-btn" bindtap="submit">提交修改</button>

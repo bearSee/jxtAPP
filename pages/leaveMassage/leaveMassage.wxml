@@ -4,13 +4,13 @@
   <zte-input
     type="text"
     placeholder="请输入手机号"
-    bindinput="handerInput"
+    bindinput="handlerInput"
     data-code="mobileNumber">
   </zte-input>
   <zte-input
     type="textarea"
     placeholder="请留下您宝贵的建议..."
-    bindinput="handerInput"
+    bindinput="handlerInput"
     data-code="content">
   </zte-input>
   <button class="submit-btn" bindtap="submit">确认提交</button>

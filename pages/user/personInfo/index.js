@@ -132,28 +132,34 @@ Page({
     wx.$http.post('my/info').then(
       ({ info }) => {
         const formData = info || {};
-        const { provinceName, cityName, areaName, streetName, belongIndustryList } = formData;
+        const { province, city, area, street, provinceName, cityName, areaName, streetName, belongIndustryList } = formData;
         formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
         if (belongIndustryList && belongIndustryList.length) {
           formData.industryInfoName = belongIndustryList.map(({ industryName }) => industryName).join('、');
         }
-        this.setData({ formData });
+        const defaulVal = [province, city, area, street];
+        this.setData({ formData, defaulVal });
       },
       () => { },
     );
   },
   clickTagView({ currentTarget }) {
     const { item } = currentTarget.dataset;
-    const { type, code, inputType } = item;
+    const { type, code } = item;
+    const { formData } = this.data;
     if (type === 'img') {
       this.chooseImg();
       return;
     };
     if (type !== 'tag') return;
-    let url = `/pages/changeInputData/changeInputData?type=${inputType}`;
+
+    // 输入框页面
+    let url = `/pages/changeInputData/changeInputData?config=${JSON.stringify(item)}&value=${formData[code] || ''}`;
+    // 选中行业信息页面
     if (code === 'industryInfoName') {
       url = '/pages/chooseIndustry/chooseIndustry';
     }
+    // 选中省市区街道
     if (code === 'fullAdressName') {
       this.setData({ visible: true });
       return;

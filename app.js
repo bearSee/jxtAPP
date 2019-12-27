@@ -25,7 +25,7 @@ App({
       wx.login({
         success: (res) => {
           const { code } = res;
-          wx.$http.post('wechatMini/uploadJsCode', { code }, true).then(
+          wx.$http.post('wechatMini/uploadJsCode', { code }, { hiddenErrModal: true }).then(
             res => {
               console.log('userLogin', res)
               this.finishLogin(res);

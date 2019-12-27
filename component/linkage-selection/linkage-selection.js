@@ -30,9 +30,9 @@ Component({
     value: {
       type: Array,
       value: () => ([]),
-      observer() {
-        this.initSelect();
-      },
+      // observer() {
+      //   this.initSelect();
+      // },
     },
   },
   /**
@@ -53,7 +53,7 @@ Component({
    */
   methods: {
     // 获取当前步骤的列表数据,默认选中第一条数据
-    getCurrentStepList() {
+    getCurrentStepList(notSetList) {
       return new Promise((resolve, reject) => {
         const { requestUrl, parentKey, optionProps, defaultParamCode, value } = this.properties;
         const { selection, indexList, currentStep } = this.data;
@@ -62,9 +62,12 @@ Component({
         const params = {
           [parentKey]: (paramData && paramData[[optionProps.value]]) || defaultParamCode || 0,
         };
-        wx.$http.post(requestUrl, params).then(
+        wx.$http.post(requestUrl, params, { hiddenLoading: notSetList }).then(
           ({ list }) => {
-            const currentList = list || [];
+            list = list.length && list || [{
+              [optionProps.label]: '暂无数据',
+            }];
+            const currentList = list;
             // 当前步骤没有值的话，默认选中第一条
             if (!selection[currentStep - 1]) {
               let index = list.findIndex(d => d[optionProps.value] === value[currentStep - 1]);
@@ -72,8 +75,11 @@ Component({
               selection[currentStep - 1] = list[index] || {};
               indexList[currentStep - 1] = index;
             }
-            this.setData({ currentList, selection, indexList });
-            resolve();
+            this.setData({ selection, indexList });
+            if (!notSetList) {
+              this.setData({ currentList });
+            }
+            resolve({ currentList, indexList });
           },
           () => {
             reject();
@@ -81,15 +87,20 @@ Component({
         );
       });
     },
-
-
     // 初始化选中
     initSelect() {
       const { value } = this.properties;
       let { currentStep, selection } = this.data;
-      if (value && value.length &&  value.length !== currentStep) {
-        this.getCurrentStepList().then(
-          () => {
+      wx.showLoading({ title: '正在加载初始数据' });
+      if (value && value.length &&  value.length >= currentStep) {
+        this.getCurrentStepList(true).then(
+          ({ currentList, indexList }) => {
+            if (value.length === currentStep) {
+              this.setData({ currentList });
+              this.setData({ indexList });
+              wx.hideLoading();
+              return;
+            };
             currentStep += 1;
             this.setData({ currentStep });
             this.initSelect();
@@ -98,6 +109,7 @@ Component({
         );
       } else if (!selection.length) {
         this.getCurrentStepList();
+        wx.hideLoading();
       }
     },
     // 选择当前步骤之前的步骤时
@@ -119,10 +131,6 @@ Component({
     chooseNextStep() {
       const { steps } = this.properties;
       let { currentStep } = this.data;
-      // 当前步骤还未被选中时
-      // if (!selection[currentStep]) {
-
-      // }
       if (currentStep < steps) {
         currentStep += 1;
         this.setData({ currentStep });
