@@ -1,28 +1,52 @@
 
   <!-- 省市区街道 选择器 -->
   <view class="choose-industry">
-    <view class="title">所属行业</view>
 
 
     <view
       class="content border_bottom"
       wx:for="{{ industryList }}"
       wx:key="index">
-      <view wx:if="{{ item.industryLabelName }}" class="select-item border_bottom arrow">{{ item.industryLabelName }}</view>
-      <view wx:else class="select-item border_bottom arrow">请选择行业</view>
-      <view class="tag-title">#行业标签#</view>
+      <view class="title">行业{{ index + 1}}</view>
+      <view
+        class="tag-name border_bottom {{ !item.industryName && 'secondary_fontColor' }}"
+        bindtap="changeIndustry"
+        data-index="{{ index }}">
+        <text class="arrow">{{ item.industryName || '请选择行业' }}</text>
+      </view>
+      <view class="title">#行业标签#</view>
       <zte-check
         class="tags"
-        value="{{ item.industryLabel }}"
+        type="check"
+        wx:if="{{ item.industryLabelAll }}"
         options="{{ item.industryLabelAll }}"
-        bindinput="checkChange">
+        value="{{ item.industryLabel }}"
+        code="industryLabel"
+        trans="{{ industryTrans }}"
+        bindinput="checkChange"
+        data-index="{{ index }}">
       </zte-check>
+      <view class="oprate-box border_top">
+        <view
+          class="add-btn"
+          bindtap="addIndustry"
+          wx:if="{{ industryList.length === index + 1 }}">
+          <view class="add-icon">+</view>
+          <view class="add-text">新增行业</view>
+        </view>
+        <view class="empty-view"></view>
+        <view
+          class="delete-btn"
+          wx:if="{{ industryList.length > 1 }}"
+          bindtap="deletIndustry"
+          data-index="{{ index }}">删除
+        </view>
+      </view>
     </view>
 
-    
-    <view class="add-btn" bindtap="add">
-      <view class="add-icon">+</view>
-      <view class="add-text">新增行业</view>
+    <!-- <view class="submit-btn" bindtap="save">保存</view> -->
+    <view class="foot-btn-group" >
+      <button bindtap="conmeBack">返回</button>
+      <button class="theme_background_main" bindtap="save">保存</button>
     </view>
-    <view class="submit-btn" bindtap="save">保存</view>
   </view>

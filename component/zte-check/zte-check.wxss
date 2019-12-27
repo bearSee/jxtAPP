@@ -6,7 +6,6 @@
   flex-wrap: wrap;
 }
 .zte-check .check-item .check-option {
-  line-height: 50rpx;
   padding: 15rpx 0;
   display: flex;
   padding-right: 20rpx;
@@ -20,13 +19,12 @@
 }
 .zte-check .check-item .check-option .icon-checked, .no-checked {
   margin: auto 10rpx;
-  width: 32rpx;
-  height: 32rpx;
   position: relative;
-  top: -3rpx;
+  top: 2rpx;
 }
 .no-checked {
+  width: 30rpx;
+  height: 30rpx;
   border-radius: 50%;
-  border: 1rpx solid #eee;
-  top: -1rpx;
+  border: 1rpx solid #888;
 }

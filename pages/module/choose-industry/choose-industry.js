@@ -13,39 +13,24 @@ Component({
         this.initData();
       },
     },
-    // 请求的接口
-    requestUrl: {
-      type: String,
-      value: '',
-    },
-    // 请求参数的key的名字
-    parentKey: {
-      type: String,
-      value: '',
-    },
-    optionProps: {
-      type: Object,
-      value: () => ({
-        label,
-        value,
-      }),
-    },
-    value: {
-      type: Array,
-      value: () => ([]),
-      // observer() {
-      //   this.initSelect();
-      // },
-    },
   },
   /**
    * 组件的初始数据
    */
   data: {
+    wholeTree: {},
     industryList: [],
+    // 标签选择trans
+    industryTrans: [
+      {
+        from: 'value',
+        to: 'industryLabelName',
+      },
+    ],
   },
   
   ready: function () {
+    this.getTreeData();
   },
   /**
    * 组件的方法列表
@@ -63,58 +48,52 @@ Component({
       }]
    */
   methods: {
+    getTreeData() {
+      wx.$http.post('industry/list').then(
+        ({ list }) => {
+          const wholeTree = list[0] || {};
+          this.setData({ wholeTree });
+        },
+        () => { },
+      );
+    },
     // 初始化数据
     initData() {
       const { data } = this.properties;
-      const industryList = data.length && data || [{}];
+      const industryList = data && data.length && data || [{}];
       this.setData({ industryList });
     },
     // 标签选择
-    checkChange({ detail }) {
-      
+    checkChange({ detail, currentTarget }) {
+      const { index } = currentTarget.dataset;
+      const { industryList } = this.data;
+      industryList[index] = { ...industryList[index], ...detail.value };
+      this.setData({ industryList });
     },
-
-    // 选择当前步骤之前的步骤时
-    chooseStep({ currentTarget }) {
-      const { step } = currentTarget.dataset;
-      let { currentStep } = this.data;
-      if (step < currentStep) {
-        this.initSelection(step);
-      }
+    changeIndustry({ currentTarget }) {
+      const { index } = currentTarget.dataset;
     },
-    // 当前步骤改变时清空当前步骤之后的选中数据
-    initSelection(step) {
-      let { selection, indexList } = this.data;
-      selection = selection.slice(0, step);
-      indexList = indexList.slice(0, step);
-      this.setData({ selection, indexList, currentStep: step });
-      this.getCurrentStepList();
+    addIndustry() {
+      const { industryList } = this.data;
+      industryList.push([{}]);
+      this.setData({ industryList });
     },
-    chooseNextStep() {
-      const { steps } = this.properties;
-      let { currentStep } = this.data;
-      if (currentStep < steps) {
-        currentStep += 1;
-        this.setData({ currentStep });
-        this.getCurrentStepList();
-      } else {
-        this.submit();
-      }
+    deletIndustry({ currentTarget }) {
+      const { index } = currentTarget.dataset;
+      const { industryList } = this.data;
+      industryList.splice(index, 1);
+      this.setData({ industryList });
     },
-    // 选择change
-    selectChange ({ detail  }) {
-      const { selection, indexList, currentStep, currentList } = this.data;
-      const index = detail.value[0];
-      selection[currentStep - 1] = currentList[index];
-      indexList[currentStep - 1] = index;
-      this.setData({ selection, indexList });
-
-      this.triggerEvent('selectChange', { index, item: currentList[index] });
-    },
-    add() {},
     save() {
-      const {  } = this.data;
-      this.triggerEvent('handlerConfirm', {  });
+      const { industryList } = this.data;
+      setTimeout(() => {
+        this.triggerEvent('handlerConfirm', { industryList });
+      }, 100);
+    },
+    conmeBack() {
+      setTimeout(() => {
+        this.triggerEvent('close');
+      }, 100);
     },
   }
 })

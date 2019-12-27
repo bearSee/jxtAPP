@@ -64,13 +64,14 @@ Component({
         value[d.to] = type === 'radio' ? data.map(obj => obj[d.from]).slice(-1).join() : data.map(obj => obj[d.from]).join();
       });
       this.triggerEvent('input', { value });
-      this.setCheckedChange();
+      this.setCheckedChange(value[code]);
     },
-    setCheckedChange() {
+    setCheckedChange(val) {
       const { value, optionProps, options } = this.properties;
+      val = val || value;
       const checkOptions = options.map(option => ({
         ...option,
-        checked: value.split(',').includes(option[optionProps.value]),
+        checked: val.split(',').includes(option[optionProps.value]),
       }));
       this.setData({ checkOptions });
     },

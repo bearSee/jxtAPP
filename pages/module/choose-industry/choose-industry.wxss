@@ -4,6 +4,13 @@
   width: 100%;
   height: 100%;
   background: #f8f8f8;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 100rpx;
+}
+
+.content {
+  background: #fff;
 }
 .title {
   line-height: 80rpx;
@@ -11,16 +18,34 @@
   width: 100%;
   color: #999999;
   font-size: 26rpx;
+  background: #f8f8f8;
 }
-.add-btn {
+.tag-name {
   width: 100%;
-  height: 81rpx;
+  min-height: 80rpx;
+  padding: 0 30rpx;
   display: flex;
+}
+.tag-name text {
+  width: 100%;
+  margin: auto 0;
+  font-size: 30rpx;
+  padding: 15rpx;
+  padding-left: 0;
+}
+.tags {
+  padding: 0 30rpx;
+}
+.oprate-box {
+  display: flex;
+  justify-content: space-between;
   line-height: 80rpx;
   font-size: 30rpx;
   padding: 0 30rpx;
-  background: #fff;
   color: #0081FF;
+}
+.add-btn {
+  display: flex;
 }
 .add-icon {
   font-size: 52rpx;
@@ -32,4 +57,15 @@
   width: calc(100% - 60rpx);
   margin: 30rpx auto;
   text-align: center;
+}
+.foot-btn-group {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.foot-btn-group button {
+  width: 50%;
+  border-radius: 0;
 }

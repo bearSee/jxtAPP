@@ -35,11 +35,13 @@
     </view>
 </view>
 
-<view class="dialog" wx:if="{{ industryVisible }}" bindtap="closeIndustryDialog">
+<view class="dialog" wx:if="{{ industryVisible }}">
     <view class="industry-dialog-content" catchtap="openIndustryDialog">
         <choose-industry
             class="content-box"
-            bindhandlerConfirm="handlerIndustryConfirm">
+            data="{{ formData.belongIndustryList }}"
+            bindhandlerConfirm="handlerIndustryConfirm"
+            bindclose="closeIndustryDialog">
         </choose-industry>
     </view>
 </view>

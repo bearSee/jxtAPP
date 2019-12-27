@@ -244,7 +244,13 @@ Page({
     }, 100);
   },
   // 行业选择提交
-  handlerIndustryConfirm() {{ detail }},
+  handlerIndustryConfirm({ detail }) {
+    const { industryList } = detail;
+    const { formData } = this.data;
+    formData.belongIndustryList = industryList;
+    this.setData({ formData, industryVisible: false });
+    this.submit();
+  },
   onLoad: function () {
     // 'ADMIN': '管理员',
     // 'Z001002': '个人用户',

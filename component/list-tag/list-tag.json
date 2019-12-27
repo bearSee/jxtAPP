@@ -7,7 +7,6 @@
     "zte-date": "../zte-date/zte-date",
     "zte-date-time": "../zte-date-time/zte-date-time",
     "zte-switch": "../zte-switch/zte-switch",
-    "zte-upload": "../zte-upload/zte-upload",
     "zte-select-area": "../zte-select-area/zte-select-area"
   }
 }
