@@ -3,3 +3,8 @@
   overflow: hidden;
   background: #f8f8f8;
 }
+.submit-btn {
+  width: calc(100% - 60rpx);
+  margin: 50rpx auto;
+  text-align: center;
+}

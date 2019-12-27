@@ -1,8 +1,6 @@
 
   <!-- 省市区街道 选择器 -->
-  <view class="choose-industry">
-
-
+  <view class="choose-industry {{ removeBtn && 'no_padding' }}">
     <view
       class="content border_bottom"
       wx:for="{{ industryList }}"

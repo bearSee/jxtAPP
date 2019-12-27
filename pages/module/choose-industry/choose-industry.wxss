@@ -70,3 +70,6 @@
   width: 50%;
   border-radius: 0;
 }
+.no_padding {
+  padding-bottom: 0;
+}

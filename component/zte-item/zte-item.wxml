@@ -9,7 +9,7 @@
       wx:if="{{ currentItem .type === 'text' || currentItem .type === 'textarea' || currentItem .type === 'number' || currentItem .type === 'idcard' || currentItem .type === 'digit' || currentItem .type === 'password' }}"
       type="{{ currentItem.type }}"
       password="{{ currentItem.type === 'password' }}"
-      maxlength='{{ currentItem.maxlength }}'
+      maxlength='{{ currentItem.maxlength || -1 }}'
       placeholder="{{ currentItem.placeholder || currentItem.label }}"
       value="{{ value }}"
       disabled="{{ disabled }}"
