@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/user/personInfo/index",
     "pages/login/beforeLogin",
     "pages/leaveMassage/leaveMassage",
     "pages/notices/notices",
@@ -15,7 +16,6 @@
     "pages/register/register",
     "pages/register/agreement",
     "pages/user/user",
-    "pages/user/personInfo/index",
     "pages/user/userSet/index",
     "pages/user/userSet/aboutUs",
     "pages/user/userSet/pwdSet"

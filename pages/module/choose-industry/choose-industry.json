@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "zte-check": "/component/zte-check/zte-check"
+  }
+}

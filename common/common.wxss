@@ -120,4 +120,22 @@ page view {
 .word-break {
   word-break: break-all;
 }
+.arrow {
+  position: relative;
+  padding-right: 15px;
+}
+.arrow:before {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 1px 1px 0 0;
+  border-color: #c8c8cd;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0) translate(0, -50%);
+  position: absolute;
+  top: 48%;
+  right: 10rpx;
+}
 /* @import '/common/common.wxss'; */

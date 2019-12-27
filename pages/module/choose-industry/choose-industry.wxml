@@ -1,0 +1,28 @@
+
+  <!-- 省市区街道 选择器 -->
+  <view class="choose-industry">
+    <view class="title">所属行业</view>
+
+
+    <view
+      class="content border_bottom"
+      wx:for="{{ industryList }}"
+      wx:key="index">
+      <view wx:if="{{ item.industryLabelName }}" class="select-item border_bottom arrow">{{ item.industryLabelName }}</view>
+      <view wx:else class="select-item border_bottom arrow">请选择行业</view>
+      <view class="tag-title">#行业标签#</view>
+      <zte-check
+        class="tags"
+        value="{{ item.industryLabel }}"
+        options="{{ item.industryLabelAll }}"
+        bindinput="checkChange">
+      </zte-check>
+    </view>
+
+    
+    <view class="add-btn" bindtap="add">
+      <view class="add-icon">+</view>
+      <view class="add-text">新增行业</view>
+    </view>
+    <view class="submit-btn" bindtap="save">保存</view>
+  </view>

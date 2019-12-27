@@ -22,8 +22,8 @@
 </view>
 
 
-<view class="dialog" wx:if="{{ visible }}" bindtap="closeDialog">
-    <view class="dialog-content" catchtap="openDialog">
+<view class="dialog" wx:if="{{ adressVisible }}" bindtap="closeAdressDialog">
+    <view class="dialog-content" catchtap="openAdressDialog">
         <linkage-selection
             class="content-box"
             requestUrl="city/list"
@@ -32,5 +32,14 @@
             value="{{ defaulVal }}"
             bindhandlerConfirm="handlerConfirm">
         </linkage-selection>
+    </view>
+</view>
+
+<view class="dialog" wx:if="{{ industryVisible }}" bindtap="closeIndustryDialog">
+    <view class="industry-dialog-content" catchtap="openIndustryDialog">
+        <choose-industry
+            class="content-box"
+            bindhandlerConfirm="handlerIndustryConfirm">
+        </choose-industry>
     </view>
 </view>

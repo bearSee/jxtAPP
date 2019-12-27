@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "个人资料",
   "usingComponents": {
-    "linkage-selection": "/component/linkage-selection/linkage-selection"
+    "linkage-selection": "/component/linkage-selection/linkage-selection",
+    "choose-industry": "/pages/module/choose-industry/choose-industry"
   }
 }

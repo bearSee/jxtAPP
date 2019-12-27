@@ -85,3 +85,9 @@ page {
 .content-box {
   width: 100%;
 }
+.industry-dialog-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 3;
+}

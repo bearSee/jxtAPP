@@ -121,7 +121,8 @@ Page({
     dataItems: [],
     formData: {},
     saveUrl: '',
-    visible: false,
+    adressVisible: false,
+    industryVisible: false,
     optionProps: {
       label: 'name',
       value: 'id',
@@ -147,32 +148,33 @@ Page({
     const { item } = currentTarget.dataset;
     const { type, code } = item;
     const { formData } = this.data;
+
     if (type === 'img') {
       this.chooseImg();
       return;
     };
     if (type !== 'tag') return;
 
-    // 输入框页面
-    let url = `/pages/changeInputData/changeInputData?config=${JSON.stringify(item)}&value=${formData[code] || ''}`;
     // 选中行业信息页面
     if (code === 'industryInfoName') {
-      url = '/pages/chooseIndustry/chooseIndustry';
+      this.openIndustryDialog();
+      return;
     }
     // 选中省市区街道
     if (code === 'fullAdressName') {
-      this.setData({ visible: true });
+      this.openAdressDialog();
       return;
     }
+    // 输入框页面
+    const url = `/pages/changeInputData/changeInputData?config=${JSON.stringify(item)}&value=${formData[code] || ''}`;
     wx.navigateTo({ url });
   },
   chooseImg() {
     wx.chooseImage({
-      success: function(res) {
-        wx.showToast({
-          title: '头像更换功能暂未开放',
-          icon: 'none',
-          mask: true,
+      complete() {
+        app.showModal({
+          content: '头像更换功能暂未开放',
+          hiddenCancel: true,
         });
       },
     });
@@ -191,15 +193,24 @@ Page({
       () => { },
     );
   },
-  // 打开弹窗
-  openDialog() {
-    this.setData({ visible: true });
+  // 打开地址选择弹窗
+  openAdressDialog() {
+    this.setData({ adressVisible: true });
   },
-  // 关闭弹窗
-  closeDialog() {
-    this.setData({ visible: false });
+  // 关闭地址选择弹窗
+  closeAdressDialog() {
+    this.setData({ adressVisible: false });
   },
-  handlerConfirm({ detail  }) {
+  // 打开选择行业弹窗
+  openIndustryDialog() {
+    this.setData({ industryVisible: true });
+  },
+  // 关闭选择行业弹窗
+  closeIndustryDialog() {
+    this.setData({ industryVisible: false });
+  },
+  // 省市区街道数据提交
+  handlerConfirm({ detail }) {
     const { selection } = detail;
     const { formData } = this.data;
     const adressCodes = [
@@ -228,10 +239,12 @@ Page({
     // formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
     this.setData({ formData });
     setTimeout(() => {
-      this.closeDialog();
+      this.closeAdressDialog();
       this.submit();
     }, 100);
   },
+  // 行业选择提交
+  handlerIndustryConfirm() {{ detail }},
   onLoad: function () {
     // 'ADMIN': '管理员',
     // 'Z001002': '个人用户',
