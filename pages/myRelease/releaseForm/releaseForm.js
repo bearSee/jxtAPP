@@ -248,12 +248,14 @@ Page({
     this.setData({ visible: false });
   },
   chooseReleaseType({ currentTarget }) {
+    const { type } = this.data;
     const { code } = currentTarget.dataset;
-    wx.navigateTo({ url: `/pages/release/releaseForm/releaseForm?type=${code}` });
+    wx.navigateTo({ url: `/pages/myRelease/releaseForm/releaseForm?type=${type}&code=${code}` });
     this.setData({ visible: false });
   },
   clickList({ detail }) {
     const { type } = this.data;
-    wx.navigateTo({ url: `/pages/release/messageDetail/messageDetail?type=${type}&code=${code}` });
+    const { code } = detail;
+    wx.navigateTo({ url: `/pages/myRelease/messageDetail/messageDetail?type=${type}&code=${code}` });
   },
 })
