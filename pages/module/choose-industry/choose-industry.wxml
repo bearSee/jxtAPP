@@ -15,17 +15,19 @@
         <text class="arrow">{{ item.industryName || '请选择行业' }}</text>
       </view>
       <view class="title">#行业标签#</view>
-      <zte-check
-        class="tags"
-        type="check"
-        wx:if="{{ item.industryLabelAll }}"
-        options="{{ item.industryLabelAll }}"
-        value="{{ item.industryLabel }}"
-        code="industryLabel"
-        trans="{{ industryTrans }}"
-        bindinput="checkChange"
-        data-index="{{ index }}">
-      </zte-check>
+      <view class="check-box">
+        <zte-check
+          class="tags"
+          type="check"
+          wx:if="{{ item.industryLabelAll }}"
+          options="{{ item.industryLabelAll }}"
+          value="{{ item.industryLabel }}"
+          code="industryLabel"
+          trans="{{ industryTrans }}"
+          bindinput="checkChange"
+          data-index="{{ index }}">
+        </zte-check>
+      </view>
       <view class="oprate-box border_top">
         <view
           class="add-btn"

@@ -33,8 +33,9 @@
   padding: 15rpx;
   padding-left: 0;
 }
-.tags {
-  padding: 0 30rpx;
+.check-box {
+  width: 100%;
+  padding: 30rpx;
 }
 .oprate-box {
   display: flex;
