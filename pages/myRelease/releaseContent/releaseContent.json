@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发布内容",
+  "usingComponents": {
+    "zte-input": "/component/zte-input/zte-input"
+  }
+}

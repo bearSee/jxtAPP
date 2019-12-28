@@ -89,6 +89,6 @@
         </view>
       </view>
     </view>
-    <view class="submit-btn" bindtap="saveChange">保存</view> 
+    <view class="submit-btn" bindtap="saveChange">确定</view> 
   </view>
 </view>

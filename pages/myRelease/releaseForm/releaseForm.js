@@ -11,12 +11,12 @@ Page({
           type: 'text',
           placeholder: '请输入标题',
         },
-        {
-          code: 'content',
-          label: '发布内容',
-          type: 'textarea',
-          placeholder: '请输入发布内容',
-        },
+        // {
+        //   code: 'content',
+        //   label: '发布内容',
+        //   type: 'textarea',
+        //   placeholder: '请输入发布内容',
+        // },
         {
           code: 'receiveObject',
           label: '接收对象',
@@ -48,12 +48,12 @@ Page({
           type: 'text',
           placeholder: '请输入标题',
         },
-        {
-          code: 'content',
-          label: '发布内容',
-          type: 'textarea',
-          placeholder: '请输入发布内容',
-        }, 
+        // {
+        //   code: 'content',
+        //   label: '发布内容',
+        //   type: 'textarea',
+        //   placeholder: '请输入发布内容',
+        // }, 
         {
           code: 'recruitmentWork',
           label: '招聘工种',
@@ -222,7 +222,9 @@ Page({
   // 点击提交
   submit() {
     // this.selectComponent('#choose-industry').change();
-    this.finishSubmit();
+    // this.finishSubmit();
+    const { content } = this.data.formData;
+    wx.navigateTo({ url: `/pages/myRelease/releaseContent/releaseContent?content=${content || ''}` });
   },
   // 提交表单数据
   finishSubmit() {

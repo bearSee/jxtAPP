@@ -21,7 +21,7 @@
     removeBtn
     bindhandlerChange="industryChange">
   </choose-industry>
-  <view class="submit-btn" bindtap="submit">保存</view>
+  <view class="submit-btn" bindtap="submit">下一步</view>
 </view>
 
 <view class="dialog" wx:if="{{ adressVisible }}" bindtap="closeAdressDialog">

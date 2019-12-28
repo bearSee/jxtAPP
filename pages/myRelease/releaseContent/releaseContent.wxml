@@ -1,0 +1,11 @@
+<!--logs.wxml-->
+<view class="message-box">
+  <view class="head-title">发布内容</view>
+  <zte-input
+    type="textarea"
+    placeholder="请输入发布内容..."
+    value="{{ content }}"
+    bindinput="handlerInput">
+  </zte-input>
+  <button class="submit-btn" bindtap="submit">确认提交</button>
+</view>
