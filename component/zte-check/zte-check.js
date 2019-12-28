@@ -50,11 +50,17 @@ Component({
   },
   
   ready: function () {
+    this.initValue();
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    initValue() {
+      let { value } = this.properties;
+      value = value || '';
+      this.triggerEvent('input', { value });
+    },
     handlerChange({ detail }) {
       const { options, optionProps, type, trans, code } = this.properties;
       const value = {};

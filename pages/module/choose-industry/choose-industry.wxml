@@ -47,6 +47,6 @@
     <!-- <view class="submit-btn" bindtap="submitChange">保存</view> -->
     <view class="foot-btn-group" wx:if="{{ !removeBtn }}">
       <button bindtap="conmeBack">返回</button>
-      <button class="theme_background_main" bindtap="submitChange">保存</button>
+      <button class="theme_background_main" bindtap="submit">保存</button>
     </view>
   </view>

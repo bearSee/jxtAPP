@@ -1,5 +1,6 @@
 const app = getApp();
-var timer = null;
+var { userType } = app.globalData.userInfo;
+var isPerson = userType === 'Z001002';
 
 Component({
   options: {
@@ -10,12 +11,12 @@ Component({
       type: Array,
       value: [
         {
-          name: '招聘消息',
-          code: 'industryNews',
+          name: `${isPerson ? '应聘' : '招聘'}消息`,
+          code: 'recruitmentNews',
         },
         {
           name: '行业消息',
-          code: 'recruitmentNews',
+          code: 'industryNews',
         },
       ],
       observer() {

@@ -1,4 +1,6 @@
 const app = getApp();
+var { userType } = app.globalData.userInfo;
+var isPerson = userType === 'Z001002';
 
 Component({
   options: {
@@ -20,13 +22,13 @@ Component({
     visible: false,
     tabs: [
       {
-        name: '招聘消息',
-        code: 'industryNews',
+        name: `${isPerson ? '应聘' : '招聘'}消息`,
+        code: 'recruitmentNews',
         icon: 'zp.png',
       },
       {
         name: '行业消息',
-        code: 'recruitmentNews',
+        code: 'industryNews',
         icon: 'hy.png',
       },
     ],
@@ -247,8 +249,10 @@ Component({
     // 点击发布消息跳转选择
     chooseReleaseType({ currentTarget }) {
       const { type, id } = currentTarget.dataset;
-      wx.navigateTo({ url: `/pages/myRelease/releaseForm/releaseForm?type=${type}&id=${id}` });
-      this.setData({ visible: false });
+      wx.navigateTo({ url: `/pages/myRelease/releaseForm/releaseForm?type=${type}&id=${id || ''}` });
+      setTimeout(() => {
+        this.setData({ visible: false });
+      }, 100);
     },
     // 查看消息详情
     clickList({ detail }) {

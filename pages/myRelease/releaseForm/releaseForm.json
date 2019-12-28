@@ -2,6 +2,7 @@
   "navigationBarTitleText": "发布消息",
   "usingComponents": {
     "choose-industry": "/pages/module/choose-industry/choose-industry",
-    "zte-item": "/component/zte-item/zte-item"
+    "zte-item": "/component/zte-item/zte-item",
+    "linkage-selection": "/component/linkage-selection/linkage-selection"
   }
 }

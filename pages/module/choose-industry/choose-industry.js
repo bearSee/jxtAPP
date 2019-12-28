@@ -1,6 +1,9 @@
 
 var app = getApp();
 Component({
+  options: {
+    addGlobalClass: true,
+  },
   /**
    * 组件的属性列表
    */
@@ -35,6 +38,7 @@ Component({
   
   ready: function () {
     this.getTreeData();
+    this.initData();
   },
   /**
    * 组件的方法列表
@@ -66,7 +70,7 @@ Component({
       const { data } = this.properties;
       const industryList = data && data.length && data || [{}];
       this.setData({ industryList });
-      // this.submitChange();
+      // this.change();
     },
     // 标签选择
     checkChange({ detail, currentTarget }) {
@@ -74,25 +78,31 @@ Component({
       const { industryList } = this.data;
       industryList[index] = { ...industryList[index], ...detail.value };
       this.setData({ industryList });
-      // this.submitChange();
+      this.change();
     },
     changeIndustry({ currentTarget }) {
       const { index } = currentTarget.dataset;
     },
     addIndustry() {
       const { industryList } = this.data;
-      industryList.push([{}]);
+      industryList.push({});
       this.setData({ industryList });
-      // this.submitChange();
+      this.change();
     },
     deletIndustry({ currentTarget }) {
       const { index } = currentTarget.dataset;
       const { industryList } = this.data;
       industryList.splice(index, 1);
       this.setData({ industryList });
-      // this.submitChange();
+      this.change();
     },
-    submitChange() {
+    change() {
+      const { industryList } = this.data;
+      setTimeout(() => {
+        this.triggerEvent('handlerChange', { industryList });
+      }, 100);
+    },
+    submit() {
       const { industryList } = this.data;
       setTimeout(() => {
         this.triggerEvent('handlerConfirm', { industryList });

@@ -246,10 +246,17 @@ Page({
   // 行业选择提交
   handlerIndustryConfirm({ detail }) {
     const { industryList } = detail;
-    const { formData } = this.data;
-    formData.belongIndustryList = industryList;
-    this.setData({ formData, industryVisible: false });
-    this.submit();
+    if (industryList.every(d => d.industryLabel)) {
+      const { formData } = this.data;
+      formData.belongIndustryList = industryList;
+      this.setData({ formData, industryVisible: false });
+      this.submit();
+    } else {
+      app.showModal({
+        content: '请完善行业信息',
+        hiddenCancel: true,
+      });
+    }
   },
   onLoad: function () {
     // 'ADMIN': '管理员',

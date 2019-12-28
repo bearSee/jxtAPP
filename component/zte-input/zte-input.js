@@ -36,11 +36,17 @@ Component({
   
   ready: function () {
     this.getTextLength();
+    this.initValue();
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    initValue() {
+      let { value } = this.properties;
+      value = value || '';
+      this.triggerEvent('input', { value });
+    },
     // 文本框input事件
     handlerInput({ detail }) {
       const value = detail.value;
