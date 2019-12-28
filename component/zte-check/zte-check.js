@@ -57,8 +57,8 @@ Component({
    */
   methods: {
     initValue() {
-      let { value } = this.properties;
-      value = value || '';
+      let { value, code } = this.properties;
+      value = { [code]: value || '' };
       this.triggerEvent('input', { value });
     },
     handlerChange({ detail }) {

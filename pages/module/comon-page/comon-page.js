@@ -1,6 +1,4 @@
 const app = getApp();
-var { userType } = app.globalData.userInfo;
-var isPerson = userType === 'Z001002';
 
 Component({
   options: {
@@ -22,7 +20,7 @@ Component({
     visible: false,
     tabs: [
       {
-        name: `${isPerson ? '应聘' : '招聘'}消息`,
+        name: '招聘消息',
         code: 'recruitmentNews',
         icon: 'zp.png',
       },
@@ -71,6 +69,18 @@ Component({
     },
   },
   ready: function () {
+    const { userType } = app.globalData.userInfo;
+    const isPerson = userType === 'Z001002';
+    if (isPerson) {
+      const { tabs } = this.data;
+      tabs.map((d) => {
+        if (d.name.includes('招聘')) {
+          d.name = d.name.replace(/招聘/i, '应聘');
+        }
+        return d;
+      });
+      this.setData({ tabs });
+    }
   },
   methods: {
     // 清空输入，初始化列表

@@ -1,39 +1,7 @@
-//logs.js
 var app = getApp();
-var { userType } = app.globalData.userInfo;
-var isPerson = userType === 'Z001002';
-var otherItemInfo = isPerson ? [
-  {
-    code: 'fullAdressName',
-    label: '地址',
-    type: 'tag',
-  },
-] : [];
 
 Page({
   data: {
-    /**
-     * 
-      {
-        code: 'receiveObject',
-        label: '接收对象',
-        type: 'check',
-        fastCode: 'Z001000',
-      },
-      {
-        code: 'messageType',
-        label: '消息类型',
-        type: 'radio',
-        fastCode: 'Z003000',
-      },
-     */
-    /**
-     * 
-      'ADMIN': '管理员',
-      'Z001002': '个人用户',
-      'Z001001': '企业用户',
-     */
-    userType,
     type: '',
     infoItems: {
       industryNews: [
@@ -74,10 +42,9 @@ Page({
           type: 'text',
           placeholder: '请输入标题',
         },
-        ...otherItemInfo,
         {
           code: 'recruitmentWork',
-          label: `${isPerson ? '应聘' : '招聘'}工种`,
+          label: '招聘工种',
           type: 'check',
           options: [],
           optionProps: {
@@ -88,7 +55,7 @@ Page({
         },
         {
           code: 'recruitmentProfessional',
-          label: `${isPerson ? '应聘' : '招聘'}专业`,
+          label: '招聘专业',
           type: 'check',
           options: [],
           optionProps: {
@@ -99,7 +66,7 @@ Page({
         },
         {
           code: 'recruitmentPosition',
-          label: `${isPerson ? '应聘' : '招聘'}岗位`,
+          label: '招聘岗位',
           type: 'check',
           options: [],
           optionProps: {
@@ -119,10 +86,28 @@ Page({
     defaultAdress: [],
   },
   onLoad({ type, id }) {
-    this.setData({ type });
     if (id) {
       this.getDetailData(type, id);
     }
+
+    const { userType } = app.globalData.userInfo;
+    const isPerson = userType === 'Z001002';
+    if (isPerson && type === 'recruitmentNews') {
+      const { infoItems } = this.data;
+      infoItems[type].splice(1, 0, {
+        code: 'fullAdressName',
+        label: '地址',
+        type: 'tag',
+      });
+      infoItems[type].map((d) => {
+        if (d.label.includes('招聘')) {
+          d.label = d.label.replace(/招聘/i, '应聘');
+        }
+        return d;
+      });
+      this.setData({ infoItems });
+    }
+    this.setData({ type });
   },
   getDetailData(type, id) {
     const obj = {
@@ -143,6 +128,10 @@ Page({
     wx.$http.post(url, params).then(
       (res) => {
         const formData = res[type] || {};
+        if (formData.reviceIndustryList) {
+          formData.receiveIndustryList = JSON.parse(JSON.stringify(formData.reviceIndustryList));
+          delete formData.reviceIndustryList;
+        }
         this.setData({ formData });
         this.gwtDefaultAdress();
       },
@@ -158,6 +147,7 @@ Page({
     this.setData({ adressVisible: false });
   },
   gwtDefaultAdress() {
+    const { formData } = this.data;
     const { province, city, area, street, provinceName, cityName, areaName, streetName } = this.data.formData;
     if (!province) return;
     formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
@@ -197,8 +187,8 @@ Page({
     }, 100);
   },
   formChange({ detail }) {
-    const { value, item } = detail;
     const { formData } = this.data;
+    const { value, item } = detail;
     if (typeof value === 'object' && Object.prototype.toString.call(value).toLowerCase() === '[object object]') {
       Object.assign(formData, value);
     } else {
@@ -210,7 +200,7 @@ Page({
   industryChange({ detail }) {
     const { industryList } = detail;
     const { formData } = this.data;
-    formData.reviceIndustryList = industryList;
+    formData.receiveIndustryList = industryList;
     this.setData({ formData });
   },
   submit() {
@@ -218,21 +208,23 @@ Page({
     this.finishSubmit();
   },
   finishSubmit() {
-    debugger
     const { type, formData } = this.data;
-    if (formData.reviceIndustryList && formData.reviceIndustryList.every(d => d.industryLabel)) {
+    if (formData.receiveIndustryList && formData.receiveIndustryList.every(d => d.industryLabel)) {
       const params = JSON.parse(JSON.stringify(formData));
-      params.reviceIndustryList = JSON.stringify(params.reviceIndustryList);
+      params.receiveIndustryList = JSON.stringify(params.receiveIndustryList);
       let obj;
-      if (formData.id) {
+      if (params.id) {
         obj = {
           industryNews: {
             url: 'industryNews/update',
+            id: 'industryNewsId',
           },
           recruitmentNews: {
             url: 'recruitmentNews/update',
+            id: 'recruitmentNewsId',
           },
         };
+        params[obj[type].id] = params.id;
       } else {
         obj = {
           industryNews: {
@@ -243,6 +235,7 @@ Page({
           },
         };
       }
+      console.log('params', params)
       wx.$http.post(obj[type].url, params).then(
         () => {
           wx.showToast({

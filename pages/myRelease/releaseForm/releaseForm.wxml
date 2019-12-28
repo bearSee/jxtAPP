@@ -17,7 +17,7 @@
   </view>
   <choose-industry
     id="choose-industry"
-    data="{{ formData.reviceIndustryList || [] }}"
+    data="{{ formData.receiveIndustryList || [] }}"
     removeBtn
     bindhandlerChange="industryChange">
   </choose-industry>

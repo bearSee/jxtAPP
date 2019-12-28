@@ -20,7 +20,7 @@
         <view class="tags-box">
           <view
             class="tag"
-            wx:for="{{ item.reviceIndustryList }}"
+            wx:for="{{ item.receiveIndustryList || item.reviceIndustryList }}"
             wx:for-item="industryItem"
             wx:for-index="i"
             wx:key="i">

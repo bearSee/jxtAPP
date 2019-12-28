@@ -41,7 +41,7 @@ Page({
     wx.$http.post(`${type}/findById`, { [obj[type]]: id }).then(
       (res) => {
         const detailData = res[type] || {};
-        const reviceIndustryName = (detailData.reviceIndustryList || []).map(d => d.industryName).join('、');
+        const reviceIndustryName = (detailData.receiveIndustryList || []).map(d => d.industryName).join('、');
         this.setData({ detailData, reviceIndustryName });
       },
       () => { },
