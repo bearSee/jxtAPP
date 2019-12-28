@@ -12,6 +12,12 @@ Page({
           placeholder: '请输入标题',
         },
         {
+          code: 'content',
+          label: '发布内容',
+          type: 'textarea',
+          placeholder: '请输入发布内容',
+        },
+        {
           code: 'receiveObject',
           label: '接收对象',
           type: 'check',
@@ -42,6 +48,12 @@ Page({
           type: 'text',
           placeholder: '请输入标题',
         },
+        {
+          code: 'content',
+          label: '发布内容',
+          type: 'textarea',
+          placeholder: '请输入发布内容',
+        }, 
         {
           code: 'recruitmentWork',
           label: '招聘工种',
@@ -109,6 +121,7 @@ Page({
     }
     this.setData({ type });
   },
+  // 若为编辑，通过id获取数据
   getDetailData(type, id) {
     const obj = {
       industryNews: {
@@ -128,12 +141,13 @@ Page({
     wx.$http.post(url, params).then(
       (res) => {
         const formData = res[type] || {};
+        // 后台字段错误，不统一，额外处理
         if (formData.reviceIndustryList) {
           formData.receiveIndustryList = JSON.parse(JSON.stringify(formData.reviceIndustryList));
           delete formData.reviceIndustryList;
         }
         this.setData({ formData });
-        this.gwtDefaultAdress();
+        this.getDefaultAdress();
       },
       () => { },
     );
@@ -146,7 +160,8 @@ Page({
   closeAdressDialog() {
     this.setData({ adressVisible: false });
   },
-  gwtDefaultAdress() {
+  // 获取默认地址，显示地址名
+  getDefaultAdress() {
     const { formData } = this.data;
     const { province, city, area, street, provinceName, cityName, areaName, streetName } = this.data.formData;
     if (!province) return;
@@ -154,6 +169,7 @@ Page({
     const defaultAdress = [province, city, area, street];
     this.setData({ formData, defaultAdress });
   },
+  // 修改地址
   changeAdress({ detail }) {
     const { selection } = detail;
     const { formData } = this.data;
@@ -179,13 +195,13 @@ Page({
       formData[adressCodes[i].label] = name || '';
       formData[adressCodes[i].code] = id || '';
     });
-    const { provinceName, cityName, areaName, streetName } = formData;
-    formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
     this.setData({ formData });
     setTimeout(() => {
+      this.getDefaultAdress();
       this.closeAdressDialog();
     }, 100);
   },
+  // 表单修改
   formChange({ detail }) {
     const { formData } = this.data;
     const { value, item } = detail;
@@ -195,23 +211,32 @@ Page({
       formData[item.code] = value;
     }
     this.setData({ formData });
-    console.log('formData', formData);
   },
+  // 行业修改
   industryChange({ detail }) {
     const { industryList } = detail;
     const { formData } = this.data;
     formData.receiveIndustryList = industryList;
     this.setData({ formData });
   },
+  // 点击提交
   submit() {
-    this.selectComponent('#choose-industry').change();
+    // this.selectComponent('#choose-industry').change();
     this.finishSubmit();
   },
+  // 提交表单数据
   finishSubmit() {
     const { type, formData } = this.data;
     if (formData.receiveIndustryList && formData.receiveIndustryList.every(d => d.industryLabel)) {
       const params = JSON.parse(JSON.stringify(formData));
-      params.receiveIndustryList = JSON.stringify(params.receiveIndustryList);
+
+      const receiveIndustryList = params.receiveIndustryList.map(({ industryLabel, industryName, industryId, id }) => ({
+        industryLabel,
+        industryName,
+        industryId: industryId || id,
+      }));
+      params.receiveIndustryList = JSON.stringify(receiveIndustryList);
+
       let obj;
       if (params.id) {
         obj = {

@@ -27,6 +27,9 @@
   padding: 0 30rpx!important;
   display: flex;
 }
+.zte-input {
+  width: calc(100vw - 60rpx)!important;
+}
 .choose-industry {
   height: auto!important;
   overflow: hidden!important;

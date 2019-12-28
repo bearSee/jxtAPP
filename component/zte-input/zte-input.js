@@ -32,10 +32,10 @@ Component({
    */
   data: {
     textLength: 0,
+    currentVal: '',
   },
   
   ready: function () {
-    this.getTextLength();
     this.initValue();
   },
   /**
@@ -46,20 +46,24 @@ Component({
       let { value } = this.properties;
       value = value || '';
       this.triggerEvent('input', { value });
+      this.getTextLength();
     },
     // 文本框input事件
     handlerInput({ detail }) {
       const value = detail.value;
+      this.setData({
+        currentVal: value,
+      });
       this.triggerEvent('input', { value });
       this.getTextLength();
     },
     // 文本域计算文本长度方法
     getTextLength() {
-      const { type, value } = this.properties;
-      if (type === 'textarea') {
-        const textLength = value ? value.length : 0;
-        this.setData({ textLength });
-      }
+      const { value } = this.properties;
+      const { currentVal } = this.data;
+      const val = currentVal || value || '';
+      const textLength = val && val.length || 0;
+      this.setData({ textLength });
     },
     // 文本框blur事件
     handlerBlur({ detail }) {

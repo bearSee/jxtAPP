@@ -25,7 +25,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    wholeTree: {},
+    wholeTree: [],
     industryList: [],
     // 标签选择trans
     industryTrans: [
@@ -34,6 +34,8 @@ Component({
         to: 'industryLabelName',
       },
     ],
+    industryIndex: 0,
+    selectedIndustry: {},
   },
   
   ready: function () {
@@ -59,7 +61,7 @@ Component({
     getTreeData() {
       wx.$http.post('industry/list').then(
         ({ list }) => {
-          const wholeTree = list[0] || {};
+          const wholeTree = list[0] && list[0].children || [];
           this.setData({ wholeTree });
         },
         () => { },
@@ -80,15 +82,14 @@ Component({
       this.setData({ industryList });
       this.change();
     },
-    changeIndustry({ currentTarget }) {
-      const { index } = currentTarget.dataset;
-    },
+    // 新增行业
     addIndustry() {
       const { industryList } = this.data;
       industryList.push({});
       this.setData({ industryList });
       this.change();
     },
+    // 删除行业
     deletIndustry({ currentTarget }) {
       const { index } = currentTarget.dataset;
       const { industryList } = this.data;
@@ -112,6 +113,57 @@ Component({
       setTimeout(() => {
         this.triggerEvent('close');
       }, 100);
+    },
+    // 修改行业
+    changeIndustry({ currentTarget }) {
+      const { index: industryIndex } = currentTarget.dataset;
+      this.setData({ industryIndex });
+      this.openDialog();
+    },
+    // 点击选择行业
+    checkIndustryList({ currentTarget }) {
+      const { data, findex, sindex, tindex } = currentTarget.dataset;
+      const { wholeTree } = this.data;
+      if (tindex > -1) {
+        wholeTree[findex].children[sindex].children[tindex].open = !wholeTree[findex].children[sindex].children[tindex].open;
+      } else if (sindex > -1) {
+        wholeTree[findex].children[sindex].open = !wholeTree[findex].children[sindex].open;
+      } else if (findex > -1) {
+        wholeTree[findex].open = !wholeTree[findex].open;
+      }
+      const selectedIndustry = JSON.parse(JSON.stringify(data));
+      if (selectedIndustry.children) {
+        delete selectedIndustry.children
+      }
+      this.setData({
+        selectedIndustry,
+        wholeTree,
+      });
+    },
+    // 保存行业选择
+    saveChange() {
+      const { selectedIndustry, industryIndex, industryList } = this.data;
+      if (industryList.find(d => d.id === selectedIndustry.id)) {
+        app.showModal({
+          content: '列表中已存在该行业，请重新选择',
+          hiddenCancel: true,
+        });
+        return;
+      }
+      industryList[industryIndex] = selectedIndustry;
+      setTimeout(() => {
+        this.closeDialog();
+        this.setData({ industryList });
+        this.change();
+      }, 100);
+    },
+    // 打开弹窗
+    openDialog() {
+      this.setData({ visible: true });
+    },
+    // 关闭弹窗
+    closeDialog() {
+      this.setData({ visible: false });
     },
   }
 })

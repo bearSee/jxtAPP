@@ -182,7 +182,12 @@ Page({
   submit() {
     const { saveUrl, formData } = this.data;
     const params = JSON.parse(JSON.stringify(formData));
-    params.belongIndustryList = JSON.stringify(params.belongIndustryList);
+    const belongIndustryList = params.belongIndustryList.map(({ industryLabel, industryName, industryId, id }) => ({
+      industryLabel,
+      industryName,
+      industryId: industryId || id,
+    }));
+    params.belongIndustryList = JSON.stringify(belongIndustryList);
     wx.$http.post(saveUrl, params).then(
       () => {
         wx.showToast({ title: '保存成功', mask: true });
