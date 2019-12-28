@@ -223,13 +223,15 @@ Page({
   submit() {
     // this.selectComponent('#choose-industry').change();
     // this.finishSubmit();
-    const { content } = this.data.formData;
-    wx.navigateTo({ url: `/pages/myRelease/releaseContent/releaseContent?content=${content || ''}` });
+    if (this.checkFormData()) {
+      const { content } = this.data.formData;
+      wx.navigateTo({ url: `/pages/myRelease/releaseContent/releaseContent?content=${content || ''}` });
+    }
   },
   // 提交表单数据
   finishSubmit() {
     const { type, formData } = this.data;
-    if (formData.receiveIndustryList && formData.receiveIndustryList.every(d => d.industryLabel)) {
+    if (this.checkFormData()) {
       const params = JSON.parse(JSON.stringify(formData));
 
       const receiveIndustryList = params.receiveIndustryList.map(({ industryLabel, industryName, industryId, id }) => ({
@@ -275,11 +277,18 @@ Page({
         },
         () => { },
       );
+    }
+  },
+  checkFormData() {
+    const { formData } = this.data;
+    if (formData.receiveIndustryList && formData.receiveIndustryList.every(d => d.industryLabel)) {
+      return true;
     } else {
       app.showModal({
         content: '请完善行业信息',
         hiddenCancel: true,
       });
+      return false;
     }
   },
 })
