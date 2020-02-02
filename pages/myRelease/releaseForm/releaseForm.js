@@ -272,7 +272,7 @@ Page({
             mask: true,
           });
           setTimeout(() => {
-            wx.navigateBack();
+            wx.reLaunch({ url: '/pages/myRelease/myRelease' });
           }, 1000);
         },
         () => { },

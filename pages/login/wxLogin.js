@@ -40,22 +40,19 @@ Page({
     const params = {
       openid: app.globalData.openid, encryptedData: e.detail.encryptedData, iv: e.detail.iv
     };
-    wx.$http.post('wechatMini/decryptUserInfo', params).then(
-      (res) => {
-        app.finishLogin(res);
+    wx.$http.post('wechatmini/decryptuserinfo', params).then(
+      res => {
+        this.loginAction(res);
       },
-      (res) => {
-        if (res.code === 'Z001100') {
-          app.showModal({
-            content: res.message || '系统中无此手机号用户',
-            confirmText: '前往注册',
-          }).then(
-            () => {
-              wx.navigateTo({ url: '/pages/register/register' });
-            }
-          );
-        }
-      }
+      err => {},
     )
-  }
+  },
+  loginAction(res) {
+    wx.$http.post('wechatmini/login/account', res).then(
+      res => {
+        app.finishLogin(res, '2');
+      },
+      err => {},
+    )
+  },
 })

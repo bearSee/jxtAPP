@@ -1,0 +1,38 @@
+<view class="release-form" wx:if="{{ type }}">
+  <view
+    class="info-item"
+    wx:for="{{ infoItems }}"
+    wx:key="index">
+    <view wx:if="{{ item.type === 'tag' }}"  class="tag-skip">
+        <view class="tag-label cut_font">{{ item.label }}</view>
+        <view bindtap="openAdressDialog" class="tag-value cut_font arrow">{{ formData[item.code] || '请选择' }}</view>
+    </view>
+    <zte-item
+      wx:else
+      class="zte-item-box"
+      item="{{ item }}"
+      value="{{ formData[item.code] || item.value }}"
+      bindinput="formChange">
+    </zte-item>
+  </view>
+  <choose-industry
+    id="choose-industry"
+    data="{{ formData.receiveIndustryList || [] }}"
+    removeBtn
+    bindhandlerChange="industryChange">
+  </choose-industry>
+  <view class="submit-btn" bindtap="submit">提交</view>
+</view>
+
+<view class="dialog" wx:if="{{ adressVisible }}" bindtap="closeAdressDialog">
+    <view class="dialog-content" catchtap="openAdressDialog">
+        <linkage-selection
+            class="content-box"
+            requestUrl="city/list"
+            parentKey="parentId"
+            optionProps="{{ optionProps }}"
+            value="{{ defaultAdress }}"
+            bindhandlerConfirm="changeAdress">
+        </linkage-selection>
+    </view>
+</view>

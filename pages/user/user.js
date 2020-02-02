@@ -15,6 +15,11 @@ Page({
         url: '/pages/myCollect/myCollect',
       },
       {
+        iconName: 'ri-heart-line',
+        labelName: '接收设置',
+        url: '/pages/myReceive/receiveSet/receiveSet',
+      },
+      {
         iconName: 'ri-forbid-2-line',
         labelName: '黑名单管理',
         url: '/pages/blackList/blackList',

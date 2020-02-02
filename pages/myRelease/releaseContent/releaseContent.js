@@ -23,10 +23,7 @@ Page({
     const { formData } = prevPage.data;
     formData.content = content;
     prevPage.setData({ formData });
-    wx.navigateBack();
-    setTimeout(() => {
-      prevPage.finishSubmit();
-    }, 200);
+    prevPage.finishSubmit();
   },
   handlerInput({ detail }) {
     const { value: content } = detail;

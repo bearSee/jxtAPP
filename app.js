@@ -7,6 +7,13 @@ App({
   globalData: {
     openid: '',
     userInfo: {},
+    /**
+     * loginType
+     * 0: 未登录
+     * 1: 账号密码登陆
+     * 2: 快捷登录
+     */
+    loginType: '0',
     // appid: wx811778012413f270
     // 测试地址
     host: 'https://www.szzdxx.cn/jixintong/',
@@ -24,8 +31,8 @@ App({
     return new Promise((resolve, reject) => {
       wx.login({
         success: (res) => {
-          const { code } = res;
-          wx.$http.post('wechatMini/uploadJsCode', { code }, { hiddenErrModal: true }).then(
+          const { code: jscode } = res;
+          wx.$http.post('wechatmini/uploadjscode', { jscode }, { hiddenErrModal: true }).then(
             res => {
               console.log('userLogin', res)
               this.finishLogin(res);
@@ -40,7 +47,7 @@ App({
     });
   },
   // 登陆完成处理
-  finishLogin({ user, openid, Authorization }) {
+  finishLogin({ user, openid, Authorization }, loginType = '1') {
     if (user.userType === 'ADMIN') {
       this.showModal({
         content: '管理员请登陆PC端进行操作',
@@ -50,6 +57,7 @@ App({
     }
     wx.setStorageSync('Authorization', Authorization);
     this.globalData.userInfo = user;
+    this.globalData.loginType = loginType;
     if (openid) this.globalData.openid = openid;
     wx.reLaunch({ url: '/pages/myReceive/myReceive' });
   },
