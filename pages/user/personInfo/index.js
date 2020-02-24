@@ -38,6 +38,12 @@ Page({
         type: 'tag',
       },
       {
+        code: 'descript',
+        label: '个人简介',
+        inputType: 'text',
+        type: 'tag',
+      },
+      {
         code: 'fullAdressName',
         label: '地址',
         type: 'tag',

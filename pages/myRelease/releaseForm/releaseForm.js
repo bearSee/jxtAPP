@@ -281,14 +281,20 @@ Page({
   },
   checkFormData() {
     const { formData } = this.data;
-    if (formData.receiveIndustryList && formData.receiveIndustryList.every(d => d.industryLabel)) {
-      return true;
-    } else {
+    if (!formData.title) {
+      app.showModal({
+        content: '请填写标题',
+        hiddenCancel: true,
+      });
+      return false;
+    }
+    if (!(formData.receiveIndustryList && formData.receiveIndustryList.every(d => d.industryLabel))) {
       app.showModal({
         content: '请完善行业信息',
         hiddenCancel: true,
       });
       return false;
     }
+    return true;
   },
 })

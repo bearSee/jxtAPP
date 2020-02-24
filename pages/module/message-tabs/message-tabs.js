@@ -9,12 +9,12 @@ Component({
       type: Array,
       value: [
         {
-          name: '招聘消息',
-          code: 'recruitmentNews',
-        },
-        {
           name: '行业消息',
           code: 'industryNews',
+        },
+        {
+          name: '招聘消息',
+          code: 'recruitmentNews',
         },
       ],
       observer() {

@@ -1,12 +1,12 @@
 <!--logs.wxml-->
 <view class="container">
   <view class="register-box">
-    <view class="register-btn {{ isPesonal && 'lightFont' }}" bindtap="changeType" data-type="isPesonal">
-      <text>个人注册</text>
-      <view></view>
-    </view>/
     <view class="register-btn {{ !isPesonal && 'lightFont' }}" bindtap="changeType" data-type="isCompany">
       <text>企业注册</text>
+      <view></view>
+    </view>/
+    <view class="register-btn {{ isPesonal && 'lightFont' }}" bindtap="changeType" data-type="isPesonal">
+      <text>个人注册</text>
       <view></view>
     </view>
   </view>

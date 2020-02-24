@@ -15,6 +15,11 @@ Component({
     value: {
       type: String,
       value: '',
+      observer() {
+        if (this.properties.options.length) {
+          this.setCheckedChange();
+        }
+      },
     },
     code: String,
     trans: {
@@ -57,9 +62,9 @@ Component({
    */
   methods: {
     initValue() {
-      let { value, code } = this.properties;
-      value = { [code]: value || '' };
-      this.triggerEvent('input', { value });
+      // let { value, code } = this.properties;
+      // value = { [code]: value || '' };
+      // this.triggerEvent('input', { value });
     },
     handlerChange({ detail }) {
       const { options, optionProps, type, trans, code } = this.properties;

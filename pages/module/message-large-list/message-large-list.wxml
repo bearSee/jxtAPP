@@ -8,11 +8,14 @@
       bindtap="clickList"
       data-item="{{ item }}">
       <view class="head-info">
-        <image class="avatar" src="/image/avatar.png"></image>
-        <view class="head-title">
-          <text class="avatar-name cut_font">{{ item.publisher || '匿名' }}</text>
-          <text class="time cut_font">{{ item.createdDt || item.publishDt }}</text>
+        <view class="head-info-box">
+          <image class="avatar" src="/image/avatar.png"></image>
+          <view class="head-title">
+            <text class="avatar-name cut_font">{{ item.publisher || '匿名' }}</text>
+            <text class="time cut_font">{{ item.createdDt || item.publishDt }}</text>
+          </view>
         </view>
+        <view class="matcher-user" wx:if="{{ edit }}">匹配用户：<text>{{ item.matcherUser }}</text></view>
       </view>
       <view class="title-info">{{ item.title }}</view>
       <image class="message-large-list-pic" src="/image/messageLargePic2.png"></image>

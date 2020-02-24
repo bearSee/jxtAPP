@@ -4,7 +4,7 @@ var app = getApp();
 
 Page({
   data: {
-    isPesonal: true,
+    isPesonal: false,
     hasReady: false,
     mobileNumber: '',
     password: '',

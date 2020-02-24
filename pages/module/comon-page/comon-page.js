@@ -20,14 +20,14 @@ Component({
     visible: false,
     tabs: [
       {
-        name: '招聘消息',
-        code: 'recruitmentNews',
-        icon: 'zp.png',
-      },
-      {
         name: '行业消息',
         code: 'industryNews',
         icon: 'hy.png',
+      },
+      {
+        name: '招聘消息',
+        code: 'recruitmentNews',
+        icon: 'zp.png',
       },
     ],
     type: 'industryNews',
