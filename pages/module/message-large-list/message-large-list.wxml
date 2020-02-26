@@ -15,7 +15,7 @@
             <text class="time cut_font">{{ item.createdDt || item.publishDt }}</text>
           </view>
         </view>
-        <view class="matcher-user" wx:if="{{ edit }}">匹配用户：<text>{{ item.matcherUser }}</text></view>
+        <view class="matcher-user" wx:if="{{ edit }}" catchtap="viewMatcherUser" data-item="{{ item }}">匹配用户：<text>{{ item.matcherUser }}</text></view>
       </view>
       <view class="title-info">{{ item.title }}</view>
       <image class="message-large-list-pic" src="/image/messageLargePic2.png"></image>

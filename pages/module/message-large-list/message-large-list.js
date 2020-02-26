@@ -61,5 +61,8 @@ Component({
       const { item, index, type } = currentTarget.dataset;
       this.triggerEvent('oprate', { item, type, index });
     },
+    viewMatcherUser({ currentTarget }) {
+      const { item } = currentTarget.dataset;
+    },
   },
 });

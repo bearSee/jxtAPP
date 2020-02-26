@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/beforeLogin",
     "pages/leaveMassage/leaveMassage",
+    "pages/changeInputData/changeInputData",
     "pages/notices/notices",
     "pages/notices/noticesDetail/noticesDetail",
     "pages/myCollect/myCollect",
