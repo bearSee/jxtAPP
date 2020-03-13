@@ -7,7 +7,9 @@
       <text>{{ detailData.createdDt }}</text>
     </view>
     <view wx:if="{{reviceIndustryName}}" class="reviceIndustryName">行业：{{ reviceIndustryName }}</view>
-    <view class="content-body">{{ detailData.content }}</view>
+    <!-- <view class="content-body">{{ detailData.content }}</view> -->
+    <rich-text nodes="{{ detailData.content }}"></rich-text>
+    
   </view>
   <view class="oprate-box" wx:if="{{ showOprate }}">
     <i

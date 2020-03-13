@@ -7,6 +7,7 @@ App({
   globalData: {
     openid: '',
     userInfo: {},
+    content: '',
     /**
      * loginType
      * 0: 未登录
@@ -33,9 +34,9 @@ App({
         success: (res) => {
           const { code: jscode } = res;
           wx.$http.post('wechatmini/uploadjscode', { jscode }, { hiddenErrModal: true }).then(
-            res => {
-              console.log('userLogin', res)
-              this.finishLogin(res);
+            ({ data }) => {
+              const openid = data.openid || data.openId;
+              if (openid) this.globalData.openid = openid;
               resolve(res);
             },
             err => {
@@ -48,7 +49,8 @@ App({
   },
   // 登陆完成处理
   finishLogin({ user, openid, Authorization }, loginType = '1') {
-    if (user.userType === 'ADMIN') {
+    console.log(user)
+    if (user && user.userType === 'ADMIN') {
       this.showModal({
         content: '管理员请登陆PC端进行操作',
         hiddenCancel: true,
@@ -140,7 +142,7 @@ App({
   attachmentPreview(filePath) {
     if (!filePath) {
       wx.showToast({
-        title: '此票据无附件或者附件为空',
+        title: '附件为空',
         icon: 'none',
       })
       return;

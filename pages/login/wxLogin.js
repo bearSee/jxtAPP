@@ -38,19 +38,19 @@ Page({
   getPhoneNumber(e) {
     if (e.detail.errMsg.indexOf('fail') > -1) return;
     const params = {
-      openid: app.globalData.openid, encryptedData: e.detail.encryptedData, iv: e.detail.iv
+      openId: app.globalData.openid, encryptedData: e.detail.encryptedData, iv: e.detail.iv
     };
     wx.$http.post('wechatmini/decryptuserinfo', params).then(
-      res => {
-        this.loginAction(res);
+      ({ data }) => {
+        this.loginAction(data);
       },
       err => {},
     )
   },
-  loginAction(res) {
-    wx.$http.post('wechatmini/login/account', res).then(
-      res => {
-        app.finishLogin(res, '2');
+  loginAction(data) {
+    wx.$http.post('wechatmini/login/mobile', data).then(
+      ({ data }) => {
+        app.finishLogin(data, '2');
       },
       err => {},
     )

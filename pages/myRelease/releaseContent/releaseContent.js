@@ -5,12 +5,14 @@ Page({
   data: {
     content: '',
   },
-  onLoad({ content }) {
-    this.setData({ content });
+  onLoad() {
+    this.setData({
+      content: app.globalData.content,
+    });
   },
-  submit() {
-    const { content } = this.data;
-    if (!content) {
+  submit({ detail }) {
+    const { html } = detail;
+    if (!html) {
       app.showModal({
         content: '请输入发布内容',
         hiddenCancel: true,
@@ -21,7 +23,7 @@ Page({
     const pages = getCurrentPages(); // 获取页面栈
     const prevPage = pages[pages.length - 2]; // 上一个页面
     const { formData } = prevPage.data;
-    formData.content = content;
+    formData.content = html;
     prevPage.setData({ formData });
     prevPage.finishSubmit();
   },

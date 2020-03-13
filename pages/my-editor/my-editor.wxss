@@ -1,0 +1,52 @@
+@import "./assets/weui.wxss";
+@import "./assets/iconfont.wxss";
+
+.editor-container {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%;
+}
+
+.ql-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-size: 30rpx;
+  line-height: 1.5;
+  overflow: auto;
+  padding: 20rpx 30rpx;
+  border: 1px solid #ECECEC;
+}
+
+.ql-active {
+  color: #22C704;
+}
+
+.iconfont {
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  cursor: pointer;
+  font-size: 40rpx;
+}
+
+.toolbar {
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1rpx solid #ECECEC;
+  border-left: none;
+  border-right: none;
+}
+.finish-btn {
+  font-size: 35rpx;
+}

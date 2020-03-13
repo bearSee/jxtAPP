@@ -1,3 +1,7 @@
+
+@import '/common/common.wxss';
+/* @import '/common/editor.css'; */
+
 .message-detail {
   height: 100vh;
   overflow-y: auto;

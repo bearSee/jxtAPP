@@ -225,7 +225,8 @@ Page({
     // this.finishSubmit();
     if (this.checkFormData()) {
       const { content } = this.data.formData;
-      wx.navigateTo({ url: `/pages/myRelease/releaseContent/releaseContent?content=${content || ''}` });
+      app.globalData.content = this.data.formData.content || '';
+      wx.navigateTo({ url: `/pages/myRelease/releaseContent/releaseContent` });
     }
   },
   // 提交表单数据

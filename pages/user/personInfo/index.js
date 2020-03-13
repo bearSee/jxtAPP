@@ -26,7 +26,7 @@ Page({
         type: 'view',
       },
       {
-        code: 'name',
+        code: 'perName',
         label: '姓名',
         inputType: 'text',
         type: 'tag',
@@ -73,12 +73,12 @@ Page({
         label: '账号',
         type: 'view',
       },
-      {
-        code: 'name',
-        label: '姓名',
-        inputType: 'text',
-        type: 'tag',
-      },
+      // {
+      //   code: 'perName',
+      //   label: '姓名',
+      //   inputType: 'text',
+      //   type: 'tag',
+      // },
       {
         label: '公司信息',
         type: 'title',
