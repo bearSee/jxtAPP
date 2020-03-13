@@ -1,12 +1,12 @@
-<view class="editor-container" style="height:{{editorHeight}}px;">
+<view class="editor-container" style="height:{{ editorHeight }}px;" wx:hidden="{{ !editorHeight }}">
   <editor
     id="editor"
     class="ql-container"
     placeholder="{{ placeholder }}"
     readOnly="{{ readOnly }}"
-    show-img-size="{{ showImgSize }}"
-    show-img-toolbar="{{ showImgToolbar }}"
-    show-img-resize="{{ showImgResize }}"
+    show-img-size="{{ !readOnly && showImgSize }}"
+    show-img-toolbar="{{ !readOnly && showImgToolbar }}"
+    show-img-resize="{{ !readOnly && showImgResize }}"
     bindfocus="onFocus"
     bindblur="onBlur"
     bindinput="onInput"

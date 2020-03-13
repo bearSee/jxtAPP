@@ -30,3 +30,6 @@
   margin-top: 30rpx;
   border-top: 1rpx solid #eee;
 }
+.is-active {
+  color: rgba(0,129,255,1);
+}

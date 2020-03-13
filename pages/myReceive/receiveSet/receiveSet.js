@@ -146,17 +146,23 @@ Page({
       params.receiveIndustryList = JSON.stringify(receiveIndustryList);
       const url = type === 'industryNews' ? 'receiveSetting/industry/save' : 'receiveSetting/recruitment/save';
 
+      wx.showLoading({
+        title: '保存中...',
+      });
       wx.$http.post(url, params).then(
         () => {
           wx.showToast({
             title: '保存成功',
             mask: true,
           });
+          wx.hideLoading();
           setTimeout(() => {
             wx.navigateBack();
           }, 1000);
         },
-        () => { },
+        () => {
+          wx.hideLoading();
+        },
       );
     }
   },

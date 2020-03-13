@@ -188,7 +188,7 @@ Page({
   submit() {
     const { saveUrl, formData } = this.data;
     const params = JSON.parse(JSON.stringify(formData));
-    const belongIndustryList = params.belongIndustryList.map(({ industryLabel, industryName, industryId, id }) => ({
+    const belongIndustryList = (params.belongIndustryList || []).map(({ industryLabel, industryName, industryId, id }) => ({
       industryLabel,
       industryName,
       industryId: industryId || id,

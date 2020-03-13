@@ -266,17 +266,23 @@ Page({
         };
       }
       console.log('params', params)
+      wx.showLoading({
+        title: '保存中...',
+      });
       wx.$http.post(obj[type].url, params).then(
         () => {
           wx.showToast({
             title: '保存成功',
             mask: true,
           });
+          wx.hideLoading();
           setTimeout(() => {
             wx.reLaunch({ url: '/pages/myRelease/myRelease' });
           }, 1000);
         },
-        () => { },
+        () => {
+          wx.hideLoading();
+        },
       );
     }
   },

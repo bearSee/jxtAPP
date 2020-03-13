@@ -1,7 +1,6 @@
 const app = getApp();
-// 基础库 2.7.0 开始支持，低版本需做兼容处理。
-// https://developers.weixin.qq.com/miniprogram/dev/api/media/editor/EditorContext.getContents.html
-
+// 基础库 2.7.0 开始支持，低版本需做兼容处理。https://developers.weixin.qq.com/miniprogram/dev/api/media/editor/EditorContext.getContents.html
+var timer;
 Component({
   options: {
     addGlobalClass: true,
@@ -56,36 +55,30 @@ Component({
   data: {
     // 已设置的样式
     formats: {},
-    editorHeight: 300,
+    editorHeight: 0,
     keyboardHeight: 0,
-    isIOS: false
+    isIOS: false,
   },
   ready() {
     this.setData({ isIOS: wx.getSystemInfoSync().platform === 'ios' });
-
     this.updatePosition(0);
     // 监听键盘高度变化
     wx.onKeyboardHeightChange(({ height, duration }) => {
-      console.log(height, duration);
-      if (height === 0) return;
-      const time = height > 0 ? duration * 1000 : 0;
-      setTimeout(() => {
-        wx.pageScrollTo({
-          scrollTop: 0,
-          success() {
-            this.updatePosition(height)
-            this.scrollIntoView();
-          }
-        })
-      }, time);
-
-    })
+      this.updatePosition(height);
+      wx.pageScrollTo({
+        scrollTop: 0,
+        complete: () => {
+          this.scrollIntoView();
+        },
+      });
+    });
   },
   methods: {
     /**
      * 页面方法
      */
     updatePosition(keyboardHeight) {
+      if (keyboardHeight === this.data.keyboardHeight) return;
       const toolbarHeight = 50;
       const { windowHeight } = wx.getSystemInfoSync();
       const editorHeight = keyboardHeight > 0 ? (windowHeight - keyboardHeight - toolbarHeight) : windowHeight;

@@ -3,7 +3,7 @@
   <view class="linkage-selection">
     <view class="head-box">
       <view
-        class="steps"
+        class="steps {{ index < currentStep && 'is-active' }}"
         wx:for="{{ steps }}"
         wx:key="index"
         bindtap="chooseStep"
