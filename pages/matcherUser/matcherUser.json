@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "匹配用户",
+  "usingComponents": {
+    "zte-searchBar": "/component/zte-searchBar/zte-searchBar"
+  }
+}

@@ -63,6 +63,13 @@ Component({
     },
     viewMatcherUser({ currentTarget }) {
       const { item } = currentTarget.dataset;
+      const { matcherUser } = item;
+      if (!matcherUser) {
+        return;
+      }
+      wx.navigateTo({
+        url: `/pages/matcherUser/matcherUser?industryNewsId=${item.id}`,
+      });
     },
   },
 });

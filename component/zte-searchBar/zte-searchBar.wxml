@@ -4,17 +4,18 @@
       <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
           <icon color='#888888' class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <input type="text" class="weui-search-bar__input" placeholder-style="color:#C0C4CC;" placeholder="{{ wordTips }}" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <input type="text" class="weui-search-bar__input" placeholder-style="color:#C0C4CC;" placeholder="{{ wordTips }}" value="{{inputVal}}" focus="{{inputShowed}}" bindblur="blur" bindinput="inputTyping" />
           <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
             <icon color='#888888' type="clear" size="14"></icon>
           </view>
         </view>
         <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
           <icon color='#888888' class="weui-icon-search" type="search" size="14"></icon>
-          <view class="weui-search-bar__text secondary_fontColor">{{ inputShowed ? '' : wordTips }}</view>
+          <view class="weui-search-bar__text secondary_fontColor">{{ inputShowed ? '' : (inputVal || wordTips) }}</view>
         </label>
       </view>
       <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
     </view>
   </view>
+  <slot></slot>
 </view>

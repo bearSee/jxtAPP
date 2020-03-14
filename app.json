@@ -6,6 +6,8 @@
     "pages/notices/notices",
     "pages/notices/noticesDetail/noticesDetail",
     "pages/myCollect/myCollect",
+    "pages/viewUserInfo/viewUserInfo",
+    "pages/matcherUser/matcherUser",
     "pages/myReceive/myReceive",
     "pages/myReceive/receiveSet/receiveSet",
     "pages/myRelease/myRelease",

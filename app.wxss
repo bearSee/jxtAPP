@@ -7,7 +7,7 @@ view {
 .container {
   height: 100vh;
   width: 100vw;
-  padding: 24rpx 30rpx;
+  padding: 20rpx 30rpx;
   box-sizing: border-box;
   position: relative;
   background: #F7F7F7;

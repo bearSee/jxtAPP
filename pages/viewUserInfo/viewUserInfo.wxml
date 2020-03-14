@@ -1,0 +1,42 @@
+<!--pages/viewUserInfo/viewUserInfo.wxml-->
+<view class="container">
+  <view class="user-info">
+    <view class="name cut_font">{{ userInfo.companyName || userInfo.perName || '暂无名称' }}</view>
+    <view class="info-box">
+      <view class="info-icon">{{ iconName }}</view>
+      <view class="info-des">
+        <view class="des">{{ isPersonal ? '邮箱' : '机构代码' }}：{{ userInfo.orgCode || userInfo.email || '' }}</view>
+        <view class="des" wx:if="{{ userInfo.personInCharge }}">负责人：{{ userInfo.personInCharge }}</view>
+      </view>
+    </view>
+  </view>
+  <view class="body-box">
+    <i class="icon-head ri-community-line">
+      <text>{{ isPersonal ? '个人简介' : '公司介绍' }}</text>
+    </i>
+    <text>{{ userInfo.description || userInfo.descript }}</text>
+  </view>
+  <view class="body-box">
+    <i class="icon-head ri-phone-fill">
+      <text>联系电话</text>
+    </i>
+    <text>{{ userInfo.mobileNumber }}</text>
+  </view>
+  <view class="body-box" wx:if="{{ !isPersonal }}">
+    <i class="icon-head ri-home-4-line">
+      <text>详细地址</text>
+    </i>
+    <text>{{ userInfo.provinceName }} {{ userInfo.cityName }} {{ userInfo.areaName }} {{ userInfo.streetName }} {{ userInfo.address }} </text>
+  </view>
+  <view class="body-box">
+    <i class="icon-head ri-profile-line">
+      <text>行业详情</text>
+    </i>
+    <view class="industry-box" wx:if="{{ userInfo.belongIndustryList }}">
+      <view class="industry-list {{ index + 1 < userInfo.belongIndustryList.length && 'border_bottom' }}" wx:for="{{ userInfo.belongIndustryList }}">
+        <view class="industry-lable">{{ item.industryName }}</view>
+        <view class="industry-value">标签：{{ item.industryLabelName }}</view>
+      </view>
+    </view>
+  </view>
+</view>

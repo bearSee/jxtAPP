@@ -61,5 +61,8 @@ Component({
         this.triggerEvent('search', { value });
       }, 1000)
     },
+    blur() {
+      this.setData({ inputShowed: false });
+    },
   },
 })

@@ -78,7 +78,7 @@ Component({
      * 页面方法
      */
     updatePosition(keyboardHeight) {
-      if (keyboardHeight === this.data.keyboardHeight) return;
+      if (keyboardHeight === this.data.keyboardHeight && keyboardHeight !== 0) return;
       const toolbarHeight = 50;
       const { windowHeight } = wx.getSystemInfoSync();
       const editorHeight = keyboardHeight > 0 ? (windowHeight - keyboardHeight - toolbarHeight) : windowHeight;

@@ -1,4 +1,10 @@
 @import '/common/common.wxss';
+.search-bar-page {
+  display: flex;
+}
+.page__bd {
+  flex: 1 1 auto;
+}
 .weui-search-bar {
   position: relative;
   display: -webkit-box;

@@ -1,0 +1,93 @@
+/* pages/viewUserInfo/viewUserInfo.wxss */
+@import '/common/common.wxss';
+
+.container {
+  font-size: 28rpx;
+  line-height: 46rpx;
+  color: #666;
+  padding: 0;
+}
+
+.user-info, .body-box {
+  background: #fff;
+  margin-bottom: 15rpx;
+  padding: 30rpx;
+}
+
+.body-box {
+  margin-bottom: 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.name {
+  color: #333;
+  max-width: 100%;
+  font-size: 44rpx;
+}
+
+.info-box {
+  display: flex;
+  margin-top: 15rpx;
+}
+
+.info-icon {
+  width: 70rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 34rpx;
+  color: #3586ff;
+  background: #f1f2f6;
+  margin-right: 15rpx;
+}
+
+.info-des {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 70rpx;
+}
+
+.des {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 35rpx;
+}
+
+.icon-head {
+  font-size: 38rpx;
+  display: block;
+  color: #3081ff;
+  margin-bottom: 18rpx;
+}
+
+.icon-head text {
+  font-size: 32rpx;
+  position: relative;
+  top: -6rpx;
+  margin-left: 10rpx;
+  color: #333;
+}
+
+.industry-box {
+  width: 100%;
+}
+
+.industry-list {
+  padding: 5px 0;
+  width: 100%;
+}
+
+.industry-lable {
+  width: 100%;
+  font-size: 32rpx;
+  line-height: 40rpx;
+  color: #555;
+}
+
+.industry-value {
+  width: 100%;
+  font-size: 26rpx;
+  line-height: 32rpx;
+  padding-top: 20rpx;
+}

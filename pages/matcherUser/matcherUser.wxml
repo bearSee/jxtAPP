@@ -1,0 +1,18 @@
+<!--pages/user/user.wxml-->
+  <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search" wordTips="用户类型/用户名称">
+    <view class="update-btn" bindtap="update">刷新</view>
+  </zte-searchBar>
+  <view class="list-body">
+    <view
+      class="list"
+      wx:for="{{ companyList }}"
+      wx:key="index"
+      bindtap="viewCompany"
+      data-item="{{ item }}">
+      <view class="info-icon">{{ item.iconName }}</view>
+      <view class="content border_bottom">
+        <text class="name cut_font">{{ item.userName || '' }}</text>
+      </view>
+    </view>
+    <view class="loadingWord" wx:if="msgList.length">{{ loadingWord }}</view>
+  </view>
