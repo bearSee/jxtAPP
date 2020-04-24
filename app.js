@@ -15,6 +15,7 @@ App({
      * 2: 快捷登录
      */
     loginType: '0',
+    autoLogin: true,
     // appid: wx811778012413f270
     // 测试地址
     host: 'https://www.szzdxx.cn/jixintong/',
@@ -37,6 +38,7 @@ App({
             ({ data }) => {
               const openid = data.openid || data.openId;
               if (openid) this.globalData.openid = openid;
+              this.mobileLogin(data);
               resolve(res);
             },
             err => {
@@ -47,9 +49,20 @@ App({
       });
     });
   },
+  // 手机号快捷登录
+  mobileLogin(data) {
+    if (!(data && data.mobile && this.globalData.autoLogin)) return;
+    wx.$http.post('wechatmini/login/mobile', data).then(
+      ({ data }) => {
+        this.finishLogin(data, '2');
+      },
+      err => {},
+    )
+  },
   // 登陆完成处理
   finishLogin({ user, openid, Authorization }, loginType = '1') {
     console.log(user)
+    this.globalData.autoLogin = false;
     if (user && user.userType === 'ADMIN') {
       this.showModal({
         content: '管理员请登陆PC端进行操作',

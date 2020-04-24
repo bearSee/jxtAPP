@@ -120,7 +120,11 @@ Component({
             loadingWord: list.length < total ? '上拉加载更多' : '已全部加载',
           });
         },
-        () => { },
+        () => {
+          this.setData({
+            msgList: [],
+          });
+        },
       );
     },
     // 收藏、拉黑、举报

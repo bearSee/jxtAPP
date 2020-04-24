@@ -57,7 +57,7 @@ Page({
         {
           code: 'recruitmentWork',
           label: '招聘工种',
-          type: 'check',
+          type: 'radio',
           options: [],
           optionProps: {
             label: 'value',
@@ -68,7 +68,7 @@ Page({
         {
           code: 'recruitmentProfessional',
           label: '招聘专业',
-          type: 'check',
+          type: 'radio',
           options: [],
           optionProps: {
             label: 'value',
@@ -79,7 +79,7 @@ Page({
         {
           code: 'recruitmentPosition',
           label: '招聘岗位',
-          type: 'check',
+          type: 'radio',
           options: [],
           optionProps: {
             label: 'value',

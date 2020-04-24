@@ -4,12 +4,22 @@
 
 .message-detail {
   height: 100vh;
-  overflow-y: auto;
+  width: 100vw;
   background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
 }
 .content {
-  padding: 30rpx;
+  margin: 0 30rpx;
   padding-bottom: 80rpx;
+  width: calc(100% - 60rpx);
+  flex: 1 1 auto;
+  overflow: auto;
+}
+.detail-head {
+  padding: 30rpx;
+  padding-bottom: 15rpx;
+  margin-bottom: 15rpx;
 }
 .content-body {
   border-top: 2rpx solid #E5E5E5;

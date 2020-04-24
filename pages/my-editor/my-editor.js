@@ -225,7 +225,7 @@ Component({
       wx.showLoading({ title: '加载中...', mask: true });
       return new Promise((resolve, reject) => {
         const { host } = app.globalData;
-        const url = `${host}boe/ticket/ocrTicket`
+        const url = `${host}file/upload`
         const header = {
           Authorization: wx.getStorageSync('Authorization') || '',
         };
@@ -234,8 +234,10 @@ Component({
           filePath,
           header,
           name: 'file',
-          success: ({ imgUrl }) => {
-            resolve(imgUrl);
+          success: ({ data }) => {
+            data = data && JSON.parse(data) || {};
+            console.log(data);
+            resolve(data.fileName || '');
           },
           fail: () => {
             reject();

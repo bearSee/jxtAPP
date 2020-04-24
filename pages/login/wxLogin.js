@@ -42,15 +42,7 @@ Page({
     };
     wx.$http.post('wechatmini/decryptuserinfo', params).then(
       ({ data }) => {
-        this.loginAction(data);
-      },
-      err => {},
-    )
-  },
-  loginAction(data) {
-    wx.$http.post('wechatmini/login/mobile', data).then(
-      ({ data }) => {
-        app.finishLogin(data, '2');
+        app.mobileLogin(data);
       },
       err => {},
     )
