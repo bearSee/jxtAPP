@@ -32,7 +32,7 @@ Page({
         {
           code: 'messageType',
           label: '消息类型',
-          type: 'check',
+          type: 'radio',
           options: [],
           optionProps: {
             label: 'value',

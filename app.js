@@ -5,6 +5,7 @@ wx.$http = http;
 App({
   // 全局数据
   globalData: {
+    mobile: '',
     openid: '',
     userInfo: {},
     content: '',
@@ -15,7 +16,6 @@ App({
      * 2: 快捷登录
      */
     loginType: '0',
-    autoLogin: true,
     // appid: wx811778012413f270
     // 测试地址
     host: 'https://www.szzdxx.cn/jixintong/',
@@ -37,8 +37,9 @@ App({
           wx.$http.post('wechatmini/uploadjscode', { jscode }, { hiddenErrModal: true }).then(
             ({ data }) => {
               const openid = data.openid || data.openId;
+              const mobile = data.mobile || '';
               if (openid) this.globalData.openid = openid;
-              this.mobileLogin(data);
+              if (mobile) this.globalData.mobile = mobile;
               resolve(res);
             },
             err => {
@@ -51,7 +52,7 @@ App({
   },
   // 手机号快捷登录
   mobileLogin(data) {
-    if (!(data && data.mobile && this.globalData.autoLogin)) return;
+    if (!(data && data.mobile)) return;
     wx.$http.post('wechatmini/login/mobile', data).then(
       ({ data }) => {
         this.finishLogin(data, '2');
@@ -62,7 +63,6 @@ App({
   // 登陆完成处理
   finishLogin({ user, openid, Authorization }, loginType = '1') {
     console.log(user)
-    this.globalData.autoLogin = false;
     if (user && user.userType === 'ADMIN') {
       this.showModal({
         content: '管理员请登陆PC端进行操作',

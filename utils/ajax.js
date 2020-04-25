@@ -58,6 +58,12 @@ function interceptors(res, resolve, reject, hiddenErrModal) {
     hiddenCancel: true,
     content: res.message || '后台接口请求失败，请联系后台人员',
     confirmText: '好的',
+  }).then(() => {
+    if (res.code === '10000') {
+      wx.redirectTo({
+        url: '/pages/login/beforeLogin',
+      });
+    }
   });
 }
 

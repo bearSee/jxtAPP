@@ -23,9 +23,14 @@ Page({
   },
   gotoLogin({ currentTarget }) {
     const { dataset } = currentTarget;
-    const { type } = dataset;
+    const isPwdLogin = dataset.type === 'pwd';
+    const { mobile, openid } = app.globalData;
 
-    const url = type === 'pwd' ? '/pages/login/pwdLogin' : '/pages/login/wxLogin';
+    if (!isPwdLogin && mobile && openid) {
+      app.mobileLogin({ openId: openid, mobile });
+      return;
+    }
+    const url = isPwdLogin ? '/pages/login/pwdLogin' : '/pages/login/wxLogin';
     wx.navigateTo({ url });
   },
   onLoad: function () {
