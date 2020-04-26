@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "欢迎使用",
+  "disableScroll": true,
   "usingComponents": {}
 }

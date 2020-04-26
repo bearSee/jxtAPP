@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "发布内容",
+  "disableScroll": true,
   "usingComponents": {
     "zte-input": "/component/zte-input/zte-input",
     "my-editor": "/pages/my-editor/my-editor"

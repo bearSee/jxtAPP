@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "意见反馈",
+  "disableScroll": true,
   "usingComponents": {
     "zte-input": "/component/zte-input/zte-input"
   }

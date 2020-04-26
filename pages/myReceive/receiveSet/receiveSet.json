@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "发布消息",
+  "navigationBarTitleText": "接受设置",
   "usingComponents": {
     "choose-industry": "/pages/module/choose-industry/choose-industry",
     "zte-item": "/component/zte-item/zte-item",

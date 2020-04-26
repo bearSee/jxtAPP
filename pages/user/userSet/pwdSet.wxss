@@ -16,4 +16,8 @@
 }
 .zte-form {
   height: calc(100% - 75rpx)!important;
+  background: #f8f8f8!important;
+}
+form {
+  background: #fff;
 }

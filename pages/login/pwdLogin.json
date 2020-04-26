@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "账号密码登陆",
+  "disableScroll": true,
   "usingComponents": {}
 }

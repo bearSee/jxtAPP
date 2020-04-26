@@ -1,6 +1,7 @@
 @import '/common/common.wxss';
 .container {
   padding: 36rpx 40rpx;
+  background: #fff;
 }
 .register-box {
   font-size: 56rpx;
@@ -43,6 +44,7 @@
 }
 
 .vCode-btn {
+  box-sizing: border-box;
   width: 170rpx;
   border-radius: 28rpx;
   text-align: center;
@@ -50,7 +52,7 @@
   margin: auto;
   color: #CBCBCB;
   font-size: 26rpx;
-  line-height: 54rpx
+  line-height: 52rpx
 }
 .flex-line {
   flex: 1 1 auto;

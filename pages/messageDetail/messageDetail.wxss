@@ -10,9 +10,9 @@
   flex-direction: column;
 }
 .content {
-  margin: 0 30rpx;
+  padding: 0 30rpx;
   padding-bottom: 80rpx;
-  width: calc(100% - 60rpx);
+  width: 100%;
   flex: 1 1 auto;
   overflow: auto;
 }

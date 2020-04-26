@@ -210,6 +210,7 @@ Component({
     insertImage(src) {
       this.editorCtx.insertImage({
         src,
+        width: '100%',
         ...this.properties.imageAttr,
         complete: () => {
           this.triggerEvent('insertImage', src);
