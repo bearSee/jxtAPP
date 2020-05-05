@@ -19,7 +19,10 @@
         bindtap="clickList"
         data-item="{{ item }}">
         <view class="content">
-          <view class="des cut_font">{{ item.title }}</view>
+          <view>
+            <view class="title cut_font">{{ item.title }}</view>
+            <view class="des cut_font">{{ item.userName || item.publisher }} {{ item.createdDt }}</view>
+          </view>
           <view class="oprate-box">
             <i
               wx:for="{{ oprateList }}"
