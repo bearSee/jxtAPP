@@ -16,9 +16,9 @@ Page({
     formData[config.code] = value;
     prevPage.setData({ formData });
     wx.navigateBack();
-    setTimeout(() => {
-      prevPage.submit();
-    }, 1000);
+    // setTimeout(() => {
+    //   prevPage.submit();
+    // }, 1000);
   },
   handlerInput({ detail }) {
     const { value } = detail;

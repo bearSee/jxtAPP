@@ -35,5 +35,6 @@ Page({
   },
   onLoad: function () {
     app.userLogin();
-  }
+  },
+  onShareAppMessage() {},
 })

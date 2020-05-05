@@ -271,8 +271,8 @@ Component({
     // 查看消息详情
     clickList({ detail }) {
       const { type } = this.data;
-      const { id, newsId } = detail;
-      wx.navigateTo({ url: `/pages/messageDetail/messageDetail?type=${type}&id=${id || newsId}&skipFrom=${this.properties.pageType}` });
+      const { id, newsId, industryNewsId, recruitmentNewsId } = detail;
+      wx.navigateTo({ url: `/pages/messageDetail/messageDetail?type=${type}&id=${id || newsId || industryNewsId || recruitmentNewsId}&skipFrom=${this.properties.pageType}` });
     },
     // 查看消息通知
     viewNotice() {

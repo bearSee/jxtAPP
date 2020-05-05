@@ -18,7 +18,7 @@
   <choose-industry
     id="choose-industry"
     data="{{ formData.receiveIndustryList || [] }}"
-    removeBtn
+    disabled
     bindhandlerChange="industryChange">
   </choose-industry>
   <view class="submit-btn" bindtap="submit">提交</view>

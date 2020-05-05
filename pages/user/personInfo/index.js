@@ -15,16 +15,16 @@ Page({
         label: '基础信息',
         type: 'title',
       },
-      {
-        code: 'touxiang',
-        label: '头像',
-        type: 'img',
-      },
-      {
-        code: 'account',
-        label: '账号',
-        type: 'view',
-      },
+      // {
+      //   code: 'touxiang',
+      //   label: '头像',
+      //   type: 'img',
+      // },
+      // {
+      //   code: 'account',
+      //   label: '账号',
+      //   type: 'view',
+      // },
       {
         code: 'perName',
         label: '姓名',
@@ -59,20 +59,20 @@ Page({
       },
     ],
     companyItems: [
-      {
-        label: '基础信息',
-        type: 'title',
-      },
-      {
-        code: 'touxiang',
-        label: '头像',
-        type: 'img',
-      },
-      {
-        code: 'account',
-        label: '账号',
-        type: 'view',
-      },
+      // {
+      //   label: '基础信息',
+      //   type: 'title',
+      // },
+      // {
+      //   code: 'touxiang',
+      //   label: '头像',
+      //   type: 'img',
+      // },
+      // {
+      //   code: 'account',
+      //   label: '账号',
+      //   type: 'view',
+      // },
       // {
       //   code: 'perName',
       //   label: '姓名',
@@ -139,16 +139,22 @@ Page({
     wx.$http.post('my/info').then(
       ({ info }) => {
         const formData = info || {};
-        const { province, city, area, street, provinceName, cityName, areaName, streetName, belongIndustryList } = formData;
-        formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
-        if (belongIndustryList && belongIndustryList.length) {
-          formData.industryInfoName = belongIndustryList.map(({ industryName }) => industryName).join('、');
-        }
-        const defaulVal = [province, city, area, street];
-        this.setData({ formData, defaulVal });
+        this.translateInfo(formData);
       },
       () => { },
     );
+  },
+  translateInfo(formData) {
+    const { province, city, area, street, provinceName, cityName, areaName, streetName, belongIndustryList } = formData;
+    let defaulVal = [];
+    if (province && provinceName) {
+      formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
+      defaulVal = [province, city, area, street];
+    }
+    if (belongIndustryList && belongIndustryList.length) {
+      formData.industryInfoName = belongIndustryList.map(({ industryName }) => industryName).join('、');
+    }
+    this.setData({ formData, defaulVal });
   },
   clickTagView({ currentTarget }) {
     const { item } = currentTarget.dataset;
@@ -197,9 +203,9 @@ Page({
     wx.$http.post(saveUrl, params).then(
       () => {
         wx.showToast({ title: '保存成功', mask: true });
-        setTimeout(() => {
-          this.getBasicInfo();
-        }, 1000);
+        // setTimeout(() => {
+        //   this.getBasicInfo();
+        // }, 1000);
       },
       () => { },
     );
@@ -246,12 +252,9 @@ Page({
       formData[adressCodes[i].label] = name || '';
       formData[adressCodes[i].code] = id || '';
     });
-    // const { provinceName, cityName, areaName, streetName } = formData;
-    // formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
-    this.setData({ formData });
+    this.translateInfo(formData);
     setTimeout(() => {
       this.closeAdressDialog();
-      this.submit();
     }, 100);
   },
   // 行业选择提交
@@ -260,8 +263,8 @@ Page({
     if (industryList.every(d => d.industryLabel)) {
       const { formData } = this.data;
       formData.belongIndustryList = industryList;
-      this.setData({ formData, industryVisible: false });
-      this.submit();
+      this.setData({ industryVisible: false });
+      this.translateInfo(formData);
     } else {
       app.showModal({
         content: '请完善行业信息',

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "接受设置",
+  "navigationBarTitleText": "接收设置",
   "usingComponents": {
     "choose-industry": "/pages/module/choose-industry/choose-industry",
     "zte-item": "/component/zte-item/zte-item",

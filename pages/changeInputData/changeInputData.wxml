@@ -7,4 +7,4 @@
   maxlength="{{ config.maxlength || -1 }}"
   value="{{ value }}"
   bindinput="handlerInput"/>
-<button class="submit-btn" bindtap="submit">提交修改</button>
+<button class="submit-btn" bindtap="submit">确定</button>

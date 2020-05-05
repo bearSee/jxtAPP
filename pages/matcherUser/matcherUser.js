@@ -7,10 +7,25 @@ Page({
     companyList: [],
     pageSize: 20,
     loadingWord: '',
+    requestUrl: '',
+    updateUrl: '',
+    params: {},
     industryNewsId: '',
   },
-  onLoad: function ({ industryNewsId }) {
-    this.setData({ industryNewsId });
+  onLoad: function ({ industryNewsId, recruitmentNewsId }) {
+    let requestUrl = 'industryNews/lookMatcherUser';
+    let updateUrl = 'industryNews/matcherUserRefresh';
+    let params = { industryNewsId };
+    if (recruitmentNewsId) {
+      requestUrl = 'recruitmentNews/lookMatcherUser';
+      updateUrl = 'recruitmentNews/matcherUserRefresh';
+      params = { recruitmentNewsId };
+    }
+    this.setData({
+      requestUrl,
+      updateUrl,
+      params,
+    });
     this.initList();
   },
   clearInput() {
@@ -23,9 +38,9 @@ Page({
     this.initList();
   },
   getList() {
-    const { pageSize, keyword, industryNewsId } = this.data;
+    const { pageSize, keyword, requestUrl, params } = this.data;
     this.setData({ loadingWord: '正在加载' });
-    wx.$http.post('industryNews/lookMatcherUser', { pageNum: 1, pageSize, keyword, industryNewsId }).then(
+    wx.$http.post(requestUrl, { pageNum: 1, pageSize, keyword, ...params }).then(
       ({ list, total }) => {
         const companyList = (list || []).map(d => ({
           ...d,
@@ -60,8 +75,8 @@ Page({
     });
   },
   update() {
-    const { industryNewsId } = this.data;
-    wx.$http.post('industryNews/matcherUserRefresh', { industryNewsId }).then(
+    const { updateUrl, params } = this.data;
+    wx.$http.post(updateUrl, params).then(
       () => {
         this.initList();
       },

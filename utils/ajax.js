@@ -3,7 +3,7 @@
  * POST请求，
  * URL：接口
  */
-// function post(url, data, hiddenFailModal, hiddenLoading
+// config: hiddenErrModal, hiddenLoading, header
 function post(url, data, config = {}) {
   const { hiddenErrModal, hiddenLoading, header } = config;
   return new Promise((resolve, reject) => {
