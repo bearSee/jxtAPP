@@ -23,5 +23,6 @@
       bindinput="handlerPwdChange"/>
   </view>
   <button bindtap="login" class="submit-btn">立即登录</button>
-  <view class="no_account">还没有账号？<text bindtap="gotoRegister">去注册</text></view>
+  <view class="no_account">还没有账号？<text class="blue_font" bindtap="gotoRegister">去注册</text></view>
+  <view class="blue_font" bindtap="gotoReset">忘记密码</view>
 </view>

@@ -1,0 +1,43 @@
+<!--logs.wxml-->
+<view class="container">
+
+  <view>
+    <view class="form-item border_bottom">
+      <i class="ri-smartphone-line icon"></i>
+      <input
+        class="input-item flex-line"
+        type="text"
+        placeholder-class="placeholderClass"
+        placeholder="请输入您的手机号"
+        maxlength="11"
+        value="{{ mobileNumber }}"
+        bindblur="handlerBlur"
+        data-key="mobileNumber"/>
+    </view>
+    <view class="form-item border_bottom verifyCode">
+      <i class="ri-keyboard-box-line icon"></i>
+      <input
+        class="input-item"
+        type="text"
+        placeholder-class="placeholderClass"
+        placeholder="请输入验证码"
+        maxlength="6"
+        bindblur="handlerBlur"
+        data-key="verifyCode"/>
+      <view class="vCode-btn" bindtap="getVerifyCode">{{ (seconds !== 60 && seconds && seconds + '秒') || '获取验证码' }}</view>
+    </view>
+    <view class="form-item border_bottom">
+      <i class="ri-lock-password-line icon"></i>
+      <input
+        class="input-item flex-line"
+        type="password"
+        placeholder-class="placeholderClass"
+        placeholder="请输入新密码"
+        maxlength="20"
+        value="{{ password }}"
+        bindblur="handlerBlur"
+        data-key="password"/>
+    </view>
+  </view>
+  <button bindtap="submit" class="submit-btn">提 交</button>
+</view>

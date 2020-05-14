@@ -18,6 +18,7 @@
     "pages/login/wxLogin",
     "pages/login/pwdLogin",
     "pages/register/register",
+    "pages/register/resetPwd",
     "pages/register/agreement",
     "pages/user/user",
     "pages/user/personInfo/index",

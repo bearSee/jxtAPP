@@ -31,4 +31,7 @@ Page({
   gotoRegister() {
     wx.navigateTo({ url: '/pages/register/register' });
   },
+  gotoReset() {
+    wx.navigateTo({ url: '/pages/register/resetPwd' });
+  },
 })
