@@ -25,5 +25,5 @@
   <i class="iconfont icon--checklist" data-name="list" data-value="check"></i>
   <i class="iconfont icon-youxupailie {{formats.list === 'ordered' ? 'ql-active' : ''}}" data-name="list" data-value="ordered"></i>
   <i class="iconfont icon-wuxupailie {{formats.list === 'bullet' ? 'ql-active' : ''}}" data-name="list" data-value="bullet"></i>
-  <view class="finish-btn" catchtouchend="getContents">保存</view>
+  <view class="finish-btn" catchtouchend="getContents">发布</view>
 </view>

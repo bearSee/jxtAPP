@@ -47,6 +47,11 @@ Page({
       () => { },
     );
   },
+  viewUserDetail() {
+    wx.navigateTo({
+      url: `/pages/viewUserInfo/viewUserInfo?userId=${this.data.detailData.userId}`,
+    });
+  },
   // 收藏、拉黑、举报
   oprate({ currentTarget }) {
     const { type } = currentTarget.dataset;

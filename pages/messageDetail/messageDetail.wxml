@@ -13,13 +13,16 @@
     <rich-text nodes="{{ detailData.content }}"></rich-text>
   </view>
   <view class="oprate-box" wx:if="{{ showOprate }}">
-    <i
-      wx:for="{{ oprateList }}"
-      wx:for-item="oprateItem"
-      wx:key="index"
-      class="oprate-icon {{ detailData[oprateItem.type] === 'Y' ? oprateItem.selected : oprateItem.select }}"
-      catchtap="oprate"
-      data-type="{{ oprateItem.type }}">
-    </i>
+    <view class="view-detail theme_fontColor_main" bindtap="viewUserDetail">查看用户详情</view>
+    <view class="icon-box">
+      <i
+        wx:for="{{ oprateList }}"
+        wx:for-item="oprateItem"
+        wx:key="index"
+        class="oprate-icon {{ detailData[oprateItem.type] === 'Y' ? oprateItem.selected : oprateItem.select }}"
+        catchtap="oprate"
+        data-type="{{ oprateItem.type }}">
+      </i>
+    </view>
   </view>
 </view>
