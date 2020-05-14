@@ -72,7 +72,7 @@ Page({
   getDefaultAdress() {
     const { formData } = this.data;
     const { province, city, area, street, provinceName, cityName, areaName, streetName } = this.data.formData;
-    if (!province) return;
+    if (!(province && provinceName)) return;
     formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
     const defaultAdress = [province, city, area, street];
     this.setData({ formData, defaultAdress });

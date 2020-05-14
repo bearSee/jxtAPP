@@ -53,11 +53,25 @@ App({
   // 手机号快捷登录
   mobileLogin(data) {
     if (!(data && data.mobile)) return;
-    wx.$http.post('wechatmini/login/mobile', data).then(
+    wx.$http.post('wechatmini/login/mobile', data, { hiddenErrModal: true }).then(
       ({ data }) => {
         this.finishLogin(data, '2');
       },
-      err => {},
+      err => {
+        if (err.code === '10006') {
+          this.showModal({
+            content: '当前用户暂未注册，请先完成注册',
+            hiddenCancel: true,
+          }).then(() => {
+            wx.navigateTo({ url: '/pages/register/register' });
+          });
+        } else {
+          this.showModal({
+            content: err.message || '登录失败，请稍后重试',
+            hiddenCancel: true,
+          });
+        }
+      },
     )
   },
   // 登陆完成处理

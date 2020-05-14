@@ -5,26 +5,28 @@ Page({
   data: {
     formItems: [
       {
-        code: '1',
+        code: 'oldPwd',
         label: '旧密码',
         type: 'password',
       },
       {
-        code: '2',
+        code: 'pwd1',
         label: '新密码',
         type: 'password',
       },
       {
-        code: '3',
+        code: 'pwd2',
         label: '确认密码',
         type: 'password',
       },
     ],
   },
   submit({ detail }) {
-    console.log(detail.form);
-    wx.$http.post('').then(
-      () => {},
+    wx.$http.post('my/resetPassword', detail.form).then(
+      () => {
+        wx.navigateBack();
+        wx.showToast({ title: '修改成功', mask: true });
+      },
       () => {},
     );
   },

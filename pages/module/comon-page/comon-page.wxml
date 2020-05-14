@@ -35,6 +35,7 @@
       <message-small-list
         id="list"
         wx:if="{{ pageType === 'receive' }}"
+        newsType="{{ type }}"
         list="{{ msgList }}"
         bindclickList="clickList"
         bindhandlerDelete="handlerDelete"
@@ -43,6 +44,7 @@
       <message-large-list
         wx:else
         list="{{ msgList }}"
+        newsType="{{ type }}"
         edit="{{ pageType === 'release' }}"
         bindclickList="clickList"
         bindhandlerDelete="handlerDelete"

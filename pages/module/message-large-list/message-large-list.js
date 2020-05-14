@@ -13,13 +13,17 @@ Component({
       type: Boolean,
       value: false,
     },
+    newsType: {
+      type: String,
+      value: 'industryNews',
+    },
   },
   data: {
     x: 0,
     itemindex: 0,
     oprateList: [
       {
-        type: 'isCollection',
+        type: 'isCollect',
         selected: 'ri-heart-fill',
         select: 'ri-heart-line',
       },
@@ -68,7 +72,7 @@ Component({
         return;
       }
       wx.navigateTo({
-        url: `/pages/matcherUser/matcherUser?industryNewsId=${item.id}`,
+        url: `/pages/matcherUser/matcherUser?${this.properties.newsType}Id=${item.id}`,
       });
     },
   },

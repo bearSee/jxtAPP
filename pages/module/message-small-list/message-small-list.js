@@ -19,7 +19,7 @@ Component({
     itemindex: 0,
     oprateList: [
       {
-        type: 'isCollection',
+        type: 'isCollect',
         selected: 'ri-heart-fill',
         select: 'ri-heart-line',
       },

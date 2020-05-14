@@ -1,5 +1,17 @@
 
-<view class="choose-industry {{ removeBtn && 'no_padding' }}">
+<view class="choose-industry disabled-industry" wx:if="{{ disabled }}">
+  <view
+    class="content border_bottom"
+    wx:for="{{ industryList }}"
+    wx:key="index">
+    <view class="title">行业{{ index + 1}}</view>
+    <view class="tag-name border_bottom {{ !item.industryName && 'secondary_fontColor' }}">{{ item.industryName || '暂无行业信息' }}</view>
+    <view class="title">#行业标签#</view>
+    <view class="check-box">{{ item.industryLabelName }}</view>
+  </view>
+</view>
+
+<view class="choose-industry" wx:else>
   <view
     class="content border_bottom"
     wx:for="{{ industryList }}"
@@ -44,15 +56,15 @@
   </view>
 
   <!-- <view class="submit-btn" bindtap="submitChange">保存</view> -->
-  <view class="foot-btn-group" wx:if="{{ !removeBtn }}">
+  <view class="foot-btn-group" wx:if="{{ oprate }}">
     <button bindtap="conmeBack">返回</button>
     <button class="theme_background_main" bindtap="submit">保存</button>
   </view>
 </view>
 
-<view class="dialog" wx:if="{{ visible }}" bindtap="closeDialog">
-  <view class="industry-box" catchtap="openDialog">
-    <view class="industry-box-title">{{ selectedIndustry.industryName ? '当前已选中：' + selectedIndustry.industryName : '请选择行业' }}</view>
+<view class="dialog industry-dialog" wx:if="{{ visible }}">
+  <view class="industry-box-title">{{ selectedIndustry.industryName ? '当前已选中：' + selectedIndustry.industryName : '请选择行业' }}</view>
+  <view class="industry-box">
     <view
       class="industry-tree first-child"
       wx:for="{{ wholeTree }}"
@@ -89,6 +101,6 @@
         </view>
       </view>
     </view>
-    <view class="submit-btn" bindtap="saveChange">确定</view> 
   </view>
+  <view class="submit-btn" bindtap="saveChange">确定</view> 
 </view>

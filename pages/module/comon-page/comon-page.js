@@ -131,7 +131,9 @@ Component({
     oprate({ detail }) {
       this.hiddenDel()
       const { item, type } = detail;
-      const { id, userId, newsId } = item;
+      const { id, userId, industryNewsId, recruitmentNewsId } = item;
+      const newsId = item.newsId || id || industryNewsId || recruitmentNewsId;
+      console.log(item);
   
       if (type === 'edit') {
         const currentTarget = {
@@ -167,19 +169,19 @@ Component({
             },
           },
         },
-        isCollection: {
+        isCollect: {
           'N': {
             url: 'collection/save',
             successTips: '收藏成功',
             params: {
-              newsId: id || newsId,
+              newsId,
             },
           },
           'Y': {
             url: 'collection/delete',
             successTips: '已取消收藏',
             params: {
-              newsId: id || newsId,
+              newsId,
             },
           },
         },
@@ -189,7 +191,7 @@ Component({
             warningTips: '是否举报该用户?',
             successTips: '举报成功',
             params: {
-              newsId: id || newsId,
+              newsId,
             },
           },
         }

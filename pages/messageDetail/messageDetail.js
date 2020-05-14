@@ -5,7 +5,7 @@ Page({
   data: {
     oprateList: [
       {
-        type: 'isCollection',
+        type: 'isCollect',
         selected: 'ri-heart-fill',
         select: 'ri-heart-line',
       },
@@ -75,7 +75,7 @@ Page({
           },
         },
       },
-      isCollection: {
+      isCollect: {
         'N': {
           url: 'collection/save',
           successTips: '收藏成功',

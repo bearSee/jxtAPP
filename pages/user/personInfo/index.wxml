@@ -21,6 +21,7 @@
     </view>
 </view>
 
+<button class="submit-btn" bindtap="submit">提交修改</button>
 
 <view class="dialog" wx:if="{{ adressVisible }}" bindtap="closeAdressDialog">
     <view class="dialog-content" catchtap="openAdressDialog">
@@ -39,6 +40,7 @@
     <view class="industry-dialog-content" catchtap="openIndustryDialog">
         <choose-industry
             class="content-box"
+            oprate
             data="{{ formData.belongIndustryList }}"
             bindhandlerConfirm="handlerIndustryConfirm"
             bindclose="closeIndustryDialog">

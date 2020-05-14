@@ -91,5 +91,7 @@ Page({
     );
   },
   onLoad: function () {
+    const mobileNumber = app.globalData.mobile || '';
+    this.setData({ mobileNumber });
   }
 })

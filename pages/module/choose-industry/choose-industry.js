@@ -16,7 +16,11 @@ Component({
         this.initData();
       },
     },
-    removeBtn: {
+    disabled: {
+      type: Boolean,
+      value: false,
+    },
+    oprate: {
       type: Boolean,
       value: false,
     },

@@ -70,9 +70,6 @@
   width: 50%;
   border-radius: 0;
 }
-.no_padding {
-  padding-bottom: 0;
-}
 .dialog {
   width: 100vw;
   height: 100vh;
@@ -83,9 +80,12 @@
   z-index: 9;
   transition: 0.5s;
 }
+.industry-dialog {
+  background: #f8f8f8;
+}
 .industry-box {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 232rpx);
   background: #f8f8f8;
   overflow-y: auto;
 }
@@ -105,4 +105,11 @@
 .is-active {
   color: #4285F4;
   background: rgba(250, 250, 250, .5);
+}
+
+.disabled-industry {
+  padding-bottom: 0;
+}
+.disabled-industry .tag-name  {
+  line-height: 80rpx;
 }
