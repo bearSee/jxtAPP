@@ -24,7 +24,7 @@ Page({
         wx.setStorageSync('password', password);
       },
       err => {
-        app.showModal({ content: err.message || '登录失败', hiddenCancel: true, confirmText: '好的' });
+        // app.showModal({ content: err.message || '登录失败', hiddenCancel: true, confirmText: '好的' });
       }
     );
   },

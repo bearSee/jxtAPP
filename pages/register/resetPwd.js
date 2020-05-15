@@ -46,17 +46,19 @@ Page({
     );
   },
   submit() {
-    const { mobileNumber, password, verifyCode } = this.data;
-    wx.$http.post('init/forget', { mobileNumber, password, verifyCode }).then(
-      () => {
-        app.showModal({ content: '密码重置成功', hiddenCancel: true, confirmText: '好的' }).then(
-          () => {
-            this.login();
-          },
-        );
-      },
-      () => { }
-    );
+    setTimeout(() => {
+      const { mobileNumber, password, verifyCode } = this.data;
+      wx.$http.post('init/forget', { mobileNumber, password, verifyCode }).then(
+        () => {
+          app.showModal({ content: '密码重置成功', hiddenCancel: true, confirmText: '好的' }).then(
+            () => {
+              this.login();
+            },
+          );
+        },
+        () => { }
+      );
+    }, 200);
   },
   login() {
     const { mobileNumber, password } = this.data;
