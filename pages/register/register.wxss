@@ -48,11 +48,16 @@
   width: 170rpx;
   border-radius: 28rpx;
   text-align: center;
-  border: 1rpx solid rgba(203,203,203,1);
   margin: auto;
-  color: #CBCBCB;
   font-size: 26rpx;
-  line-height: 52rpx
+  line-height: 52rpx;
+  background: linear-gradient(329deg,rgba(0,183,255,1) 0%,rgba(0,129,255,1) 100%);
+  color: #fff;
+}
+.vCode-disabled {
+  border: 1rpx solid rgba(203,203,203,1);
+  color: #CBCBCB;
+  background: #fff;
 }
 .flex-line {
   flex: 1 1 auto;

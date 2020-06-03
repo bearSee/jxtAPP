@@ -18,32 +18,34 @@ Page({
     });
   },
   getVerifyCode() {
-    const { seconds, mobileNumber } = this.data;
-    if (seconds !== 60) return;
-    if (!mobileNumber) {
-      app.showModal({ content: '请先输入手机号', hiddenCancel: true, confirmText: '好的' });
-      return;
-    }
-    // 验证码倒计时
-    const timer = setInterval(() => {
-      if (this.data.seconds) {
-        this.setData({
-          seconds: this.data.seconds - 1,
-        })
-      } else {
-        clearInterval(this.data.timer);
-        this.setData({ seconds: 60 });
+    setTimeout(() => {
+      const { seconds, mobileNumber } = this.data;
+      if (seconds !== 60) return;
+      if (!mobileNumber) {
+        app.showModal({ content: '请先输入手机号', hiddenCancel: true, confirmText: '好的' });
+        return;
       }
-    }, 1000);
-    this.setData({ timer, seconds: 59 });
+      // 验证码倒计时
+      const timer = setInterval(() => {
+        if (this.data.seconds) {
+          this.setData({
+            seconds: this.data.seconds - 1,
+          })
+        } else {
+          clearInterval(this.data.timer);
+          this.setData({ seconds: 60 });
+        }
+      }, 1000);
+      this.setData({ timer, seconds: 59 });
 
-    wx.$http.post('init/verifcatCode/forget', { mobileNumber }).then(
-      () => {},
-      () => {
-        clearInterval(this.data.timer);
-        this.setData({ seconds: 60 });
-      }
-    );
+      wx.$http.post('init/verifcatCode/forget', { mobileNumber }).then(
+        () => {},
+        () => {
+          clearInterval(this.data.timer);
+          this.setData({ seconds: 60 });
+        }
+      );
+    }, 200);
   },
   submit() {
     setTimeout(() => {
