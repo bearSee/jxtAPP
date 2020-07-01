@@ -1,1 +1,8 @@
-<comon-page id="comon-page" pageType="release"></comon-page>
+<comon-page
+  showMatcherButton
+  showReleaseButton
+  pageType="release"
+  id="comon-page"
+  oprateList="{{ oprateList }}">
+</comon-page>
+

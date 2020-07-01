@@ -5,15 +5,28 @@ Component({
     addGlobalClass: true,
   },
   properties: {
-    /**
-     * type：
-     * collect 我的收藏
-     * release 我的发布
-     * receive 我的接收
-     */
     pageType: {
       type: String,
-      value: 'release',
+      value: 'collect',
+    },
+    // 展示查看通知按钮
+    showNoticeButton: {
+      type: Boolean,
+      value: false,
+    },
+    // 展示发布消息按钮
+    showReleaseButton: {
+      type: Boolean,
+      value: false,
+    },
+    // 展示查看匹配用户按钮
+    showMatcherButton: {
+      type: Boolean,
+      value: false,
+    },
+    oprateList: {
+      type: Array,
+      value: [],
     },
   },
   data: {
@@ -39,31 +52,31 @@ Component({
       collect: {
         industryNews: {
           getListUrl: 'collection/industryNews/list',
-          deleListUral: 'collection/delete',
+          deleListUrl: 'collection/delete',
         },
         recruitmentNews: {
           getListUrl: 'collection/recruitmentNews/list',
-          deleListUral: 'collection/delete',
+          deleListUrl: 'collection/delete',
         },
       },
       release: {
         industryNews: {
           getListUrl: 'industryNews/list',
-          deleListUral: 'industryNews/delete',
+          deleListUrl: 'industryNews/delete',
         },
         recruitmentNews: {
           getListUrl: 'recruitmentNews/list',
-          deleListUral: 'recruitmentNews/delete',
+          deleListUrl: 'recruitmentNews/delete',
         },
       },
       receive: {
         industryNews: {
           getListUrl: 'receiveNews/industry/list',
-          deleListUral: '',
+          deleListUrl: '',
         },
         recruitmentNews: {
           getListUrl: 'receiveNews/recruitment/list',
-          deleListUral: '',
+          deleListUrl: '',
         },
       },
     },
@@ -128,13 +141,11 @@ Component({
       );
     },
     // 收藏、拉黑、举报
-    oprate({ detail }) {
+    handlerOprate({ detail }) {
       this.hiddenDel()
       const { item, type } = detail;
       const { id, userId, industryNewsId, recruitmentNewsId } = item;
       const newsId = item.newsId || id || industryNewsId || recruitmentNewsId;
-      console.log(item);
-  
       if (type === 'edit') {
         const currentTarget = {
           dataset: {
@@ -207,15 +218,15 @@ Component({
       if (warningTips) {
         app.showModal({ content: obj[type][currentState].warningTips }).then(
           () => {
-            this.handlerOprate({ url, params, successTips });
+            this.finishOprate({ url, params, successTips });
           },
           () => { },
         );
         return;
       }
-      this.handlerOprate({ url, params, successTips });
+      this.finishOprate({ url, params, successTips });
     },
-    handlerOprate({ url, params, successTips }) {
+    finishOprate({ url, params, successTips }) {
       wx.$http.post(url, params).then(
         () => {
           wx.showToast({ title: successTips });
@@ -230,8 +241,12 @@ Component({
     handlerDelete({ detail }) {
       const { item } = detail;
       const { pageType } = this.properties;
+      if (pageType === 'collect') {
+        this.handlerOprate({ detail: { item, type: 'isCollect' } });
+        return;
+      }
       const { config, type } = this.data;
-      const url = config[pageType][type].deleListUral;
+      const url = config[pageType][type].deleListUrl;
       const params = {
         industryNews: { industryNewsId: item.id },
         recruitmentNews: { recruitmentNewsId: item.id },
@@ -279,6 +294,13 @@ Component({
     // 查看消息通知
     viewNotice() {
       wx.navigateTo({ url: '/pages/notices/notices' });
+    },
+    // 查看匹配用户
+    viewMatcherUser({ detail }) {
+      const { id } = detail;
+      wx.navigateTo({
+        url: `/pages/matcherUser/matcherUser?${this.data.type}Id=${id}`,
+      });
     },
     // 恢复列表左滑距离
     hiddenDel() {

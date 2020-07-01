@@ -9,50 +9,18 @@ Component({
       type: Array,
       value: [],
     },
-    edit: {
+    showMatcherButton: {
       type: Boolean,
       value: false,
     },
-    newsType: {
-      type: String,
-      value: 'industryNews',
+    oprateList: {
+      type: Array,
+      value: [],
     },
   },
   data: {
     x: 0,
     itemindex: 0,
-    oprateList: [
-      {
-        type: 'isCollect',
-        selected: 'ri-heart-fill',
-        select: 'ri-heart-line',
-      },
-      {
-        type: 'isBlacklist',
-        selected: 'ri-user-unfollow-fill',
-        select: 'ri-user-unfollow-line',
-        // select: 'ri-user-add-line',
-      },
-      {
-        type: 'isComplaint',
-        selected: 'ri-shield-star-fill',
-        select: 'ri-shield-star-line',
-      },
-    ],
-    editList: [
-      {
-        type: 'edit',
-        name: '编辑',
-        selected: 'ri-edit-line',
-        select: 'ri-edit-line',
-      },
-      {
-        type: 'delete',
-        name: '删除',
-        selected: 'ri-delete-bin-5-line',
-        select: 'ri-delete-bin-5-line',
-      },
-    ],
   },
   ready: function () {
   },
@@ -67,13 +35,11 @@ Component({
     },
     viewMatcherUser({ currentTarget }) {
       const { item } = currentTarget.dataset;
-      const { matcherUser } = item;
+      const { matcherUser, id } = item;
       if (!matcherUser) {
         return;
       }
-      wx.navigateTo({
-        url: `/pages/matcherUser/matcherUser?${this.properties.newsType}Id=${item.id}`,
-      });
+      this.triggerEvent('viewMatcherUser', { id });
     },
   },
 });

@@ -16,10 +16,11 @@
             <text class="time cut_font">{{ item.createdDt || item.publishDt }}</text>
           </view>
         </view>
-        <view class="matcher-user" wx:if="{{ edit }}" catchtap="viewMatcherUser" data-item="{{ item }}">匹配用户：<text>{{ item.matcherUser }}</text></view>
+        <view class="matcher-user" wx:if="{{ showMatcherButton }}" catchtap="viewMatcherUser" data-item="{{ item }}">匹配用户：<text>{{ item.matcherUser }}</text></view>
       </view>
       <view class="title-info">{{ item.title }}</view>
-      <image class="message-large-list-pic" src="/image/messageLargePic2.png"></image>
+      <!-- <image class="message-large-list-pic" src="{{ item.imageUrl || '/image/messageLargePic2.png' }}"></image> -->
+      <image class="message-large-list-pic" src="{{ item.imageUrl || '' }}"></image>
       <view class="foot-info">
         <view class="tags-box">
           <view
@@ -31,25 +32,7 @@
             {{ industryItem.industryName }}
           </view>
         </view>
-        <view
-          class="oprate-box"
-          wx:if="{{ edit }}">
-          <i
-            wx:for="{{ editList }}"
-            wx:for-item="oprateItem"
-            wx:for-index="i"
-            wx:key="index"
-            class="oprate-icon {{ item[oprateItem.type] === 'Y' ? oprateItem.selected : oprateItem.select }}"
-            catchtap="oprate"
-            data-type="{{ oprateItem.type }}"
-            data-item="{{ item }}"
-            data-index="{{ index }}">
-            <text>{{ oprateItem.name }}</text>
-          </i>
-        </view>
-        <view
-          class="oprate-box"
-          wx:else>
+        <view class="oprate-box">
           <i
             wx:for="{{ oprateList }}"
             wx:for-item="oprateItem"
@@ -60,6 +43,7 @@
             data-type="{{ oprateItem.type }}"
             data-item="{{ item }}"
             data-index="{{ index }}">
+            <text>{{ oprateItem.name || '' }}</text>
           </i>
         </view>
       </view>

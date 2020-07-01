@@ -1,1 +1,7 @@
-<comon-page id="comon-page" pageType="receive"></comon-page>
+
+<comon-page
+  showNoticeButton
+  id="comon-page"
+  pageType="receive"
+  oprateList="{{ oprateList }}">
+</comon-page>

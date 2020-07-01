@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   width: calc(100vw - 30rpx);
-  height: 225rpx;
+  height: 205rpx;
   margin-left: 30rpx;
   overflow-x: hidden;
   background: #fff;
@@ -21,7 +21,7 @@
   width: calc(100% - 120rpx);
   height: 100%;
   display: flex;
-  padding: 30rpx 0;
+  padding: 20rpx 0;
   padding-right: 30rpx;
   box-sizing: border-box;
 }
@@ -45,9 +45,35 @@
   -webkit-line-clamp: 1;
   margin-top: 10rpx;
 }
-.oprate-box {
 
+.oprate-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 20rpx;
+  display: flex;
+  height: 44rpx;
+  color: #999999;
 }
+.oprate-box text {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  position: relative;
+  top: -5rpx;
+}
+.matcher-user {
+  flex: 1 1 190rpx;
+  font-size: 28rpx;
+  justify-content: flex-end;
+  color: #666;
+  display: flex;
+}
+.matcher-user text {
+  margin: auto 0;
+}
+.matcher-user .num {
+  color: #4285F4;
+}
+
 .oprate-icon {
   margin-right: 20rpx;
   font-size: 36rpx;
@@ -62,6 +88,7 @@
 .message-pic {
   width: 160rpx;
   height: auto;
+  margin: auto 0;
 }
 
 /* 删除按钮 */

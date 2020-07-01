@@ -2,10 +2,9 @@
   <view class="head-box">
     <view class="search-box">
       <zte-searchBar class="zte-searchBar" bindclearInput="clearInput" bindsearch="search"></zte-searchBar>
-      <!-- 我的接收页面才存在查看通知按钮 -->
       <view
         class="message-box"
-        wx:if="{{ pageType === 'receive'}}"
+        wx:if="{{ showNoticeButton }}"
         bindtap="viewNotice">
         <i class="ri-message-3-line message-icon">
           <view class="icon-dot"></view>
@@ -18,10 +17,9 @@
         tabs="{{ tabs }}"
         bindchange="tabsChange">
       </message-tabs>
-      <!-- 我的发布页面才存在发布消息按钮 -->
       <view
         class="oprate-box theme_fontColor_main"
-        wx:if="{{ pageType === 'release'}}"
+        wx:if="{{ showReleaseButton }}"
         bindtap="openDialog">
         <image class="release-icon" src="/image/addarticle.png"></image>
         <text>发布消息</text>
@@ -34,22 +32,15 @@
     <view class="list-content">
       <message-small-list
         id="list"
-        wx:if="{{ pageType === 'receive' }}"
-        newsType="{{ type }}"
+        movable="{{ pageType !== 'receive' }}"
+        showMatcherButton="{{ showMatcherButton }}"
         list="{{ msgList }}"
+        oprateList="{{ oprateList }}"
         bindclickList="clickList"
         bindhandlerDelete="handlerDelete"
-        bindoprate="oprate">
+        bindoprate="handlerOprate"
+        bindviewMatcherUser="viewMatcherUser">
       </message-small-list>
-      <message-large-list
-        wx:else
-        list="{{ msgList }}"
-        newsType="{{ type }}"
-        edit="{{ pageType === 'release' }}"
-        bindclickList="clickList"
-        bindhandlerDelete="handlerDelete"
-        bindoprate="oprate">
-      </message-large-list>
       <view class="loadingWord" wx:if="msgList.length">{{ loadingWord }}</view>
     </view>
   </view>

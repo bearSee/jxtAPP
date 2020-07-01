@@ -7,6 +7,7 @@
   <movable-area class="movable-area">
     <movable-view
       class='movable-view'
+      disabled="{{ !movable }}"
       x="{{ itemindex === index ? x : 0 }}"
       inertia
       out-of-bounds="true"
@@ -34,10 +35,16 @@
               data-type="{{ oprateItem.type }}"
               data-item="{{ item }}"
               data-index="{{ index }}">
+              <text>{{ oprateItem.name || '' }}</text>
             </i>
+            <view class="matcher-user" wx:if="{{ showMatcherButton }}" catchtap="viewMatcherUser" data-item="{{ item }}">
+              <text>匹配用户：</text>
+              <text class="num">{{ item.matcherUser }}</text>
+            </view>
           </view>
         </view>
-        <image class="message-pic" src="{{ item.imageUrl || '/image/messageSmallPic2.png' }}"></image>
+        <!-- <image class="message-pic" src="{{ item.imageUrl || '/image/messageSmallPic2.png' }}"></image> -->
+        <image class="message-pic" src="{{ item.imageUrl || '' }}"></image>
       </view>
 
       <view

@@ -13,27 +13,22 @@ Component({
         this.hiddenDel();
       },
     },
+    movable: {
+      type: Boolean,
+      value: true,
+    },
+    showMatcherButton: {
+      type: Boolean,
+      value: false,
+    },
+    oprateList: {
+      type: Array,
+      value: [],
+    },
   },
   data: {
     x: 0,
     itemindex: 0,
-    oprateList: [
-      {
-        type: 'isCollect',
-        selected: 'ri-heart-fill',
-        select: 'ri-heart-line',
-      },
-      {
-        type: 'isBlacklist',
-        selected: 'ri-user-unfollow-fill',
-        select: 'ri-user-add-line',
-      },
-      {
-        type: 'isComplaint',
-        selected: 'ri-shield-star-fill',
-        select: 'ri-shield-star-line',
-      },
-    ],
   },
   ready: function () {
   },
@@ -61,6 +56,14 @@ Component({
           this.setData({ itemindex, x });
         }, 200);
       }
+    },
+    viewMatcherUser({ currentTarget }) {
+      const { item } = currentTarget.dataset;
+      const { matcherUser, id } = item;
+      if (!matcherUser) {
+        return;
+      }
+      this.triggerEvent('viewMatcherUser', { id });
     },
     // 外部调用，隐藏删除按钮
     hiddenDel() {

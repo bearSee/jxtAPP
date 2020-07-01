@@ -14,7 +14,7 @@ Page({
         className: 'pwd-login',
       },
       {
-        btnName: '微信账号登录',
+        btnName: '微信一键登录',
         icon: 'right_arrow.png',
         type: 'wx',
         className: 'wx-login',
