@@ -7,6 +7,9 @@
   overflow-x: hidden;
   background: #fff;
 }
+.list:last-child .movable-view-content {
+  border: 0;
+}
 .movable-area {
   width: 100%;
   display: flex;
@@ -26,7 +29,8 @@
   box-sizing: border-box;
 }
 .content {
-  width: calc(100% - 160rpx);
+  /* width: calc(100% - 160rpx); */
+  flex: 1 1 calc(100% - 160rpx);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -85,10 +89,16 @@
 .ri-heart-fill {
   color: #F7563A;
 }
+.image-box {
+  width: 160rpx;
+  min-width: 160rpx;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+}
 .message-pic {
   width: 160rpx;
   height: auto;
-  margin: auto 0;
 }
 
 /* 删除按钮 */

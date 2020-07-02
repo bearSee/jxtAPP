@@ -16,7 +16,7 @@
       data-itemindex='{{ index }}'>
       
       <view
-        class="movable-view-content border_bottom_shallow"
+        class="movable-view-content border_bottom"
         bindtap="clickList"
         data-item="{{ item }}">
         <view class="content">
@@ -44,11 +44,13 @@
           </view>
         </view>
         <!-- <image class="message-pic" src="{{ item.imageUrl || '/image/messageSmallPic2.png' }}"></image> -->
-        <image class="message-pic" src="{{ item.imageUrl || '' }}"></image>
+        <view class="image-box" wx:if="{{ item.imageUrl }}">
+          <image class="message-pic" src="{{ item.imageUrl }}"></image>
+        </view>
       </view>
 
       <view
-        class="delete-btn border_bottom_shallow"
+        class="delete-btn border_bottom"
         data-index="{{ index }}"
         data-item="{{ item }}"
         bindtap="handlerDelete">

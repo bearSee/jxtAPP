@@ -77,6 +77,9 @@
   padding-top: 185rpx;
   background: #fff;
 }
+#list {
+  border-bottom: 1rpx solid #eee;
+}
 .list-content {
   background: #fff;
   width: 100%;
