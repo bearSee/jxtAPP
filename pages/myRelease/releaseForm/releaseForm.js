@@ -75,6 +75,12 @@ Page({
             value: 'key',
           },
           fastCode: 'Z005000',
+          trans: [
+            {
+              from: 'bizType',
+              to: 'bizType',
+            },
+          ],
         },
         {
           code: 'recruitmentPosition',
@@ -86,6 +92,7 @@ Page({
             value: 'key',
           },
           fastCode: 'Z006000',
+          hide: false,
         },
       ],
     },
@@ -96,6 +103,7 @@ Page({
       value: 'id',
     },
     defaultAdress: [],
+    hideIndustry: false,
   },
   onLoad({ type, id }) {
     if (id) {
@@ -146,7 +154,7 @@ Page({
           formData.receiveIndustryList = JSON.parse(JSON.stringify(formData.reviceIndustryList));
           delete formData.reviceIndustryList;
         }
-        this.setData({ formData });
+        this.resetFormData({ code: 'recruitmentProfessional' }, formData);
         this.getDefaultAdress();
       },
       () => { },
@@ -210,7 +218,27 @@ Page({
     } else {
       formData[item.code] = value;
     }
-    this.setData({ formData });
+    this.resetFormData(item, formData);
+  },
+  resetFormData(item, form) {
+    const { type, infoItems } = this.data;
+    if (item.code === 'recruitmentProfessional' && type === 'recruitmentNews') {
+      // bizType为2隐藏岗位radio和行业选择
+      const hideIndustry = form.bizType === '2';
+      if (hideIndustry) form.receiveIndustryList = [];
+      form = {
+        ...form,
+        recruitmentPosition: hideIndustry ? '' : form.recruitmentPosition,
+      };
+      const recruitmentPositionIndex = infoItems[type].findIndex(({ code }) => code === 'recruitmentPosition');
+      this.setData({
+        [`infoItems.recruitmentNews[${recruitmentPositionIndex}].hide`]: hideIndustry,
+        hideIndustry,
+        formData: form,
+      });
+    } else {
+      this.setData({ formData: form });
+    }
   },
   // 行业修改
   industryChange({ detail }) {

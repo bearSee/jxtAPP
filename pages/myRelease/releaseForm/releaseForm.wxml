@@ -7,19 +7,22 @@
         <view class="tag-label cut_font">{{ item.label }}</view>
         <view bindtap="openAdressDialog" class="tag-value cut_font arrow">{{ formData[item.code] || '请选择' }}</view>
     </view>
-    <zte-item
-      wx:else
-      class="zte-item-box"
-      item="{{ item }}"
-      value="{{ formData[item.code] || item.value }}"
-      bindinput="formChange">
-    </zte-item>
+    <view wx:else hidden="{{ item.hide }}">
+      <zte-item
+        class="zte-item-box"
+        item="{{ item }}"
+        value="{{ formData[item.code] || item.value }}"
+        bindinput="formChange">
+      </zte-item>
+    </view>
   </view>
-  <choose-industry
-    id="choose-industry"
-    data="{{ formData.receiveIndustryList || [] }}"
-    bindhandlerChange="industryChange">
-  </choose-industry>
+  <view hidden="{{ hideIndustry }}">
+    <choose-industry
+      id="choose-industry"
+      data="{{ formData.receiveIndustryList || [] }}"
+      bindhandlerChange="industryChange">
+    </choose-industry>
+  </view>
   <view class="submit-btn" bindtap="submit">下一步</view>
 </view>
 
