@@ -24,6 +24,9 @@
         <image class="release-icon" src="/image/addarticle.png"></image>
         <text>发布消息</text>
       </view>
+      <view class="oprate-box theme_fontColor_main" wx:if="{{ showReleaseSet && type === 'industryNews' }}" bindtap="gotoReceiveSet">
+        <i class="oprate-icon ri-edit-line"><text class="release-set">接收设置</text></i>
+      </view>
     </view>
   </view>
   <view

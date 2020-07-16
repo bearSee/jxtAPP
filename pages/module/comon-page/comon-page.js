@@ -14,6 +14,11 @@ Component({
       type: Boolean,
       value: false,
     },
+    // 展示接收设置按钮
+    showReleaseSet: {
+      type: Boolean,
+      value: false,
+    },
     // 展示发布消息按钮
     showReleaseButton: {
       type: Boolean,
@@ -267,6 +272,12 @@ Component({
           this.hiddenDel()
         },
       );
+    },
+    // 前往接收设置
+    gotoReceiveSet() {
+      wx.navigateTo({
+        url: '/pages/myReceive/receiveSet/receiveSet',
+      });
     },
     // 打开弹窗
     openDialog() {

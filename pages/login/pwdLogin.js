@@ -2,10 +2,14 @@ var app = getApp();
 
 Page({
   data: {
-    mobileNumber: wx.getStorageSync('mobileNumber') || '',
-    password: wx.getStorageSync('password') || '',
+    mobileNumber: '',
+    password: '',
   },
   onLoad: function () {
+    this.setData({
+      mobileNumber: wx.getStorageSync('mobileNumber') || '',
+      password: wx.getStorageSync('password') || '',
+    });
   },
   handlerPhoneChange(e) {
     const { value: mobileNumber } = e.detail;

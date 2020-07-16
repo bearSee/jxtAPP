@@ -127,3 +127,8 @@
   font-size: 26rpx;
   color: rgba(102,102,102,1);
  }
+ .release-set {
+   position: relative;
+   top: -2rpx;
+   margin-left: 5rpx;
+ }
