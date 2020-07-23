@@ -12,6 +12,8 @@ page {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
 }
 .helloTextEn {
   font-size: 30rpx;
@@ -19,7 +21,6 @@ page {
   margin-top: 24rpx;
 }
 .backImage {
-  margin: auto;
   display: block;
   height: 480rpx;
   width: auto;
@@ -44,4 +45,10 @@ page {
 .icon {
   font-size: 36rpx;
   color: #fff;
+}
+.not-login {
+  color: #00A9FF;
+  font-size: 26rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
 }

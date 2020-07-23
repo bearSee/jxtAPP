@@ -36,7 +36,7 @@ Page({
       },
     ],
     userInfo: {},
-    userTypeName: '',
+    userTypeName: '暂未登录',
   },
   clickView({ detail }) {
     const { url } = detail;

@@ -1,0 +1,2 @@
+
+<view class="mask-control" hidden="{{ logined }}" bindtap="gotoLogin"></view>

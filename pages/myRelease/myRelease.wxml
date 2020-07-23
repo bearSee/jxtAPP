@@ -5,4 +5,5 @@
   id="comon-page"
   oprateList="{{ oprateList }}">
 </comon-page>
+<mask-control/>
 

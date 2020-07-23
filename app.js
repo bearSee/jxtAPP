@@ -5,6 +5,7 @@ wx.$http = http;
 App({
   // 全局数据
   globalData: {
+    logined: false,
     mobile: '',
     openid: '',
     userInfo: {},
@@ -72,11 +73,10 @@ App({
           });
         }
       },
-    )
+    );
   },
   // 登陆完成处理
   finishLogin({ user, openid, Authorization }, loginType = '1') {
-    console.log(user)
     if (user && user.userType === 'ADMIN') {
       this.showModal({
         content: '管理员请登陆PC端进行操作',
@@ -84,6 +84,7 @@ App({
       });
       return;
     }
+    this.globalData.logined = true;
     wx.setStorageSync('Authorization', Authorization);
     this.globalData.userInfo = user;
     this.globalData.loginType = loginType;
@@ -100,6 +101,7 @@ App({
         this.globalData.openid = '';
         setTimeout(() => {
           wx.redirectTo({ url: '/pages/login/beforeLogin' });
+          this.globalData.logined = false;
         }, 1000);
       },
       () => { },

@@ -33,6 +33,9 @@ Page({
     const url = isPwdLogin ? '/pages/login/pwdLogin' : '/pages/login/wxLogin';
     wx.navigateTo({ url });
   },
+  gotoIndex() {
+    wx.reLaunch({ url: '/pages/myReceive/myReceive' });
+  },
   onLoad: function () {
     app.userLogin();
   },

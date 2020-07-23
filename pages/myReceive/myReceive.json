@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的接收",
   "usingComponents": {
-    "comon-page": "/pages/module/comon-page/comon-page"
+    "comon-page": "/pages/module/comon-page/comon-page",
+    "mask-control": "/pages/module/mask-control/mask-control"
   }
 }

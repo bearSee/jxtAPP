@@ -4,6 +4,7 @@
   "navigationBarBackgroundColor": "#0081FF",
   "disableScroll": true,
   "usingComponents": {
-    "list-tag": "/component/list-tag/list-tag"
+    "list-tag": "/component/list-tag/list-tag",
+    "mask-control": "/pages/module/mask-control/mask-control"
   }
 }

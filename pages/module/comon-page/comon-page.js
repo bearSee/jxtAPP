@@ -120,6 +120,7 @@ Component({
     },
     // 获取list列表
     getList() {
+      if (!app.globalData.logined) return;
       const { pageType } = this.properties;
       const { config, type, title } = this.data;
       const url = config[pageType][type].getListUrl;

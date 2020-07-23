@@ -6,4 +6,5 @@
     <text class="label">{{ item.btnName }}</text>
     <i class="icon ri-arrow-right-line"></i>
   </view>
+  <view class="not-login" bindtap="gotoIndex">暂不登录，前往主页</view>
 </view>

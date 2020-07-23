@@ -13,3 +13,4 @@
     <list-tag list="{{ list }}" bindclickView="clickView"/>
   </view>
 </view>
+<mask-control/>

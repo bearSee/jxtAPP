@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/myReceive/myReceive",
     "pages/login/beforeLogin",
     "pages/leaveMassage/leaveMassage",
     "pages/changeInputData/changeInputData",
@@ -8,7 +9,6 @@
     "pages/myCollect/myCollect",
     "pages/viewUserInfo/viewUserInfo",
     "pages/matcherUser/matcherUser",
-    "pages/myReceive/myReceive",
     "pages/myReceive/receiveSet/receiveSet",
     "pages/myRelease/myRelease",
     "pages/myRelease/releaseForm/releaseForm",
