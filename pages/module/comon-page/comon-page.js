@@ -36,18 +36,7 @@ Component({
   },
   data: {
     visible: false,
-    tabs: [
-      {
-        name: '行业消息',
-        code: 'industryNews',
-        icon: 'hy.png',
-      },
-      {
-        name: '招聘消息',
-        code: 'recruitmentNews',
-        icon: 'zp.png',
-      },
-    ],
+    tabs: [],
     type: 'industryNews',
     title: '',
     msgList: [],
@@ -99,6 +88,19 @@ Component({
       });
       this.setData({ tabs });
     }
+    const tabs = app.globalData.tabs || [
+      {
+        name: '行业消息',
+        code: 'industryNews',
+        icon: 'hy.png',
+      },
+      {
+        name: '招聘消息',
+        code: 'recruitmentNews',
+        icon: 'zp.png',
+      },
+    ];
+    this.setData({ tabs });
   },
   methods: {
     // 清空输入，初始化列表

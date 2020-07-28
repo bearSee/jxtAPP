@@ -7,18 +7,9 @@ Component({
   properties: {
     tabs: {
       type: Array,
-      value: [
-        {
-          name: '行业消息',
-          code: 'industryNews',
-        },
-        {
-          name: '招聘消息',
-          code: 'recruitmentNews',
-        },
-      ],
+      value: [],
       observer() {
-        // this.initCurrentTab();
+        this.initCurrentTab();
       },
     },
     selected: {

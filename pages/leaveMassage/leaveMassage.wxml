@@ -3,6 +3,7 @@
   <view class="head-tips">尊敬的及信通用户，感谢您对及信通信息平台的支持。欢迎您对我们提出宝贵的意见和建议！</view>
   <zte-input
     type="text"
+    value="{{mobileNumber}}"
     placeholder="请输入手机号"
     bindinput="handlerInput"
     data-code="mobileNumber">

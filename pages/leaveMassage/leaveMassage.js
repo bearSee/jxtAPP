@@ -6,6 +6,11 @@ Page({
     content: '',
     mobileNumber: '',
   },
+  onLoad() {
+    this.setData({
+      mobileNumber: app.globalData.mobile || '',
+    });
+  },
   submit() {
     const { content, mobileNumber } = this.data;
     wx.$http.post('messageBoard/save', { content, mobileNumber }).then(

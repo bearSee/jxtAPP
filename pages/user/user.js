@@ -15,7 +15,7 @@ Page({
         url: '/pages/myCollect/myCollect',
       },
       {
-        iconName: 'ri-heart-line',
+        iconName: 'ri-settings-line',
         labelName: '接收设置',
         url: '/pages/myReceive/receiveSet/receiveSet',
       },

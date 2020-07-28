@@ -6,6 +6,7 @@ App({
   // 全局数据
   globalData: {
     logined: false,
+    tabs: [],
     mobile: '',
     openid: '',
     userInfo: {},
@@ -28,6 +29,42 @@ App({
   },
   // 每次显示页面调用
   onShow: function (options) {
+    this.getTabsTitle();
+  },
+  // 获取行业消息、招聘消息标题栏
+  getTabsTitle() {
+    wx.request({
+      url: 'https://www.szzdxx.cn/image/title.json',
+      success: ({ data }) => {
+        const { industryNews, recruitmentNews } = data || {};
+        this.globalData.tabs = [
+          {
+            name: industryNews.title || '',
+            code: 'industryNews',
+            icon: 'hy.png',
+          },
+          {
+            name: recruitmentNews.title || '',
+            code: 'recruitmentNews',
+            icon: 'zp.png',
+          },
+        ];
+      },
+      fail: () => {
+        this.globalData.tabs = [
+          {
+            name: '行业消息',
+            code: 'industryNews',
+            icon: 'hy.png',
+          },
+          {
+            name: '招聘消息',
+            code: 'recruitmentNews',
+            icon: 'zp.png',
+          },
+        ];
+      },
+    });
   },
   // 登录
   userLogin() {

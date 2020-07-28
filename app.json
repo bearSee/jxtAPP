@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/myReceive/myReceive",
     "pages/login/beforeLogin",
+    "pages/myReceive/myReceive",
     "pages/leaveMassage/leaveMassage",
     "pages/changeInputData/changeInputData",
     "pages/notices/notices",

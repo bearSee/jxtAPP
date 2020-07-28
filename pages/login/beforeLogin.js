@@ -1,5 +1,4 @@
 //logs.js
-const util = require('../../utils/ajax.js');
 var app = getApp();
 
 Page({
@@ -20,6 +19,7 @@ Page({
         className: 'wx-login',
       },
     ],
+    data: '',
   },
   gotoLogin({ currentTarget }) {
     const { dataset } = currentTarget;
@@ -38,6 +38,9 @@ Page({
   },
   onLoad: function () {
     app.userLogin();
+    this.setData({
+      data: JSON.stringify(app.globalData.tabs),
+    });
   },
   onShareAppMessage() {},
 })
