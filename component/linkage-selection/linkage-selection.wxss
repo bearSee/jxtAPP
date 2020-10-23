@@ -24,11 +24,23 @@
   text-align: center;
   line-height: 34px;
 }
+.oprate-box {
+  display: flex;
+  margin-top: 30rpx;
+  border-top: 1rpx solid #eee;
+}
 .oprate-btn {
   text-align: center;
   padding: 20rpx 0;
-  margin-top: 30rpx;
-  border-top: 1rpx solid #eee;
+  width: 50%;
+  color: rgba(0,129,255,1);
+}
+.oprate-btn:nth-child(1) {
+  border-right: 1rpx solid #eee;
+  color: #333;
+}
+.oprate-btn-disabled {
+  color: #ddd!important;
 }
 .is-active {
   color: rgba(0,129,255,1);

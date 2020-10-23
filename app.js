@@ -25,11 +25,45 @@ App({
   },
   // 首次启动调用
   onLaunch: function () {
+    this.upDateApp();
     // 封装的ajax方法里在该页面拿的host，首次启动直接掉接口可能会出现调不通的情况，因为数据初始化尚未完成(若非要在这里调用，需在ajax文件里手动配置host)
   },
   // 每次显示页面调用
   onShow: function (options) {
     this.getTabsTitle();
+  },
+  // 更新版本，清除缓存
+  upDateApp() {
+    // 判断当前微信版本是否支持版本更新
+    if (wx.canIUse('getUpdateManager')) {
+      const updateManager = wx.getUpdateManager();
+      updateManager.onCheckForUpdate(({ hasUpdate }) => {
+        // 请求完新版本信息的回调
+        if (hasUpdate) {
+          updateManager.onUpdateReady(() => {
+            this.showModal({
+              title: '更新提示',
+              content: '新版本已经准备好，是否重启应用？',
+            }).then(() => {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate();
+            });
+          });
+          updateManager.onUpdateFailed(() => {
+            // 新的版本下载失败
+            this.showModal({
+              title: '更新提示',
+              content: '新版本已经上线，请您删除当前小程序，重新搜索打开',
+            });
+          });
+        }
+      })
+    } else {
+      this.showModal({
+        title: '更新提示',
+        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试',
+      });
+    }
   },
   // 获取行业消息、招聘消息标题栏
   getTabsTitle() {

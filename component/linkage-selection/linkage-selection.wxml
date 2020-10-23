@@ -15,5 +15,8 @@
         <view class="item" wx:for="{{ currentList }}" wx:key="i">{{ item[optionProps.label] }}</view>
       </picker-view-column>
     </picker-view>
-    <view class="oprate-btn" bindtap="chooseNextStep">{{ currentStep < steps ? '下一步' : '确定'}}</view>
+    <view class="oprate-box">
+      <view class="oprate-btn {{ currentStep >= steps && 'oprate-btn-disabled' }}" bindtap="chooseNextStep">下一步</view>
+      <view class="oprate-btn" bindtap="finishStep">确定</view>
+    </view>
   </view>

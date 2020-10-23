@@ -31,6 +31,9 @@ Component({
       type: Array,
       value: () => ([]),
       // observer() {
+      // this.setData({
+      //   initStep: 0,
+      // });
       //   this.initSelect();
       // },
     },
@@ -43,6 +46,7 @@ Component({
     currentStep: 1,
     selection: [],
     indexList: [],
+    initStep: 0,
   },
   
   ready: function () {
@@ -92,7 +96,7 @@ Component({
       const { value } = this.properties;
       let { currentStep, selection } = this.data;
       wx.showLoading({ title: '正在加载初始数据' });
-      if (value && value.length &&  value.length >= currentStep) {
+      if (value && value[this.data.initStep + 1] && value.length >= currentStep) {
         this.getCurrentStepList(true).then(
           ({ currentList, indexList }) => {
             if (value.length === currentStep) {
@@ -102,12 +106,15 @@ Component({
               return;
             };
             currentStep += 1;
-            this.setData({ currentStep });
+            this.setData({
+              currentStep,
+              initStep: this.data.initStep + 1
+            });
             this.initSelect();
           },
           () => {},
         );
-      } else if (!selection.length) {
+      } else {
         this.getCurrentStepList();
         wx.hideLoading();
       }
@@ -135,9 +142,10 @@ Component({
         currentStep += 1;
         this.setData({ currentStep });
         this.getCurrentStepList();
-      } else {
-        this.submit();
       }
+    },
+    finishStep() {
+      this.submit();
     },
     // 选择change
     selectChange ({ detail  }) {

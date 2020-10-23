@@ -78,17 +78,7 @@ Component({
   ready: function () {
     const { userType } = app.globalData.userInfo;
     const isPerson = userType === 'Z001002';
-    if (isPerson) {
-      const { tabs } = this.data;
-      tabs.map((d) => {
-        if (d.name.includes('招聘')) {
-          d.name = d.name.replace(/招聘/i, '应聘');
-        }
-        return d;
-      });
-      this.setData({ tabs });
-    }
-    const tabs = app.globalData.tabs || [
+    let tabs = app.globalData.tabs || [
       {
         name: '行业消息',
         code: 'industryNews',
@@ -100,6 +90,14 @@ Component({
         icon: 'zp.png',
       },
     ];
+    tabs = tabs.map((d) => {
+      if (d.name.includes('招聘') && isPerson) {
+        d.name = d.name.replace(/招聘/i, '应聘');
+      } else if (d.name.includes('应聘') && !isPerson) {
+        d.name = d.name.replace(/应聘/i, '招聘');
+      }
+      return d;
+    });
     this.setData({ tabs });
   },
   methods: {

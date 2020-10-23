@@ -71,9 +71,10 @@ Page({
   // 获取默认地址，显示地址名
   getDefaultAdress() {
     const { formData } = this.data;
-    const { province, city, area, street, provinceName, cityName, areaName, streetName } = this.data.formData;
-    if (!(province && provinceName)) return;
-    formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
+    const { province, city, area, street, provinceName = '', cityName = '', areaName = '', streetName = '' } = this.data.formData;
+    // if (!(province && provinceName)) return;
+    if (!province) return;
+    if (provinceName) formData.fullAdressName = [provinceName, cityName, areaName, streetName].join(' ');
     const defaultAdress = [province, city, area, street];
     this.setData({ formData, defaultAdress });
   },
@@ -99,9 +100,13 @@ Page({
         code: 'street',
       },
     ];
-    selection.forEach(({ id, name }, i) => {
-      formData[adressCodes[i].label] = name || '';
-      formData[adressCodes[i].code] = id || '';
+    // selection.forEach(({ id, name }, i) => {
+    //   formData[adressCodes[i].label] = name || '';
+    //   formData[adressCodes[i].code] = id || '';
+    // });
+    adressCodes.forEach(({ code, label }, i) => {
+      formData[label] = selection[i] && selection[i].name || '';
+      formData[code] = selection[i] && selection[i].id || '';
     });
     this.setData({ formData });
     setTimeout(() => {
